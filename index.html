@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Polaris Global Institute</title>
-  <meta name="description" content="Polaris Global Institute — Guiding Minds with Integrity." />
+  <meta name="description" content="Polaris Global Institute — Structured learning for AI, cybersecurity, and future skills." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Elegant + readable -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./styles.css" />
@@ -18,47 +17,81 @@
   <!-- Top Bar -->
   <header class="topbar">
     <div class="wrap topbar__inner">
-      <a class="brand" href="#" aria-label="Polaris Global Institute">
+      <a class="brand" href="./index.html" aria-label="Polaris Global Institute">
         <span class="brand__mark" aria-hidden="true">✦</span>
         <span class="brand__name">Polaris</span>
-        <span class="brand__sub">Global Institute</span>
+        <span class="brand__sub" data-i18n="brand_sub">Global Institute</span>
       </a>
 
-      <nav class="nav">
-        <a class="nav__link" href="#about" data-i18n="nav_about">About</a>
-        <a class="nav__link" href="#focus" data-i18n="nav_focus">Focus</a>
-        <a class="nav__link" href="#program" data-i18n="nav_program">Program</a>
-        <a class="nav__link" href="#contact" data-i18n="nav_contact">Contact</a>
-      </nav>
-
       <div class="topbar__actions">
-        <!-- Language Toggle (clear + one tap) -->
+        <!-- Language toggle -->
         <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">
           العربية
         </button>
 
-        <a class="btn btn--gold" href="#apply" data-i18n="cta_apply">Apply</a>
+        <!-- Primary action -->
+        <a class="btn btn--primary" href="./login.html" data-i18n="signin">Sign in</a>
+
+        <!-- Menu button -->
+        <button id="menuBtn" class="btn btn--ghost menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel">
+          <span data-i18n="menu">Menu</span>
+        </button>
       </div>
     </div>
+
+    <!-- Slide Menu -->
+    <div id="menuPanel" class="menu" aria-hidden="true">
+      <div class="menu__inner">
+        <div class="menu__head">
+          <div class="menu__title">Polaris</div>
+          <button id="menuClose" class="menu__close" type="button" aria-label="Close menu">✕</button>
+        </div>
+
+        <nav class="menu__nav">
+          <a href="#about" class="menu__link" data-i18n="nav_about">About</a>
+          <a href="#focus" class="menu__link" data-i18n="nav_focus">Focus</a>
+          <a href="#program" class="menu__link" data-i18n="nav_program">Program</a>
+
+          <div class="menu__divider"></div>
+
+          <a href="./principles.html" class="menu__link" data-i18n="nav_principles">Principles</a>
+          <a href="./terms.html" class="menu__link" data-i18n="nav_terms">Terms</a>
+          <a href="./privacy.html" class="menu__link" data-i18n="nav_privacy">Privacy</a>
+          <a href="./contact.html" class="menu__link" data-i18n="nav_contact">Contact</a>
+
+          <div class="menu__divider"></div>
+
+          <a href="./dashboard.html" class="menu__link" data-i18n="nav_dashboard">My Learning</a>
+          <a href="./login.html" class="menu__link menu__link--primary" data-i18n="signin">Sign in</a>
+        </nav>
+
+        <div class="menu__footer">
+          <div class="small muted" data-i18n="menu_note">
+            Clean, structured learning — built to scale.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backdrop -->
+    <div id="menuBackdrop" class="menuBackdrop" aria-hidden="true"></div>
   </header>
 
   <!-- Hero -->
   <main>
     <section class="hero">
       <div class="wrap hero__inner">
-        <div class="hero__badge" data-i18n="badge">A Human-Centered Intelligence Initiative</div>
+        <div class="hero__badge" data-i18n="badge">A Global Academic Learning Platform</div>
 
-        <h1 class="hero__title">
-          <span data-i18n="hero_title_1">Polaris Global Institute</span>
-        </h1>
+        <h1 class="hero__title" data-i18n="hero_title">Polaris Global Institute</h1>
 
         <p class="hero__subtitle" data-i18n="hero_subtitle">
-          Independent, ethical learning for AI, cybersecurity, and future skills — built with integrity and academic rigor.
+          Structured learning for AI, cybersecurity, and future skills — built with academic rigor.
         </p>
 
         <div class="hero__cta">
-          <a class="btn btn--gold btn--lg" href="#apply" data-i18n="cta_primary">Apply to Founding Fellowship</a>
-          <a class="btn btn--ghost btn--lg" href="#about" data-i18n="cta_secondary">Explore the Mission</a>
+          <a class="btn btn--primary btn--lg" href="#apply" data-i18n="cta_primary">Apply to Founding Fellowship</a>
+          <a class="btn btn--ghost btn--lg" href="#about" data-i18n="cta_secondary">Explore</a>
         </div>
 
         <div class="hero__stats">
@@ -71,8 +104,8 @@
             <div class="stat__label" data-i18n="stat_2">Structured Program</div>
           </div>
           <div class="stat">
-            <div class="stat__num">Ethics + Practice</div>
-            <div class="stat__label" data-i18n="stat_3">Balanced Approach</div>
+            <div class="stat__num">Build + Review</div>
+            <div class="stat__label" data-i18n="stat_3">Real Output</div>
           </div>
         </div>
       </div>
@@ -84,46 +117,45 @@
       <div class="wrap grid2">
         <div>
           <h2 class="h2" data-i18n="about_title">About Polaris</h2>
-          <p class="p" data-i18n="about_p1">
-            Polaris Global Institute is built on a simple belief: education must remain independent, ethical, and human.
+          <p class="p muted" data-i18n="about_p1">
+            Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.
           </p>
-          <p class="p" data-i18n="about_p2">
-            We are not a political platform. We are not a religious institution. We are not driven by ideology.
-            We are driven by integrity.
+          <p class="p muted" data-i18n="about_p2">
+            We start small, build real capability, and scale with quality — not noise.
           </p>
         </div>
 
         <div class="card">
-          <h3 class="h3" data-i18n="principles_title">Core Principles</h3>
+          <h3 class="h3" data-i18n="pillars_title">Program Pillars</h3>
           <ul class="list">
-            <li data-i18n="pr_1">Intellectual neutrality</li>
-            <li data-i18n="pr_2">Human-first innovation</li>
-            <li data-i18n="pr_3">Academic rigor</li>
-            <li data-i18n="pr_4">Responsible technology</li>
+            <li data-i18n="pl_1">Clear mental models</li>
+            <li data-i18n="pl_2">Applied projects</li>
+            <li data-i18n="pl_3">Peer review</li>
+            <li data-i18n="pl_4">Progress tracking</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Focus Areas -->
+    <!-- Focus -->
     <section class="section" id="focus">
       <div class="wrap">
         <h2 class="h2 center" data-i18n="focus_title">Focus Areas</h2>
 
         <div class="cards3">
           <article class="card">
-            <h3 class="h3" data-i18n="focus_1_t">Ethical AI</h3>
-            <p class="p" data-i18n="focus_1_p">Foundations, applied systems, and responsible deployment of AI.</p>
+            <h3 class="h3" data-i18n="focus_1_t">AI Foundations</h3>
+            <p class="p muted" data-i18n="focus_1_p">Strong fundamentals, real use-cases, and systems thinking.</p>
           </article>
 
           <article class="card">
-            <h3 class="h3" data-i18n="focus_2_t">Ethical Cybersecurity</h3>
-            <p class="p" data-i18n="focus_2_p">Security thinking, defensive mindset, and lawful ethical practice.</p>
+            <h3 class="h3" data-i18n="focus_2_t">Cybersecurity</h3>
+            <p class="p muted" data-i18n="focus_2_p">Defensive mindset, safe practice, and technical literacy.</p>
           </article>
 
           <article class="card">
             <h3 class="h3" data-i18n="focus_3_t">Builders Track</h3>
-            <p class="p" data-i18n="focus_3_p">Build small projects: tools, prototypes, and practical systems.</p>
+            <p class="p muted" data-i18n="focus_3_p">Build small tools and prototypes with clean structure.</p>
           </article>
         </div>
       </div>
@@ -134,34 +166,32 @@
       <div class="wrap">
         <div class="section__head">
           <h2 class="h2" data-i18n="program_title">Founding Fellowship — Cohort 01</h2>
-          <p class="p muted" data-i18n="program_sub">
-            A small, selective group. Deep learning. Real outputs.
-          </p>
+          <p class="p muted" data-i18n="program_sub">A selective group. Deep learning. Real outcomes.</p>
         </div>
 
         <div class="timeline">
           <div class="step">
             <div class="step__tag">Weeks 1–3</div>
             <h3 class="h3" data-i18n="wk_1_t">Foundations</h3>
-            <p class="p" data-i18n="wk_1_p">AI fundamentals + critical thinking + clean mental models.</p>
+            <p class="p muted" data-i18n="wk_1_p">Mental models, core concepts, and practical clarity.</p>
           </div>
 
           <div class="step">
             <div class="step__tag">Weeks 4–7</div>
-            <h3 class="h3" data-i18n="wk_2_t">Applied AI</h3>
-            <p class="p" data-i18n="wk_2_p">Prompting, tool-building, and practical mini-projects.</p>
+            <h3 class="h3" data-i18n="wk_2_t">Applied Track</h3>
+            <p class="p muted" data-i18n="wk_2_p">Build mini-projects, iterate, and refine.</p>
           </div>
 
           <div class="step">
             <div class="step__tag">Weeks 8–10</div>
-            <h3 class="h3" data-i18n="wk_3_t">Cyber + Ethics</h3>
-            <p class="p" data-i18n="wk_3_p">Security mindset, responsibility, and safe practice.</p>
+            <h3 class="h3" data-i18n="wk_3_t">Security Track</h3>
+            <p class="p muted" data-i18n="wk_3_p">Defensive thinking and responsible implementation.</p>
           </div>
 
           <div class="step">
             <div class="step__tag">Weeks 11–12</div>
             <h3 class="h3" data-i18n="wk_4_t">Capstone</h3>
-            <p class="p" data-i18n="wk_4_p">Build and present a real project with peer review.</p>
+            <p class="p muted" data-i18n="wk_4_p">Ship a real project and present it with peer review.</p>
           </div>
         </div>
       </div>
@@ -172,36 +202,35 @@
       <div class="wrap apply">
         <div class="apply__box">
           <h2 class="h2" data-i18n="apply_title">Apply to Join Polaris</h2>
-          <p class="p" data-i18n="apply_p">
-            We begin with a small circle of committed learners. If you value integrity, depth, and real progress — apply.
+          <p class="p muted" data-i18n="apply_p">
+            Start with a small circle of committed learners. Apply to the founding cohort.
           </p>
-
           <div class="apply__cta">
-            <a class="btn btn--gold btn--lg" href="#" data-i18n="apply_btn">Open Application</a>
+            <a class="btn btn--primary btn--lg" href="#" data-i18n="apply_btn">Open Application</a>
             <span class="muted small" data-i18n="apply_note">Applications open soon.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Footer -->
     <footer class="footer" id="contact">
       <div class="wrap footer__inner">
         <div>
           <div class="footer__brand">Polaris Global Institute</div>
-          <div class="footer__tag" data-i18n="footer_tag">Guiding Minds with Integrity</div>
+          <div class="footer__tag" data-i18n="footer_tag">Structured learning. Built to scale.</div>
         </div>
 
         <div class="footer__links">
-          <a href="#about" data-i18n="nav_about">About</a>
-          <a href="#program" data-i18n="nav_program">Program</a>
-          <a href="#apply" data-i18n="cta_apply">Apply</a>
+          <a href="./terms.html" data-i18n="nav_terms">Terms</a>
+          <a href="./privacy.html" data-i18n="nav_privacy">Privacy</a>
+          <a href="./contact.html" data-i18n="nav_contact">Contact</a>
         </div>
 
         <div class="footer__meta">
           <div class="muted small">
             <span data-i18n="footer_email_label">Email:</span>
-            <a href="mailto:hello@polarisglobalinstitute.com">hello@polarisglobalinstitute.com</a>
+            <a class="link" href="mailto:hello@polarisglobalinstitute.com">hello@polarisglobalinstitute.com</a>
           </div>
           <div class="muted small">© <span id="year"></span> Polaris Global Institute</div>
         </div>
