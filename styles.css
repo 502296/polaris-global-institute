@@ -994,7 +994,47 @@ a{ color: inherit; text-decoration: none; }
 
 }
 
+/* =========================
+   MENU Accordion (About inside Menu)
+========================= */
+.menu__accordion{
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+  color: rgba(234,240,255,.86);
+  cursor:pointer;
+}
 
+.menu__accordion:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+}
+
+.menu__accordionIcon{
+  opacity:.85;
+  transition: transform .18s ease;
+}
+
+.menu__accordion[aria-expanded="true"] .menu__accordionIcon{
+  transform: rotate(180deg);
+}
+
+.menu__accordionPanel{
+  padding-top: 10px;
+}
+
+.menu__aboutCard{
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 12px;
+}
 
 /* =========================
 
