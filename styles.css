@@ -352,35 +352,53 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.hero__stats{
+/* NEW: quick nav pills */
 
-  margin-top: 26px;
+.hero__pills{
 
-  display:grid;
+  margin-top: 18px;
 
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display:flex;
 
-  gap: 12px;
+  gap:10px;
+
+  flex-wrap:wrap;
 
 }
 
+.pill{
 
+  display:inline-flex;
 
-.stat{
+  align-items:center;
 
-  padding: 14px;
+  gap:8px;
+
+  padding: 10px 12px;
+
+  border-radius: 999px;
 
   border: 1px solid rgba(255,255,255,.10);
 
   background: rgba(255,255,255,.03);
 
-  border-radius: var(--radius);
+  color: rgba(234,240,255,.86);
+
+  font-weight: 650;
+
+  font-size: 13px;
+
+  transition: background .15s ease, border-color .15s ease;
 
 }
 
-.stat__num{ font-weight: 750; letter-spacing:.2px; }
+.pill:hover{
 
-.stat__label{ color: rgba(234,240,255,.65); font-size: 13px; margin-top: 6px; }
+  background: rgba(255,255,255,.06);
+
+  border-color: rgba(255,255,255,.14);
+
+}
 
 
 
@@ -408,7 +426,7 @@ a{ color: inherit; text-decoration: none; }
 
 /* =========================
 
-   Sections + Cards
+   Sections + Typography
 
 ========================= */
 
@@ -428,21 +446,89 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.grid2{
+.section__head{ margin-bottom: 14px; }
 
-  display:grid;
+.section__headRow{
 
-  grid-template-columns: 1.1fr .9fr;
+  display:flex;
 
-  gap: 16px;
+  align-items:flex-end;
 
-  align-items:start;
+  justify-content:space-between;
+
+  gap: 14px;
+
+  flex-wrap:wrap;
 
 }
 
 
 
-.cards3{
+/* =========================
+
+   NEW: Catalog Filters (edX vibe)
+
+========================= */
+
+.catalogFilters{
+
+  display:flex;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+}
+
+.chip{
+
+  appearance:none;
+
+  border: 1px solid rgba(255,255,255,.10);
+
+  background: rgba(255,255,255,.03);
+
+  color: rgba(234,240,255,.85);
+
+  border-radius: 999px;
+
+  padding: 10px 12px;
+
+  font-weight: 700;
+
+  font-size: 13px;
+
+  cursor:pointer;
+
+  transition: background .15s ease, border-color .15s ease;
+
+}
+
+.chip:hover{
+
+  background: rgba(255,255,255,.06);
+
+  border-color: rgba(255,255,255,.14);
+
+}
+
+.chip.is-active{
+
+  border-color: rgba(125,242,255,.22);
+
+  background: linear-gradient(180deg, rgba(46,233,166,.14), rgba(20,195,255,.10));
+
+}
+
+
+
+/* =========================
+
+   NEW: Catalog Grid (edX-style cards)
+
+========================= */
+
+.catalogGrid{
 
   display:grid;
 
@@ -456,13 +542,155 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.card{
+.catalogCard{
 
   background: rgba(255,255,255,.03);
 
   border: 1px solid rgba(255,255,255,.10);
 
-  border-radius: var(--radius);
+  border-radius: 18px;
+
+  padding: 16px;
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+
+  min-height: 182px;
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+
+
+.catalogTop{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.catalogBadge{
+
+  display:inline-flex;
+
+  font-size: 12px;
+
+  letter-spacing:.2px;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(125,242,255,.18);
+
+  background: linear-gradient(180deg, rgba(46,233,166,.12), rgba(20,195,255,.08));
+
+  color: rgba(234,240,255,.90);
+
+}
+
+
+
+.catalogOrg{
+
+  font-size: 12px;
+
+  color: rgba(234,240,255,.68);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  background: rgba(255,255,255,.02);
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+}
+
+
+
+.metaRow{
+
+  display:flex;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+  margin-top: auto;
+
+}
+
+
+
+.meta{
+
+  font-size: 12px;
+
+  color: rgba(234,240,255,.75);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  background: rgba(255,255,255,.02);
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+}
+
+
+
+.cardActions{
+
+  display:flex;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-top: 12px;
+
+}
+
+
+
+/* =========================
+
+   NEW: How it works grid
+
+========================= */
+
+.howGrid{
+
+  display:grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 16px;
+
+}
+
+.howCard{
+
+  background: rgba(255,255,255,.03);
+
+  border: 1px solid rgba(255,255,255,.10);
+
+  border-radius: 18px;
 
   padding: 16px;
 
@@ -470,39 +698,47 @@ a{ color: inherit; text-decoration: none; }
 
 }
 
+.howNum{
 
+  width: 44px;
 
-.list{
+  height: 44px;
 
-  margin: 10px 0 0;
+  border-radius: 14px;
 
-  padding-left: 18px;
+  display:flex;
 
-  color: rgba(234,240,255,.70);
+  align-items:center;
 
-  line-height: 1.7;
+  justify-content:center;
+
+  font-weight: 800;
+
+  color: #06111A;
+
+  background: linear-gradient(180deg, var(--primary1), var(--primary2));
+
+  box-shadow: 0 14px 36px rgba(20,195,255,.18);
+
+  margin-bottom: 10px;
 
 }
 
 
 
-.section__head{ margin-bottom: 14px; }
-
-
-
 /* =========================
 
-   Timeline
+   NEW: Fellowship Accordion (details)
 
 ========================= */
 
-.timeline{
+.accordionStack{
 
-  display:grid;
+  display:flex;
 
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  flex-direction:column;
 
-  gap: 12px;
+  gap: 10px;
 
   margin-top: 14px;
 
@@ -510,37 +746,77 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.step{
+.acc{
 
-  background: rgba(255,255,255,.03);
+  border-radius: 18px;
 
   border: 1px solid rgba(255,255,255,.10);
 
-  border-radius: var(--radius);
+  background: rgba(255,255,255,.03);
 
-  padding: 16px;
+  overflow:hidden;
 
 }
 
 
 
-.step__tag{
+.acc__sum{
 
-  display:inline-flex;
+  list-style: none;
 
-  font-size: 12px;
+  cursor:pointer;
 
-  color: rgba(234,240,255,.70);
+  display:flex;
 
-  border: 1px solid rgba(255,255,255,.10);
+  align-items:center;
 
-  background: rgba(255,255,255,.02);
+  justify-content:space-between;
 
-  border-radius: 999px;
+  gap: 12px;
 
-  padding: 6px 10px;
+  padding: 14px 16px;
 
-  margin-bottom: 10px;
+}
+
+
+
+.acc__sum::-webkit-details-marker{ display:none; }
+
+
+
+.acc__title{
+
+  font-weight: 750;
+
+  letter-spacing: .2px;
+
+}
+
+
+
+.acc__meta{
+
+  color: rgba(234,240,255,.68);
+
+  font-size: 13px;
+
+}
+
+
+
+.acc[open]{
+
+  border-color: rgba(125,242,255,.18);
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+
+}
+
+
+
+.acc__body{
+
+  padding: 0 16px 14px;
 
 }
 
@@ -836,81 +1112,13 @@ a{ color: inherit; text-decoration: none; }
 
 /* =========================
 
-   COURSE GRID (Placeholder)
+   MENU Accordion (About inside Menu)
 
 ========================= */
 
-.courseGrid{
+.menu__accordion{
 
-  display:grid;
-
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin-top: 18px;
-
-}
-
-
-
-.courseCard{
-
-  background: rgba(255,255,255,.03);
-
-  border: 1px solid rgba(255,255,255,.10);
-
-  border-radius: 18px;
-
-  padding: 16px;
-
-  box-shadow: 0 18px 60px rgba(0,0,0,.45);
-
-  min-height: 150px;
-
-}
-
-
-
-.courseCard.is-placeholder{ opacity: .88; }
-
-
-
-.courseBadge{
-
-  display:inline-flex;
-
-  font-size: 12px;
-
-  letter-spacing:.2px;
-
-  padding: 6px 10px;
-
-  border-radius: 999px;
-
-  border: 1px solid rgba(125,242,255,.18);
-
-  background: linear-gradient(180deg, rgba(46,233,166,.12), rgba(20,195,255,.08));
-
-  color: rgba(234,240,255,.90);
-
-  margin-bottom: 10px;
-
-}
-
-
-
-/* =========================
-
-   Optional: Accordion style
-
-   (If you decide to put About inside Menu as collapsible)
-
-========================= */
-
-.accordion{
-
-  width:100%;
+  width: 100%;
 
   display:flex;
 
@@ -920,15 +1128,15 @@ a{ color: inherit; text-decoration: none; }
 
   gap:12px;
 
-  padding: 14px 16px;
+  padding: 12px 12px;
 
-  border-radius: 18px;
+  border-radius: 14px;
 
-  border: 1px solid rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.08);
 
   background: rgba(255,255,255,.03);
 
-  color: var(--text);
+  color: rgba(234,240,255,.86);
 
   cursor:pointer;
 
@@ -936,19 +1144,17 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.accordion__title{
+.menu__accordion:hover{
 
-  font-family: var(--serif);
+  background: rgba(255,255,255,.06);
 
-  font-size: 18px;
-
-  font-weight: 700;
+  border-color: rgba(255,255,255,.12);
 
 }
 
 
 
-.accordion__icon{
+.menu__accordionIcon{
 
   opacity:.85;
 
@@ -958,7 +1164,7 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.accordion[aria-expanded="true"] .accordion__icon{
+.menu__accordion[aria-expanded="true"] .menu__accordionIcon{
 
   transform: rotate(180deg);
 
@@ -966,7 +1172,37 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.accordionPanel{ margin-top: 12px; }
+.menu__accordionPanel{
+
+  padding-top: 10px;
+
+}
+
+
+
+.menu__aboutCard{
+
+  background: rgba(255,255,255,.025);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  border-radius: 14px;
+
+  padding: 12px;
+
+}
+
+
+
+/* =========================
+
+   RTL
+
+========================= */
+
+html[dir="rtl"] body{ font-family: var(--sans); }
+
+html[dir="rtl"] .list{ padding-left: 0; padding-right: 18px; }
 
 
 
@@ -980,68 +1216,12 @@ a{ color: inherit; text-decoration: none; }
 
   .hero{ padding-top: 64px; }
 
-  .grid2{ grid-template-columns: 1fr; }
-
-  .timeline{ grid-template-columns: 1fr 1fr; }
-
-  .cards3{ grid-template-columns: 1fr; }
-
   .footer__inner{ grid-template-columns: 1fr; }
 
-  .hero__stats{ grid-template-columns: 1fr; }
+  .catalogGrid{ grid-template-columns: 1fr; }
 
-  .courseGrid{ grid-template-columns: 1fr; }
+  .howGrid{ grid-template-columns: 1fr; }
+
+  .section__headRow{ align-items:flex-start; }
 
 }
-
-/* =========================
-   MENU Accordion (About inside Menu)
-========================= */
-.menu__accordion{
-  width: 100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding: 12px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.03);
-  color: rgba(234,240,255,.86);
-  cursor:pointer;
-}
-
-.menu__accordion:hover{
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.12);
-}
-
-.menu__accordionIcon{
-  opacity:.85;
-  transition: transform .18s ease;
-}
-
-.menu__accordion[aria-expanded="true"] .menu__accordionIcon{
-  transform: rotate(180deg);
-}
-
-.menu__accordionPanel{
-  padding-top: 10px;
-}
-
-.menu__aboutCard{
-  background: rgba(255,255,255,.025);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  padding: 12px;
-}
-
-/* =========================
-
-   RTL
-
-========================= */
-
-html[dir="rtl"] body{ font-family: var(--sans); }
-
-html[dir="rtl"] .list{ padding-left: 0; padding-right: 18px; }
