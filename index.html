@@ -46,6 +46,29 @@
           <a href="#courses" class="menu__link" data-i18n="nav_courses">Courses</a>
           <a href="#program" class="menu__link" data-i18n="nav_program">Program</a>
 
+          <!-- ABOUT moved here (Accordion inside menu) -->
+          <button class="menu__accordion" id="menuAboutToggle" type="button" aria-expanded="false" aria-controls="menuAboutPanel">
+            <span data-i18n="about_title">About Polaris</span>
+            <span class="menu__accordionIcon" aria-hidden="true">▾</span>
+          </button>
+          <div class="menu__accordionPanel" id="menuAboutPanel" hidden>
+            <div class="menu__aboutCard">
+              <p class="p muted" data-i18n="about_p1">
+                Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.
+              </p>
+              <p class="p muted" data-i18n="about_p2">
+                We start small, build real capability, and scale with quality — not noise.
+              </p>
+              <div class="small muted" style="margin-top:10px;" data-i18n="pillars_title">Program Pillars</div>
+              <ul class="list">
+                <li data-i18n="pl_1">Clear mental models</li>
+                <li data-i18n="pl_2">Applied projects</li>
+                <li data-i18n="pl_3">Peer review</li>
+                <li data-i18n="pl_4">Progress tracking</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="menu__divider"></div>
 
           <a href="./principles.html" class="menu__link" data-i18n="nav_principles">Principles</a>
@@ -128,35 +151,6 @@
             <div class="courseBadge">BUILD</div>
             <h3 class="h3">Course Card</h3>
             <p class="p muted">Placeholder — we will add course details soon.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About (COLLAPSIBLE) -->
-    <section class="section" id="about">
-      <div class="wrap">
-        <button class="accordion" id="aboutToggle" aria-expanded="false" aria-controls="aboutPanel">
-          <span class="accordion__title" data-i18n="about_title">About Polaris</span>
-          <span class="accordion__icon" aria-hidden="true">▾</span>
-        </button>
-
-        <div class="accordionPanel" id="aboutPanel" hidden>
-          <div class="card">
-            <p class="p muted" data-i18n="about_p1">
-              Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.
-            </p>
-            <p class="p muted" data-i18n="about_p2">
-              We start small, build real capability, and scale with quality — not noise.
-            </p>
-
-            <h3 class="h3" data-i18n="pillars_title" style="margin-top:14px;">Program Pillars</h3>
-            <ul class="list">
-              <li data-i18n="pl_1">Clear mental models</li>
-              <li data-i18n="pl_2">Applied projects</li>
-              <li data-i18n="pl_3">Peer review</li>
-              <li data-i18n="pl_4">Progress tracking</li>
-            </ul>
           </div>
         </div>
       </div>
