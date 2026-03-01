@@ -1225,3 +1225,131 @@ html[dir="rtl"] .list{ padding-left: 0; padding-right: 18px; }
   .section__headRow{ align-items:flex-start; }
 
 }
+
+/* =========================
+
+   Mobile Polish (edX-clean)
+
+   Paste at END of styles.css
+
+========================= */
+
+
+
+@media (max-width: 520px){
+
+
+
+  /* Hero spacing */
+
+  .hero{ padding: 66px 0 28px; }
+
+  .hero__subtitle{ font-size: 15.5px; line-height: 1.65; }
+
+
+
+  /* Make the two main buttons feel balanced */
+
+  .hero__cta .btn{ flex: 1 1 auto; }
+
+  .hero__cta{ gap: 10px; }
+
+
+
+  /* Pills: 2 per row instead of stacked */
+
+  .hero__pills{
+
+    display:grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 14px;
+
+  }
+
+  .pill{
+
+    justify-content:center;
+
+    padding: 10px 10px;
+
+    font-size: 12.5px;
+
+  }
+
+
+
+  /* Section title rhythm */
+
+  .h2{ font-size: 28px; margin-bottom: 10px; }
+
+  .section{ padding: 46px 0; }
+
+
+
+  /* Filters: horizontal scroll like edX */
+
+  .catalogFilters{
+
+    flex-wrap: nowrap;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    padding-bottom: 6px;
+
+    margin-top: 6px;
+
+  }
+
+  .catalogFilters::-webkit-scrollbar{ display:none; }
+
+  .chip{ white-space: nowrap; }
+
+
+
+  /* Cards: slightly tighter and clearer */
+
+  .catalogCard{
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+  }
+
+  .catalogOrg{
+
+    color: rgba(234,240,255,.78);
+
+    border-color: rgba(255,255,255,.10);
+
+  }
+
+
+
+  /* Meta pills: slightly smaller so they don't overflow */
+
+  .meta{ font-size: 11.5px; padding: 6px 9px; }
+
+
+
+  /* Actions: make buttons equal width on mobile */
+
+  .cardActions .btn{
+
+    flex: 1 1 auto;
+
+  }
+
+
+
+  /* How cards: reduce extra height */
+
+  .howCard{ padding: 15px; }
+
+}
