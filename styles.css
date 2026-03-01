@@ -862,6 +862,13 @@ a{ color: inherit; text-decoration: none; }
 @media (max-width: 960px){
   .courseGrid{ grid-template-columns: 1fr; }
 }
+  /* Hide the floating About Polaris dropdown (temporary) */
+.about-fab,
+.about-toggle,
+#aboutToggle,
+#aboutDropdown {
+  display: none !important;
+}
 
 }
 
