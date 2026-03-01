@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+  <title>Sign in — Polaris Global Institute</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="./index.html">
+        <span class="brand__mark">✦</span>
+        <span class="brand__name">Polaris</span>
+        <span class="brand__sub">Global Institute</span>
+      </a>
+
+      <div class="topbar__actions">
+        <a class="btn btn--ghost" href="./index.html">Home</a>
+        <a class="btn btn--gold" href="./dashboard.html">My Learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth">
+    <div class="wrap">
+      <div class="auth__card card">
+        <h1 class="h2">Sign in</h1>
+        <p class="p muted">Use email or Google to access your learning dashboard.</p>
+
+        <div class="auth__section">
+          <label class="label" for="email">Email</label>
+          <input id="email" class="input" type="email" placeholder="you@example.com" autocomplete="email" />
+          <button id="btnEmail" class="btn btn--gold btn--lg w100">Send Magic Link</button>
+          <div id="emailMsg" class="small muted" style="margin-top:10px;"></div>
+        </div>
+
+        <div class="divider"><span>or</span></div>
+
+        <button id="btnGoogle" class="btn btn--ghost btn--lg w100">Continue with Google</button>
+
+        <div id="err" class="small" style="color:#ffb4b4; margin-top:12px;"></div>
+
+        <p class="small muted" style="margin-top:16px;">
+          By signing in, you agree to our <a class="link" href="./terms.html">Terms</a> and <a class="link" href="./privacy.html">Privacy Policy</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="./supabaseClient.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    const btnEmail = $("btnEmail");
+    const btnGoogle = $("btnGoogle");
+    const emailInput = $("email");
+    const emailMsg = $("emailMsg");
+    const errEl = $("err");
+
+    // If already signed in, go dashboard
+    (async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data?.session) window.location.href = "./dashboard.html";
+    })();
+
+    btnEmail.addEventListener("click", async () => {
+      errEl.textContent = "";
+      emailMsg.textContent = "";
+      const email = emailInput.value.trim();
+      if (!email) { errEl.textContent = "Please enter your email."; return; }
+
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          // IMPORTANT: change to your real domain later
+          emailRedirectTo: window.location.origin + "/dashboard.html"
+        }
+      });
+
+      if (error) {
+        errEl.textContent = error.message;
+      } else {
+        emailMsg.textContent = "Check your inbox for the sign-in link.";
+      }
+    });
+
+    btnGoogle.addEventListener("click", async () => {
+      errEl.textContent = "";
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: window.location.origin + "/dashboard.html"
+        }
+      });
+
+      if (error) errEl.textContent = error.message;
+    });
+  </script>
+</body>
+</html>
