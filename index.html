@@ -24,15 +24,10 @@
       </a>
 
       <div class="topbar__actions">
-        <!-- Language toggle -->
-        <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">
-          العربية
-        </button>
+        <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
 
-        <!-- Primary action -->
         <a class="btn btn--primary" href="./login.html" data-i18n="signin">Sign in</a>
 
-        <!-- Menu button -->
         <button id="menuBtn" class="btn btn--ghost menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel">
           <span data-i18n="menu">Menu</span>
         </button>
@@ -48,8 +43,7 @@
         </div>
 
         <nav class="menu__nav">
-          <a href="#about" class="menu__link" data-i18n="nav_about">About</a>
-          <a href="#focus" class="menu__link" data-i18n="nav_focus">Focus</a>
+          <a href="#courses" class="menu__link" data-i18n="nav_courses">Courses</a>
           <a href="#program" class="menu__link" data-i18n="nav_program">Program</a>
 
           <div class="menu__divider"></div>
@@ -66,14 +60,11 @@
         </nav>
 
         <div class="menu__footer">
-          <div class="small muted" data-i18n="menu_note">
-            Clean, structured learning — built to scale.
-          </div>
+          <div class="small muted" data-i18n="menu_note">Clean, structured learning — built to scale.</div>
         </div>
       </div>
     </div>
 
-    <!-- Backdrop -->
     <div id="menuBackdrop" class="menuBackdrop" aria-hidden="true"></div>
   </header>
 
@@ -91,7 +82,7 @@
 
         <div class="hero__cta">
           <a class="btn btn--primary btn--lg" href="#apply" data-i18n="cta_primary">Apply to Founding Fellowship</a>
-          <a class="btn btn--ghost btn--lg" href="#about" data-i18n="cta_secondary">Explore</a>
+          <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_secondary">Explore Courses</a>
         </div>
 
         <div class="hero__stats">
@@ -112,51 +103,61 @@
       <div class="hero__glow" aria-hidden="true"></div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
-      <div class="wrap grid2">
-        <div>
-          <h2 class="h2" data-i18n="about_title">About Polaris</h2>
-          <p class="p muted" data-i18n="about_p1">
-            Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.
-          </p>
-          <p class="p muted" data-i18n="about_p2">
-            We start small, build real capability, and scale with quality — not noise.
-          </p>
+    <!-- COURSES (Empty space for next week cards) -->
+    <section class="section" id="courses">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="h2" data-i18n="courses_title">Courses</h2>
+          <p class="p muted" data-i18n="courses_sub">A curated set of courses will appear here next week.</p>
         </div>
 
-        <div class="card">
-          <h3 class="h3" data-i18n="pillars_title">Program Pillars</h3>
-          <ul class="list">
-            <li data-i18n="pl_1">Clear mental models</li>
-            <li data-i18n="pl_2">Applied projects</li>
-            <li data-i18n="pl_3">Peer review</li>
-            <li data-i18n="pl_4">Progress tracking</li>
-          </ul>
+        <div class="courseGrid">
+          <div class="courseCard is-placeholder">
+            <div class="courseBadge">AI</div>
+            <h3 class="h3">Course Card</h3>
+            <p class="p muted">Placeholder — we will add course details soon.</p>
+          </div>
+
+          <div class="courseCard is-placeholder">
+            <div class="courseBadge">SEC</div>
+            <h3 class="h3">Course Card</h3>
+            <p class="p muted">Placeholder — we will add course details soon.</p>
+          </div>
+
+          <div class="courseCard is-placeholder">
+            <div class="courseBadge">BUILD</div>
+            <h3 class="h3">Course Card</h3>
+            <p class="p muted">Placeholder — we will add course details soon.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Focus -->
-    <section class="section" id="focus">
+    <!-- About (COLLAPSIBLE) -->
+    <section class="section" id="about">
       <div class="wrap">
-        <h2 class="h2 center" data-i18n="focus_title">Focus Areas</h2>
+        <button class="accordion" id="aboutToggle" aria-expanded="false" aria-controls="aboutPanel">
+          <span class="accordion__title" data-i18n="about_title">About Polaris</span>
+          <span class="accordion__icon" aria-hidden="true">▾</span>
+        </button>
 
-        <div class="cards3">
-          <article class="card">
-            <h3 class="h3" data-i18n="focus_1_t">AI Foundations</h3>
-            <p class="p muted" data-i18n="focus_1_p">Strong fundamentals, real use-cases, and systems thinking.</p>
-          </article>
+        <div class="accordionPanel" id="aboutPanel" hidden>
+          <div class="card">
+            <p class="p muted" data-i18n="about_p1">
+              Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.
+            </p>
+            <p class="p muted" data-i18n="about_p2">
+              We start small, build real capability, and scale with quality — not noise.
+            </p>
 
-          <article class="card">
-            <h3 class="h3" data-i18n="focus_2_t">Cybersecurity</h3>
-            <p class="p muted" data-i18n="focus_2_p">Defensive mindset, safe practice, and technical literacy.</p>
-          </article>
-
-          <article class="card">
-            <h3 class="h3" data-i18n="focus_3_t">Builders Track</h3>
-            <p class="p muted" data-i18n="focus_3_p">Build small tools and prototypes with clean structure.</p>
-          </article>
+            <h3 class="h3" data-i18n="pillars_title" style="margin-top:14px;">Program Pillars</h3>
+            <ul class="list">
+              <li data-i18n="pl_1">Clear mental models</li>
+              <li data-i18n="pl_2">Applied projects</li>
+              <li data-i18n="pl_3">Peer review</li>
+              <li data-i18n="pl_4">Progress tracking</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -238,6 +239,7 @@
     </footer>
   </main>
 
+  <!-- IMPORTANT: must be here -->
   <script src="./app.js"></script>
 </body>
 </html>
