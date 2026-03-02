@@ -21,7 +21,6 @@
       <a class="brand" href="./index.html" aria-label="Polaris Global Institute">
         <span class="brand__mark" aria-hidden="true">✦</span>
 
-        <!-- keep id intact, but STATIC (no typing animation) -->
         <span id="brandTyping" class="brand__typing" data-i18n="brand_name" aria-live="polite">
           Polaris Global Institute
         </span>
@@ -29,15 +28,8 @@
 
       <!-- RIGHT: logo + actions -->
       <div class="topbar__actions">
-        <!-- Bigger, clearer logo -->
-        <img
-          class="brandLogo"
-          src="./logo.png"
-          alt="Polaris Logo"
-          loading="eager"
-          decoding="async"
-          onerror="this.onerror=null; this.style.display='none'; console.warn('Logo not found: ./logo.png — make sure logo.png exists in same folder as index.html');"
-        />
+        <!-- ✅ FIX: logo path points to /images/ -->
+        <img class="brandLogo" src="./images/logo.png" alt="Polaris Logo" />
 
         <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
 
@@ -110,28 +102,37 @@
   <main>
     <section class="hero">
       <div class="wrap hero__inner">
-        <div class="hero__badge" data-i18n="badge">A Global Academic Learning Platform</div>
 
-        <h1 class="hero__title" data-i18n="hero_title">Polaris Global Institute</h1>
+        <!-- ✅ NEW: hero grid (text + big logo) -->
+        <div class="hero__grid">
+          <div class="hero__content">
+            <div class="hero__badge" data-i18n="badge">A Global Academic Learning Platform</div>
 
-        <p class="hero__subtitle" data-i18n="hero_subtitle">
-          Structured learning for AI, cybersecurity, and future skills — built with academic rigor.
-        </p>
+            <h1 class="hero__title" data-i18n="hero_title">Polaris Global Institute</h1>
 
-        <div class="hero__cta">
-          <a class="btn btn--primary btn--lg" href="#apply" data-i18n="cta_primary">Apply to Founding Fellowship</a>
-          <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_secondary">Explore Courses</a>
-        </div>
+            <p class="hero__subtitle" data-i18n="hero_subtitle">
+              Structured learning for AI, cybersecurity, and future skills — built with academic rigor.
+            </p>
 
-        <!-- Quick actions -->
-        <div class="hero__pills" aria-label="Quick navigation">
-          <a class="pill" href="#courses" data-i18n="pill_catalog">Browse Catalog</a>
-          <a class="pill" href="#program" data-i18n="pill_program">Fellowship Program</a>
+            <div class="hero__cta">
+              <a class="btn btn--primary btn--lg" href="#apply" data-i18n="cta_primary">Apply to Founding Fellowship</a>
+              <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_secondary">Explore Courses</a>
+            </div>
 
-          <!-- Toggle button (will be wired in app.js) -->
-          <button class="pill pill--btn" id="howToggle" type="button" aria-expanded="false" aria-controls="how">
-            <span data-i18n="pill_how">How It Works</span>
-          </button>
+            <div class="hero__pills" aria-label="Quick navigation">
+              <a class="pill" href="#courses" data-i18n="pill_catalog">Browse Catalog</a>
+              <a class="pill" href="#program" data-i18n="pill_program">Fellowship Program</a>
+
+              <button class="pill pill--btn" id="howToggle" type="button" aria-expanded="false" aria-controls="how">
+                <span data-i18n="pill_how">How It Works</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ✅ Big logo area (right in EN, left in AR automatically) -->
+          <div class="hero__art" aria-label="Polaris emblem">
+            <img class="heroLogo" src="./images/logo.png" alt="Polaris Logo" />
+          </div>
         </div>
       </div>
 
@@ -218,15 +219,15 @@
       </div>
     </section>
 
-    <!-- How it works (STRICTLY HIDDEN; will be opened by JS) -->
-    <section class="section" id="how" aria-hidden="true" style="display:none;">
+    <!-- ✅ How it works (HIDDEN completely until user clicks) -->
+    <section class="section is-collapsed" id="how" aria-hidden="true">
       <div class="wrap">
         <div class="section__head">
           <h2 class="h2" data-i18n="how_title">How Polaris Works</h2>
           <p class="p muted" data-i18n="how_sub">A clean system: learn with structure, build real output, and earn review.</p>
         </div>
 
-        <div class="howGrid" id="howGrid">
+        <div class="howGrid">
           <div class="howCard">
             <div class="howNum">01</div>
             <h3 class="h3" data-i18n="how_1_t">Cohort Learning</h3>
