@@ -17,10 +17,28 @@
   <!-- Top Bar -->
   <header class="topbar">
     <div class="wrap topbar__inner">
+
+      <!-- BRAND (updated layout only) -->
       <a class="brand" href="./index.html" aria-label="Polaris Global Institute">
-        <span class="brand__mark" aria-hidden="true">✦</span>
-        <span class="brand__name">Polaris</span>
-        <span class="brand__sub" data-i18n="brand_sub">Global Institute</span>
+        <!-- Left: stacked name (EN + AR) -->
+        <span class="brand__stack">
+          <span class="brand__nameLine">
+            <span class="brand__name">Polaris</span>
+            <span class="brand__sub" data-i18n="brand_sub">Global Institute</span>
+          </span>
+
+          <!-- Arabic line (kept simple + classy) -->
+          <span class="brand__nameLine brand__nameLine--ar" aria-hidden="true">
+            <span class="brand__ar">بولاريس</span>
+            <span class="brand__arSub">المعهد العالمي</span>
+          </span>
+        </span>
+
+        <!-- Right: logo -->
+        <!-- TODO: replace src with your real logo path -->
+        <span class="brand__logoWrap" aria-hidden="true">
+          <img class="brand__logo" src="./images/polaris-logo.png" alt="" />
+        </span>
       </a>
 
       <div class="topbar__actions">
