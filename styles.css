@@ -218,6 +218,8 @@ a{ color: inherit; text-decoration: none; }
 
   text-overflow: ellipsis;
 
+  transform: translateY(-3px);
+
 }
 
 
