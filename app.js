@@ -1,4 +1,4 @@
-// app.js — Polaris (Menu + i18n + Smooth Scroll)
+// app.js — Polaris (Menu + i18n + Smooth Scroll + Brand Typing)
 
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -76,7 +76,102 @@
   if (menuAboutToggle) menuAboutToggle.addEventListener("click", toggleMenuAbout);
 
   // =========================
-  // i18n (EN / AR)
+  // Brand Typing (LEFT only)
+  // =========================
+  const brandTypingEl = $("brandTyping");
+
+  // Only the left brand text types & switches EN/AR automatically
+  // (Does NOT change the whole page language)
+  const BRAND_SEQUENCE = [
+    { text: "Polaris", dir: "ltr" },
+    { text: "بولاريس", dir: "rtl" },
+  ];
+
+  // Timing (feel free to tweak later)
+  const TYPE_SPEED = 65;     // ms per character
+  const DELETE_SPEED = 38;   // ms per character
+  const HOLD_FULL = 950;     // pause after full word typed
+  const HOLD_EMPTY = 260;    // pause after delete completed
+
+  let brandIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingTimer = null;
+
+  function setBrandDirection(dir) {
+    if (!brandTypingEl) return;
+    // Keep it clean: only the typing element changes direction
+    brandTypingEl.style.direction = dir;
+    brandTypingEl.style.unicodeBidi = "plaintext";
+  }
+
+  function stopBrandTyping() {
+    if (typingTimer) clearTimeout(typingTimer);
+    typingTimer = null;
+  }
+
+  function startBrandTyping() {
+    if (!brandTypingEl) return;
+
+    // Respect reduced motion
+    const reduceMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      const first = BRAND_SEQUENCE[0];
+      setBrandDirection(first.dir);
+      brandTypingEl.textContent = first.text;
+      return;
+    }
+
+    stopBrandTyping();
+
+    const tick = () => {
+      if (!brandTypingEl) return;
+
+      const item = BRAND_SEQUENCE[brandIndex % BRAND_SEQUENCE.length];
+      const full = item.text;
+
+      setBrandDirection(item.dir);
+
+      if (!isDeleting) {
+        // typing forward
+        charIndex = Math.min(charIndex + 1, full.length);
+        brandTypingEl.textContent = full.slice(0, charIndex);
+
+        if (charIndex === full.length) {
+          // hold then start deleting
+          isDeleting = true;
+          typingTimer = setTimeout(tick, HOLD_FULL);
+          return;
+        }
+
+        typingTimer = setTimeout(tick, TYPE_SPEED);
+        return;
+      }
+
+      // deleting
+      charIndex = Math.max(charIndex - 1, 0);
+      brandTypingEl.textContent = full.slice(0, charIndex);
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        brandIndex = (brandIndex + 1) % BRAND_SEQUENCE.length;
+        typingTimer = setTimeout(tick, HOLD_EMPTY);
+        return;
+      }
+
+      typingTimer = setTimeout(tick, DELETE_SPEED);
+    };
+
+    tick();
+  }
+
+  startBrandTyping();
+
+  // =========================
+  // i18n (EN / AR) — site toggle
   // =========================
   const langToggle = $("langToggle");
   const html = document.documentElement;
@@ -88,7 +183,8 @@
       signin: "Sign in",
       badge: "A Global Academic Learning Platform",
       hero_title: "Polaris Global Institute",
-      hero_subtitle: "Structured learning for AI, cybersecurity, and future skills — built with academic rigor.",
+      hero_subtitle:
+        "Structured learning for AI, cybersecurity, and future skills — built with academic rigor.",
       cta_primary: "Apply to Founding Fellowship",
       cta_secondary: "Explore Courses",
       stat_1: "Founding Fellows",
@@ -107,7 +203,8 @@
       wk_4_t: "Capstone",
       wk_4_p: "Ship a real project and present it with peer review.",
       apply_title: "Apply to Join Polaris",
-      apply_p: "Start with a small circle of committed learners. Apply to the founding cohort.",
+      apply_p:
+        "Start with a small circle of committed learners. Apply to the founding cohort.",
       apply_btn: "Open Application",
       apply_note: "Applications open soon.",
       footer_tag: "Structured learning. Built to scale.",
@@ -123,8 +220,10 @@
       nav_dashboard: "My Learning",
 
       about_title: "About Polaris",
-      about_p1: "Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.",
-      about_p2: "We start small, build real capability, and scale with quality — not noise.",
+      about_p1:
+        "Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.",
+      about_p2:
+        "We start small, build real capability, and scale with quality — not noise.",
       pillars_title: "Program Pillars",
       pl_1: "Clear mental models",
       pl_2: "Applied projects",
@@ -137,7 +236,8 @@
       signin: "تسجيل الدخول",
       badge: "منصة تعليمية أكاديمية عالمية",
       hero_title: "Polaris Global Institute",
-      hero_subtitle: "تعليم منظم للذكاء الاصطناعي والأمن السيبراني ومهارات المستقبل — بجودة أكاديمية.",
+      hero_subtitle:
+        "تعليم منظم للذكاء الاصطناعي والأمن السيبراني ومهارات المستقبل — بجودة أكاديمية.",
       cta_primary: "التقديم للفوج التأسيسي",
       cta_secondary: "استعراض الدورات",
       stat_1: "الفوج التأسيسي",
@@ -172,14 +272,16 @@
       nav_dashboard: "تعلمي",
 
       about_title: "عن Polaris",
-      about_p1: "Polaris مبادرة تعليمية مستقلة تركّز على تعليم منظم بجودة عالية.",
-      about_p2: "نبدأ صغيراً، نبني قدرة حقيقية، ثم نتوسع بالجودة — لا بالضجيج.",
+      about_p1:
+        "Polaris مبادرة تعليمية مستقلة تركّز على تعليم منظم بجودة عالية.",
+      about_p2:
+        "نبدأ صغيراً، نبني قدرة حقيقية، ثم نتوسع بالجودة — لا بالضجيج.",
       pillars_title: "ركائز البرنامج",
       pl_1: "نماذج ذهنية واضحة",
       pl_2: "مشاريع تطبيقية",
       pl_3: "مراجعة جماعية",
       pl_4: "تتبع التقدم",
-    }
+    },
   };
 
   function applyLang(lang) {
@@ -198,11 +300,17 @@
     });
 
     // save
-    try { localStorage.setItem("pgi_lang", lang); } catch {}
+    try {
+      localStorage.setItem("pgi_lang", lang);
+    } catch {}
   }
 
   function getSavedLang() {
-    try { return localStorage.getItem("pgi_lang"); } catch { return null; }
+    try {
+      return localStorage.getItem("pgi_lang");
+    } catch {
+      return null;
+    }
   }
 
   const saved = getSavedLang();
