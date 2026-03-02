@@ -28,7 +28,7 @@
 
       <!-- RIGHT: logo + actions -->
       <div class="topbar__actions">
-        <!-- ✅ FIX: logo path points to /images/ -->
+        <!-- ✅ logo path points to /images/ -->
         <img class="brandLogo" src="./images/logo.png" alt="Polaris Logo" />
 
         <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
@@ -100,10 +100,11 @@
 
   <!-- Hero -->
   <main>
-    <section class="hero">
+    <!-- ✅ added hero--compact to allow raising content via CSS -->
+    <section class="hero hero--compact">
       <div class="wrap hero__inner">
 
-        <!-- ✅ NEW: hero grid (text + big logo) -->
+        <!-- hero grid (text + big logo) -->
         <div class="hero__grid">
           <div class="hero__content">
             <div class="hero__badge" data-i18n="badge">A Global Academic Learning Platform</div>
@@ -129,7 +130,7 @@
             </div>
           </div>
 
-          <!-- ✅ Big logo area (right in EN, left in AR automatically) -->
+          <!-- Big logo area (right in EN, left in AR automatically via CSS) -->
           <div class="hero__art" aria-label="Polaris emblem">
             <img class="heroLogo" src="./images/logo.png" alt="Polaris Logo" />
           </div>
@@ -219,7 +220,7 @@
       </div>
     </section>
 
-    <!-- ✅ How it works (HIDDEN completely until user clicks) -->
+    <!-- How it works -->
     <section class="section is-collapsed" id="how" aria-hidden="true">
       <div class="wrap">
         <div class="section__head">
