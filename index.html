@@ -17,31 +17,18 @@
   <!-- Top Bar -->
   <header class="topbar">
     <div class="wrap topbar__inner">
-      <!-- LEFT: Brand typing -->
+      <!-- LEFT: Brand (STATIC) -->
       <a class="brand" href="./index.html" aria-label="Polaris Global Institute">
         <span class="brand__mark" aria-hidden="true">✦</span>
 
-        <!-- typing text (auto EN/AR only for brand) -->
-        <span class="brand__typingWrap">
-          <!-- Fallback text stays visible if JS fails -->
-          <span
-            id="brandTyping"
-            class="brand__typing"
-            aria-live="polite"
-            data-typing-en="Polaris Global Institute"
-            data-typing-ar="معهد بولاريس العالمي"
-          >Polaris Global Institute</span>
-          <span class="brand__caret" aria-hidden="true"></span>
-        </span>
-
-        <span class="brand__sub" data-i18n="brand_sub">Global Institute</span>
+        <!-- static name (changes only on language toggle) -->
+        <span class="brand__name" data-i18n="brand_name">Polaris Global Institute</span>
       </a>
 
       <!-- RIGHT: logo + actions -->
       <div class="topbar__actions">
         <!-- Logo on the right -->
-        <!-- IMPORTANT: logo path updated to match your repo (/images/logo.png) -->
-        <img class="brandLogo" src="./images/logo.png" alt="Polaris Logo" />
+        <img class="brandLogo" src="./logo.png" alt="Polaris Logo" />
 
         <!-- keep id + behavior intact -->
         <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
@@ -58,13 +45,17 @@
     <div id="menuPanel" class="menu" aria-hidden="true">
       <div class="menu__inner">
         <div class="menu__head">
-          <div class="menu__title">Polaris</div>
+          <div class="menu__title" data-i18n="menu_title">Polaris</div>
           <button id="menuClose" class="menu__close" type="button" aria-label="Close menu">✕</button>
         </div>
 
         <nav class="menu__nav">
           <a href="#courses" class="menu__link" data-i18n="nav_courses">Courses</a>
+
+          <!-- hidden sections can still be reached -->
+          <a href="#how" class="menu__link" data-i18n="nav_how">How It Works</a>
           <a href="#program" class="menu__link" data-i18n="nav_program">Program</a>
+          <a href="#apply" class="menu__link" data-i18n="nav_apply">Apply</a>
 
           <!-- ABOUT moved here (Accordion inside menu) -->
           <button class="menu__accordion" id="menuAboutToggle" type="button" aria-expanded="false" aria-controls="menuAboutPanel">
@@ -123,22 +114,24 @@
           Structured learning for AI, cybersecurity, and future skills — built with academic rigor.
         </p>
 
+        <!-- CLEAN CTAs: only what matters -->
         <div class="hero__cta">
-          <a class="btn btn--primary btn--lg" href="#apply" data-i18n="cta_primary">Apply to Founding Fellowship</a>
-          <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_secondary">Explore Courses</a>
+          <a class="btn btn--primary btn--lg" href="#apply" data-open-section="#apply" data-i18n="cta_apply">Apply</a>
+          <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_catalog">Browse Courses</a>
         </div>
 
+        <!-- Minimal quick actions (open hidden sections) -->
         <div class="hero__pills" aria-label="Quick navigation">
-          <a class="pill" href="#courses">Browse Catalog</a>
-          <a class="pill" href="#program">Fellowship Program</a>
-          <a class="pill" href="#how">How It Works</a>
+          <a class="pill" href="#how" data-open-section="#how" data-i18n="pill_how">How It Works</a>
+          <a class="pill" href="#program" data-open-section="#program" data-i18n="pill_program">Program</a>
+          <a class="pill" href="#courses" data-i18n="pill_courses">Courses</a>
         </div>
       </div>
 
       <div class="hero__glow" aria-hidden="true"></div>
     </section>
 
-    <!-- COURSES / CATALOG -->
+    <!-- COURSES / CATALOG (always visible) -->
     <section class="section" id="courses">
       <div class="wrap">
         <div class="section__head section__headRow">
@@ -148,120 +141,120 @@
           </div>
 
           <div class="catalogFilters" aria-label="Catalog filters">
-            <button class="chip is-active" type="button">All</button>
-            <button class="chip" type="button">Polaris Programs</button>
-            <button class="chip" type="button">Curated Tracks (MIT/Harvard)</button>
+            <button class="chip is-active" type="button" data-i18n="chip_all">All</button>
+            <button class="chip" type="button" data-i18n="chip_polaris">Polaris Programs</button>
+            <button class="chip" type="button" data-i18n="chip_curated">Curated Tracks (MIT/Harvard)</button>
           </div>
         </div>
 
         <div class="catalogGrid">
           <article class="catalogCard">
             <div class="catalogTop">
-              <span class="catalogBadge">AI</span>
-              <span class="catalogOrg">Polaris</span>
+              <span class="catalogBadge" data-i18n="badge_ai">AI</span>
+              <span class="catalogOrg" data-i18n="org_polaris">Polaris</span>
             </div>
-            <h3 class="h3">AI Foundations (Core Program)</h3>
-            <p class="p muted">A structured start: mental models, practice, and project output.</p>
+            <h3 class="h3" data-i18n="c1_title">AI Foundations (Core Program)</h3>
+            <p class="p muted" data-i18n="c1_desc">A structured start: mental models, practice, and project output.</p>
 
             <div class="metaRow">
-              <span class="meta">12 weeks</span>
-              <span class="meta">Beginner → Intermediate</span>
-              <span class="meta">Project-based</span>
+              <span class="meta" data-i18n="c1_m1">12 weeks</span>
+              <span class="meta" data-i18n="c1_m2">Beginner → Intermediate</span>
+              <span class="meta" data-i18n="c1_m3">Project-based</span>
             </div>
 
             <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/ai-foundations.html">View</a>
-              <a class="btn btn--primary" href="#apply">Enroll</a>
+              <a class="btn btn--ghost" href="./programs/ai-foundations.html" data-i18n="btn_view">View</a>
+              <a class="btn btn--primary" href="#apply" data-open-section="#apply" data-i18n="btn_enroll">Enroll</a>
             </div>
           </article>
 
           <article class="catalogCard">
             <div class="catalogTop">
-              <span class="catalogBadge">SEC</span>
-              <span class="catalogOrg">Curated</span>
+              <span class="catalogBadge" data-i18n="badge_sec">SEC</span>
+              <span class="catalogOrg" data-i18n="org_curated">Curated</span>
             </div>
-            <h3 class="h3">Cybersecurity Essentials (Curated Track)</h3>
-            <p class="p muted">A clean path from trusted partners, wrapped into a Polaris track.</p>
+            <h3 class="h3" data-i18n="c2_title">Cybersecurity Essentials (Curated Track)</h3>
+            <p class="p muted" data-i18n="c2_desc">A clean path from trusted partners, wrapped into a Polaris track.</p>
 
             <div class="metaRow">
-              <span class="meta">6–8 weeks</span>
-              <span class="meta">Intro</span>
-              <span class="meta">Guided</span>
+              <span class="meta" data-i18n="c2_m1">6–8 weeks</span>
+              <span class="meta" data-i18n="c2_m2">Intro</span>
+              <span class="meta" data-i18n="c2_m3">Guided</span>
             </div>
 
             <div class="cardActions">
-              <a class="btn btn--ghost" href="./tracks/cybersecurity-essentials.html">View</a>
-              <a class="btn btn--primary" href="#apply">Enroll</a>
+              <a class="btn btn--ghost" href="./tracks/cybersecurity-essentials.html" data-i18n="btn_view">View</a>
+              <a class="btn btn--primary" href="#apply" data-open-section="#apply" data-i18n="btn_enroll">Enroll</a>
             </div>
           </article>
 
           <article class="catalogCard">
             <div class="catalogTop">
-              <span class="catalogBadge">BUILD</span>
-              <span class="catalogOrg">Polaris</span>
+              <span class="catalogBadge" data-i18n="badge_build">BUILD</span>
+              <span class="catalogOrg" data-i18n="org_polaris">Polaris</span>
             </div>
-            <h3 class="h3">Software Engineering — Builder Track</h3>
-            <p class="p muted">Ship real features, review code, and develop production habits.</p>
+            <h3 class="h3" data-i18n="c3_title">Software Engineering — Builder Track</h3>
+            <p class="p muted" data-i18n="c3_desc">Ship real features, review code, and develop production habits.</p>
 
             <div class="metaRow">
-              <span class="meta">10 weeks</span>
-              <span class="meta">Intermediate</span>
-              <span class="meta">Build + Review</span>
+              <span class="meta" data-i18n="c3_m1">10 weeks</span>
+              <span class="meta" data-i18n="c3_m2">Intermediate</span>
+              <span class="meta" data-i18n="c3_m3">Build + Review</span>
             </div>
 
             <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/builder-track.html">View</a>
-              <a class="btn btn--primary" href="#apply">Enroll</a>
+              <a class="btn btn--ghost" href="./programs/builder-track.html" data-i18n="btn_view">View</a>
+              <a class="btn btn--primary" href="#apply" data-open-section="#apply" data-i18n="btn_enroll">Enroll</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- How it works -->
-    <section class="section" id="how">
+    <!-- How it works (hidden until clicked) -->
+    <section class="section is-hidden" id="how" data-collapsible>
       <div class="wrap">
         <div class="section__head">
-          <h2 class="h2">How Polaris Works</h2>
-          <p class="p muted">A clean system: learn with structure, build real output, and earn review.</p>
+          <h2 class="h2" data-i18n="how_title">How Polaris Works</h2>
+          <p class="p muted" data-i18n="how_sub">A clean system: learn with structure, build real output, and earn review.</p>
         </div>
 
         <div class="howGrid">
           <div class="howCard">
             <div class="howNum">01</div>
-            <h3 class="h3">Cohort Learning</h3>
-            <p class="p muted">Small groups. Strong focus. Clear weekly rhythm.</p>
+            <h3 class="h3" data-i18n="how_1_t">Cohort Learning</h3>
+            <p class="p muted" data-i18n="how_1_p">Small groups. Strong focus. Clear weekly rhythm.</p>
             <div class="metaRow">
-              <span class="meta">Cohort 01</span>
-              <span class="meta">Account-based</span>
+              <span class="meta" data-i18n="how_1_m1">Cohort 01</span>
+              <span class="meta" data-i18n="how_1_m2">Account-based</span>
             </div>
           </div>
 
           <div class="howCard">
             <div class="howNum">02</div>
-            <h3 class="h3">12-Week Structure</h3>
-            <p class="p muted">Foundations → applied track → security thinking → capstone.</p>
+            <h3 class="h3" data-i18n="how_2_t">12-Week Structure</h3>
+            <p class="p muted" data-i18n="how_2_p">Foundations → applied track → security thinking → capstone.</p>
             <div class="metaRow">
-              <span class="meta">12 weeks</span>
-              <span class="meta">Structured program</span>
+              <span class="meta" data-i18n="how_2_m1">12 weeks</span>
+              <span class="meta" data-i18n="how_2_m2">Structured program</span>
             </div>
           </div>
 
           <div class="howCard">
             <div class="howNum">03</div>
-            <h3 class="h3">Build + Review</h3>
-            <p class="p muted">Ship real work. Get peer feedback. Improve the craft.</p>
+            <h3 class="h3" data-i18n="how_3_t">Build + Review</h3>
+            <p class="p muted" data-i18n="how_3_p">Ship real work. Get peer feedback. Improve the craft.</p>
             <div class="metaRow">
-              <span class="meta">Projects</span>
-              <span class="meta">Peer review</span>
+              <span class="meta" data-i18n="how_3_m1">Projects</span>
+              <span class="meta" data-i18n="how_3_m2">Peer review</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Program -->
-    <section class="section" id="program">
+    <!-- Program (hidden until clicked) -->
+    <section class="section is-hidden" id="program" data-collapsible>
       <div class="wrap">
         <div class="section__head">
           <h2 class="h2" data-i18n="program_title">Founding Fellowship — Cohort 01</h2>
@@ -271,8 +264,8 @@
         <div class="accordionStack">
           <details class="acc">
             <summary class="acc__sum">
-              <span class="acc__title">Weeks 1–3 — Foundations</span>
-              <span class="acc__meta">Mental models + core clarity</span>
+              <span class="acc__title" data-i18n="wk_1_t_full">Weeks 1–3 — Foundations</span>
+              <span class="acc__meta" data-i18n="wk_1_meta">Mental models + core clarity</span>
             </summary>
             <div class="acc__body">
               <p class="p muted" data-i18n="wk_1_p">Mental models, core concepts, and practical clarity.</p>
@@ -281,8 +274,8 @@
 
           <details class="acc">
             <summary class="acc__sum">
-              <span class="acc__title">Weeks 4–7 — Applied Track</span>
-              <span class="acc__meta">Mini-projects + iteration</span>
+              <span class="acc__title" data-i18n="wk_2_t_full">Weeks 4–7 — Applied Track</span>
+              <span class="acc__meta" data-i18n="wk_2_meta">Mini-projects + iteration</span>
             </summary>
             <div class="acc__body">
               <p class="p muted" data-i18n="wk_2_p">Build mini-projects, iterate, and refine.</p>
@@ -291,8 +284,8 @@
 
           <details class="acc">
             <summary class="acc__sum">
-              <span class="acc__title">Weeks 8–10 — Security Track</span>
-              <span class="acc__meta">Defensive thinking</span>
+              <span class="acc__title" data-i18n="wk_3_t_full">Weeks 8–10 — Security Track</span>
+              <span class="acc__meta" data-i18n="wk_3_meta">Defensive thinking</span>
             </summary>
             <div class="acc__body">
               <p class="p muted" data-i18n="wk_3_p">Defensive thinking and responsible implementation.</p>
@@ -301,8 +294,8 @@
 
           <details class="acc">
             <summary class="acc__sum">
-              <span class="acc__title">Weeks 11–12 — Capstone</span>
-              <span class="acc__meta">Ship + present + review</span>
+              <span class="acc__title" data-i18n="wk_4_t_full">Weeks 11–12 — Capstone</span>
+              <span class="acc__meta" data-i18n="wk_4_meta">Ship + present + review</span>
             </summary>
             <div class="acc__body">
               <p class="p muted" data-i18n="wk_4_p">Ship a real project and present it with peer review.</p>
@@ -312,8 +305,8 @@
       </div>
     </section>
 
-    <!-- Apply -->
-    <section class="section" id="apply">
+    <!-- Apply (hidden until clicked) -->
+    <section class="section is-hidden" id="apply" data-collapsible>
       <div class="wrap apply">
         <div class="apply__box">
           <h2 class="h2" data-i18n="apply_title">Apply to Join Polaris</h2>
@@ -332,7 +325,7 @@
     <footer class="footer" id="contact">
       <div class="wrap footer__inner">
         <div>
-          <div class="footer__brand">Polaris Global Institute</div>
+          <div class="footer__brand" data-i18n="brand_name">Polaris Global Institute</div>
           <div class="footer__tag" data-i18n="footer_tag">Structured learning. Built to scale.</div>
         </div>
 
@@ -347,7 +340,7 @@
             <span data-i18n="footer_email_label">Email:</span>
             <a class="link" href="mailto:hello@polarisglobalinstitute.com">hello@polarisglobalinstitute.com</a>
           </div>
-          <div class="muted small">© <span id="year"></span> Polaris Global Institute</div>
+          <div class="muted small">© <span id="year"></span> <span data-i18n="brand_name">Polaris Global Institute</span></div>
         </div>
       </div>
     </footer>
