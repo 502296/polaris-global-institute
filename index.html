@@ -17,32 +17,25 @@
   <!-- Top Bar -->
   <header class="topbar">
     <div class="wrap topbar__inner">
-
-      <!-- BRAND (updated layout only) -->
+      <!-- LEFT: Brand typing -->
       <a class="brand" href="./index.html" aria-label="Polaris Global Institute">
-        <!-- Left: stacked name (EN + AR) -->
-        <span class="brand__stack">
-          <span class="brand__nameLine">
-            <span class="brand__name">Polaris</span>
-            <span class="brand__sub" data-i18n="brand_sub">Global Institute</span>
-          </span>
+        <span class="brand__mark" aria-hidden="true">✦</span>
 
-          <!-- Arabic line (kept simple + classy) -->
-          <span class="brand__nameLine brand__nameLine--ar" aria-hidden="true">
-            <span class="brand__ar">بولاريس</span>
-            <span class="brand__arSub">المعهد العالمي</span>
-          </span>
+        <!-- typing text (auto EN/AR only for brand) -->
+        <span class="brand__typingWrap">
+          <span id="brandTyping" class="brand__typing" aria-live="polite"></span>
+          <span class="brand__caret" aria-hidden="true"></span>
         </span>
 
-        <!-- Right: logo -->
-        <!-- TODO: replace src with your real logo path -->
-        <span class="brand__logoWrap" aria-hidden="true">
-          <img class="brand__logo" src="./images/polaris-logo.png" alt="" />
-        </span>
+        <span class="brand__sub" data-i18n="brand_sub">Global Institute</span>
       </a>
 
+      <!-- RIGHT: logo + actions -->
       <div class="topbar__actions">
-        <!-- IMPORTANT: keep id + behavior intact -->
+        <!-- Logo on the right -->
+        <img class="brandLogo" src="./logo.png" alt="Polaris Logo" />
+
+        <!-- keep id + behavior intact -->
         <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
 
         <a class="btn btn--primary" href="./login.html" data-i18n="signin">Sign in</a>
@@ -127,7 +120,6 @@
           <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_secondary">Explore Courses</a>
         </div>
 
-        <!-- NEW: quick nav pills (clean like edX, no noise) -->
         <div class="hero__pills" aria-label="Quick navigation">
           <a class="pill" href="#courses">Browse Catalog</a>
           <a class="pill" href="#program">Fellowship Program</a>
@@ -138,7 +130,7 @@
       <div class="hero__glow" aria-hidden="true"></div>
     </section>
 
-    <!-- COURSES / CATALOG (edX-style cards) -->
+    <!-- COURSES / CATALOG -->
     <section class="section" id="courses">
       <div class="wrap">
         <div class="section__head section__headRow">
@@ -147,7 +139,6 @@
             <p class="p muted" data-i18n="courses_sub">A curated set of courses will appear here next week.</p>
           </div>
 
-          <!-- NEW: lightweight filters (visual only for now) -->
           <div class="catalogFilters" aria-label="Catalog filters">
             <button class="chip is-active" type="button">All</button>
             <button class="chip" type="button">Polaris Programs</button>
@@ -156,7 +147,6 @@
         </div>
 
         <div class="catalogGrid">
-          <!-- Polaris Program (example) -->
           <article class="catalogCard">
             <div class="catalogTop">
               <span class="catalogBadge">AI</span>
@@ -177,7 +167,6 @@
             </div>
           </article>
 
-          <!-- Curated Track (example) -->
           <article class="catalogCard">
             <div class="catalogTop">
               <span class="catalogBadge">SEC</span>
@@ -198,7 +187,6 @@
             </div>
           </article>
 
-          <!-- Build Track (example) -->
           <article class="catalogCard">
             <div class="catalogTop">
               <span class="catalogBadge">BUILD</span>
@@ -222,7 +210,7 @@
       </div>
     </section>
 
-    <!-- NEW: How Polaris Works (moved stats here — not in hero) -->
+    <!-- How it works -->
     <section class="section" id="how">
       <div class="wrap">
         <div class="section__head">
@@ -264,7 +252,7 @@
       </div>
     </section>
 
-    <!-- Program (collapsed / button-style) -->
+    <!-- Program -->
     <section class="section" id="program">
       <div class="wrap">
         <div class="section__head">
@@ -272,7 +260,6 @@
           <p class="p muted" data-i18n="program_sub">A selective group. Deep learning. Real outcomes.</p>
         </div>
 
-        <!-- NEW: Accordion style — not open by default -->
         <div class="accordionStack">
           <details class="acc">
             <summary class="acc__sum">
