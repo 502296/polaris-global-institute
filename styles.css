@@ -1,5 +1,7 @@
 :root{
 
+
+
   /* =========================
 
      MIT-like Clean Palette
@@ -79,6 +81,38 @@ body{
 a{ color: inherit; text-decoration: none; }
 
 .wrap{ width:min(1100px, 92vw); margin:0 auto; }
+
+
+
+/* ✅ Accessibility: visually hidden text */
+
+.sr-only{
+
+  position:absolute !important;
+
+  width:1px; height:1px;
+
+  padding:0; margin:-1px;
+
+  overflow:hidden;
+
+  clip: rect(0,0,0,0);
+
+  white-space: nowrap;
+
+  border:0;
+
+}
+
+
+
+/* ✅ empty brand placeholder (keeps spacing clean) */
+
+.brand--empty{
+
+  min-width: 0;
+
+}
 
 
 
@@ -214,7 +248,7 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-/* Logo on the RIGHT — BIG + CLEAR */
+/* ✅ Logo on the RIGHT — bigger on Desktop */
 
 .brandLogo{
 
@@ -237,6 +271,28 @@ a{ color: inherit; text-decoration: none; }
 
 
   filter: drop-shadow(0 6px 14px rgba(12,18,32,.12));
+
+}
+
+
+
+/* ✅ Desktop boost (bigger logo on computer) */
+
+@media (min-width: 961px){
+
+  .brandLogo{
+
+    width: 64px;
+
+    height: 64px;
+
+  }
+
+  .topbar__inner{
+
+    padding: 10px 0; /* slightly tighter so it feels higher */
+
+  }
 
 }
 
@@ -1624,8 +1680,20 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
-  /* Topbar: BIG logo stays */
+  /* ✅ Topbar: raise logo a bit + keep big */
 
-  .brandLogo{ width: 56px; height: 56px; padding: 0; }
+  .topbar__inner{ padding: 10px 0; }
+
+  .brandLogo{
+
+    width: 56px;
+
+    height: 56px;
+
+    padding: 0;
+
+    transform: translateY(-3px);
+
+  }
 
 }
