@@ -23,7 +23,14 @@
 
         <!-- typing text (auto EN/AR only for brand) -->
         <span class="brand__typingWrap">
-          <span id="brandTyping" class="brand__typing" aria-live="polite"></span>
+          <!-- Fallback text stays visible if JS fails -->
+          <span
+            id="brandTyping"
+            class="brand__typing"
+            aria-live="polite"
+            data-typing-en="Polaris Global Institute"
+            data-typing-ar="معهد بولاريس العالمي"
+          >Polaris Global Institute</span>
           <span class="brand__caret" aria-hidden="true"></span>
         </span>
 
@@ -33,7 +40,8 @@
       <!-- RIGHT: logo + actions -->
       <div class="topbar__actions">
         <!-- Logo on the right -->
-        <img class="brandLogo" src="./logo.png" alt="Polaris Logo" />
+        <!-- IMPORTANT: logo path updated to match your repo (/images/logo.png) -->
+        <img class="brandLogo" src="./images/logo.png" alt="Polaris Logo" />
 
         <!-- keep id + behavior intact -->
         <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
