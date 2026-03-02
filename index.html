@@ -17,13 +17,9 @@
   <!-- Top Bar -->
   <header class="topbar">
     <div class="wrap topbar__inner">
-      <!-- LEFT: Brand (STATIC, changes only by language toggle) -->
-      <a class="brand" href="./index.html" aria-label="Polaris Global Institute">
-        <span class="brand__mark" aria-hidden="true">✦</span>
-
-        <span id="brandTyping" class="brand__typing" data-i18n="brand_name" aria-live="polite">
-          Polaris Global Institute
-        </span>
+      <!-- ✅ LEFT: Brand link kept for accessibility, but no visible text (removes “Polari…” issue on mobile) -->
+      <a class="brand brand--empty" href="./index.html" aria-label="Polaris Global Institute">
+        <span class="sr-only">Polaris Global Institute</span>
       </a>
 
       <!-- RIGHT: logo + actions -->
