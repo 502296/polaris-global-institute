@@ -1,4 +1,5 @@
 // app.js — Polaris (Menu + i18n + Smooth Scroll + How Toggle + Dynamic Catalog)
+// ✅ UPDATED: Catalog cards are IMAGE ONLY (no overlay text)
 
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -287,21 +288,21 @@
   const grid = $("catalogGrid");
   const filterBar = document.querySelector(".catalogFilters");
 
-  // ✅ Image-only card (no overlay text at all)
+  // ✅ IMAGE ONLY CARD (no text injected above images)
   function cardHTML(c) {
     const href = c.href || "#";
 
-    // support both "image" and "img" from JSON
+    // support both "image" and "img"
     const imgPath = c.image || c.img || "";
     const imgSrc = imgPath ? url(imgPath) : "";
 
     const title = c.title || "Course";
+    const cat = (c.category || c.type || "all").toLowerCase();
 
     return `
-      <article class="catalogCard catalogCard--imageOnly" data-cat="${(c.category || c.type || "all").toLowerCase()}">
+      <article class="catalogCard catalogCard--img" data-cat="${cat}">
         <a class="cardLink" href="${href}" aria-label="${title}"></a>
-
-        <div class="catalogMedia">
+        <div class="cardMedia">
           ${imgSrc ? `<img class="catalogImg" src="${imgSrc}" alt="${title} cover" loading="lazy" onerror="this.style.display='none'">` : ""}
         </div>
       </article>
@@ -343,7 +344,6 @@
     }
   }
 
-  // Filter clicks
   if (filterBar) {
     filterBar.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-filter]");
