@@ -147,6 +147,55 @@
       btn_view: "View",
       btn_enroll: "Enroll",
 
+      // ✅ Course cards (NEW)
+      c_ai_title: "AI Foundations (Core Program)",
+      c_ai_desc: "A structured start: mental models, practice, and project output.",
+      c_ai_m1: "12 weeks",
+      c_ai_m2: "3–4 hours/week",
+      c_ai_m3: "Project-based",
+
+      c_sec_title: "Cybersecurity Essentials (Curated Track)",
+      c_sec_desc: "A clean path from trusted partners, wrapped into a Polaris track.",
+      c_sec_m1: "6–8 weeks",
+      c_sec_m2: "3–4 hours/week",
+      c_sec_m3: "Guided",
+
+      c_se_title: "Software Engineering — Builder Track",
+      c_se_desc: "Ship real features, review code, and develop production habits.",
+      c_se_m1: "10 weeks",
+      c_se_m2: "4–6 hours/week",
+      c_se_m3: "Build + Review",
+
+      c_it_title: "IT Support (Professional Track)",
+      c_it_desc: "Practical IT foundations: troubleshooting, systems, networking, and support workflows.",
+      c_it_m1: "8–10 weeks",
+      c_it_m2: "3–5 hours/week",
+      c_it_m3: "Hands-on labs",
+
+      c_eng_title: "English for Professionals",
+      c_eng_desc: "Email, meetings, interviews, and confident professional communication.",
+      c_eng_m1: "6 weeks",
+      c_eng_m2: "2–3 hours/week",
+      c_eng_m3: "Practice + feedback",
+
+      c_py_title: "Python Programming",
+      c_py_desc: "Learn Python fundamentals and build real scripts, tools, and mini-projects.",
+      c_py_m1: "8 weeks",
+      c_py_m2: "3–4 hours/week",
+      c_py_m3: "Projects",
+
+      c_web_title: "Web Development",
+      c_web_desc: "Build modern responsive websites with HTML, CSS, and JavaScript.",
+      c_web_m1: "8 weeks",
+      c_web_m2: "3–4 hours/week",
+      c_web_m3: "Portfolio-ready",
+
+      c_photo_title: "Product & Personal Branding Photography",
+      c_photo_desc: "Create clean, high-end visuals for websites, products, and social media.",
+      c_photo_m1: "6 weeks",
+      c_photo_m2: "2–3 hours/week",
+      c_photo_m3: "Studio-quality workflow",
+
       how_title: "How Polaris Works",
       how_sub: "A clean system: learn with structure, build real output, and earn review.",
       how_1_t: "Cohort Learning",
@@ -218,6 +267,55 @@
 
       btn_view: "عرض",
       btn_enroll: "الانضمام",
+
+      // ✅ Course cards (NEW)
+      c_ai_title: "أساسيات الذكاء الاصطناعي (البرنامج الأساسي)",
+      c_ai_desc: "بداية منظمة: نماذج ذهنية، تطبيق عملي، ومخرجات مشروع.",
+      c_ai_m1: "12 أسبوعًا",
+      c_ai_m2: "3–4 ساعات/أسبوع",
+      c_ai_m3: "مبني على مشروع",
+
+      c_sec_title: "أساسيات الأمن السيبراني (مسار مختار)",
+      c_sec_desc: "مسار نظيف من جهات موثوقة، ضمن إطار بولاريس.",
+      c_sec_m1: "6–8 أسابيع",
+      c_sec_m2: "3–4 ساعات/أسبوع",
+      c_sec_m3: "موجّه",
+
+      c_se_title: "هندسة البرمجيات — مسار البناء",
+      c_se_desc: "ابنِ ميزات حقيقية، راجع الكود، وطور عادات إنتاجية.",
+      c_se_m1: "10 أسابيع",
+      c_se_m2: "4–6 ساعات/أسبوع",
+      c_se_m3: "بناء + مراجعة",
+
+      c_it_title: "دعم تقنية المعلومات (مسار احترافي)",
+      c_it_desc: "أساسيات IT العملية: حلول الأعطال، الأنظمة، الشبكات، وأساليب الدعم.",
+      c_it_m1: "8–10 أسابيع",
+      c_it_m2: "3–5 ساعات/أسبوع",
+      c_it_m3: "تطبيقات عملية",
+
+      c_eng_title: "الإنجليزية للمحترفين",
+      c_eng_desc: "إيميلات، اجتماعات، مقابلات، وتواصل مهني بثقة.",
+      c_eng_m1: "6 أسابيع",
+      c_eng_m2: "2–3 ساعات/أسبوع",
+      c_eng_m3: "تطبيق + تغذية راجعة",
+
+      c_py_title: "برمجة بايثون",
+      c_py_desc: "تعلم أساسيات بايثون وبناء سكربتات وأدوات ومشاريع صغيرة.",
+      c_py_m1: "8 أسابيع",
+      c_py_m2: "3–4 ساعات/أسبوع",
+      c_py_m3: "مشاريع",
+
+      c_web_title: "تطوير الويب",
+      c_web_desc: "ابنِ مواقع حديثة ومتجاوبة باستخدام HTML وCSS وJavaScript.",
+      c_web_m1: "8 أسابيع",
+      c_web_m2: "3–4 ساعات/أسبوع",
+      c_web_m3: "جاهز للبورتفوليو",
+
+      c_photo_title: "تصوير المنتجات وبناء الهوية الشخصية",
+      c_photo_desc: "اصنع صورًا نظيفة وفاخرة للمواقع والمنتجات والسوشيال ميديا.",
+      c_photo_m1: "6 أسابيع",
+      c_photo_m2: "2–3 ساعات/أسبوع",
+      c_photo_m3: "أسلوب عمل احترافي",
 
       how_title: "كيف يعمل Polaris",
       how_sub: "نظام نظيف: تعلم منظم، مخرجات حقيقية، ومراجعة مستمرة.",
