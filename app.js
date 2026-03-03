@@ -1,4 +1,4 @@
-// app.js — Polaris (Menu + i18n + Smooth Scroll + How Toggle)
+// app.js — Polaris (Menu + i18n + Smooth Scroll + How Toggle + Dynamic Courses)
 
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -119,6 +119,7 @@
   const langToggle = $("langToggle");
   const html = document.documentElement;
 
+  // ✅ Course translations live here too (so language toggle updates everything)
   const dict = {
     en: {
       brand_name: "Polaris Global Institute",
@@ -147,7 +148,51 @@
       btn_view: "View",
       btn_enroll: "Enroll",
 
-      // ✅ Course cards (NEW)
+      how_title: "How Polaris Works",
+      how_sub: "A clean system: learn with structure, build real output, and earn review.",
+      how_1_t: "Cohort Learning",
+      how_1_p: "Small groups. Strong focus. Clear weekly rhythm.",
+      how_1_m1: "Cohort 01",
+      how_1_m2: "Account-based",
+      how_2_t: "12-Week Structure",
+      how_2_p: "Foundations → applied track → security thinking → capstone.",
+      how_2_m1: "12 weeks",
+      how_2_m2: "Structured program",
+      how_3_t: "Build + Review",
+      how_3_p: "Ship real work. Get peer feedback. Improve the craft.",
+      how_3_m1: "Projects",
+      how_3_m2: "Peer review",
+
+      program_title: "Founding Fellowship — Cohort 01",
+      program_sub: "A selective group. Deep learning. Real outcomes.",
+
+      apply_title: "Apply to Join Polaris",
+      apply_p: "Start with a small circle of committed learners. Apply to the founding cohort.",
+      apply_btn: "Open Application",
+      apply_note: "Applications open soon.",
+
+      footer_tag: "Structured learning. Built to scale.",
+      footer_email_label: "Email:",
+      menu_note: "Clean, structured learning — built to scale.",
+
+      nav_courses: "Courses",
+      nav_program: "Program",
+      nav_principles: "Principles",
+      nav_terms: "Terms",
+      nav_privacy: "Privacy",
+      nav_contact: "Contact",
+      nav_dashboard: "My Learning",
+
+      about_title: "About Polaris",
+      about_p1: "Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.",
+      about_p2: "We start small, build real capability, and scale with quality — not noise.",
+      pillars_title: "Program Pillars",
+      pl_1: "Clear mental models",
+      pl_2: "Applied projects",
+      pl_3: "Peer review",
+      pl_4: "Progress tracking",
+
+      // ✅ Course strings (for the 8 cards)
       c_ai_title: "AI Foundations (Core Program)",
       c_ai_desc: "A structured start: mental models, practice, and project output.",
       c_ai_m1: "12 weeks",
@@ -195,50 +240,6 @@
       c_photo_m1: "6 weeks",
       c_photo_m2: "2–3 hours/week",
       c_photo_m3: "Studio-quality workflow",
-
-      how_title: "How Polaris Works",
-      how_sub: "A clean system: learn with structure, build real output, and earn review.",
-      how_1_t: "Cohort Learning",
-      how_1_p: "Small groups. Strong focus. Clear weekly rhythm.",
-      how_1_m1: "Cohort 01",
-      how_1_m2: "Account-based",
-      how_2_t: "12-Week Structure",
-      how_2_p: "Foundations → applied track → security thinking → capstone.",
-      how_2_m1: "12 weeks",
-      how_2_m2: "Structured program",
-      how_3_t: "Build + Review",
-      how_3_p: "Ship real work. Get peer feedback. Improve the craft.",
-      how_3_m1: "Projects",
-      how_3_m2: "Peer review",
-
-      program_title: "Founding Fellowship — Cohort 01",
-      program_sub: "A selective group. Deep learning. Real outcomes.",
-
-      apply_title: "Apply to Join Polaris",
-      apply_p: "Start with a small circle of committed learners. Apply to the founding cohort.",
-      apply_btn: "Open Application",
-      apply_note: "Applications open soon.",
-
-      footer_tag: "Structured learning. Built to scale.",
-      footer_email_label: "Email:",
-      menu_note: "Clean, structured learning — built to scale.",
-
-      nav_courses: "Courses",
-      nav_program: "Program",
-      nav_principles: "Principles",
-      nav_terms: "Terms",
-      nav_privacy: "Privacy",
-      nav_contact: "Contact",
-      nav_dashboard: "My Learning",
-
-      about_title: "About Polaris",
-      about_p1: "Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.",
-      about_p2: "We start small, build real capability, and scale with quality — not noise.",
-      pillars_title: "Program Pillars",
-      pl_1: "Clear mental models",
-      pl_2: "Applied projects",
-      pl_3: "Peer review",
-      pl_4: "Progress tracking",
     },
 
     ar: {
@@ -267,55 +268,6 @@
 
       btn_view: "عرض",
       btn_enroll: "الانضمام",
-
-      // ✅ Course cards (NEW)
-      c_ai_title: "أساسيات الذكاء الاصطناعي (البرنامج الأساسي)",
-      c_ai_desc: "بداية منظمة: نماذج ذهنية، تطبيق عملي، ومخرجات مشروع.",
-      c_ai_m1: "12 أسبوعًا",
-      c_ai_m2: "3–4 ساعات/أسبوع",
-      c_ai_m3: "مبني على مشروع",
-
-      c_sec_title: "أساسيات الأمن السيبراني (مسار مختار)",
-      c_sec_desc: "مسار نظيف من جهات موثوقة، ضمن إطار بولاريس.",
-      c_sec_m1: "6–8 أسابيع",
-      c_sec_m2: "3–4 ساعات/أسبوع",
-      c_sec_m3: "موجّه",
-
-      c_se_title: "هندسة البرمجيات — مسار البناء",
-      c_se_desc: "ابنِ ميزات حقيقية، راجع الكود، وطور عادات إنتاجية.",
-      c_se_m1: "10 أسابيع",
-      c_se_m2: "4–6 ساعات/أسبوع",
-      c_se_m3: "بناء + مراجعة",
-
-      c_it_title: "دعم تقنية المعلومات (مسار احترافي)",
-      c_it_desc: "أساسيات IT العملية: حلول الأعطال، الأنظمة، الشبكات، وأساليب الدعم.",
-      c_it_m1: "8–10 أسابيع",
-      c_it_m2: "3–5 ساعات/أسبوع",
-      c_it_m3: "تطبيقات عملية",
-
-      c_eng_title: "الإنجليزية للمحترفين",
-      c_eng_desc: "إيميلات، اجتماعات، مقابلات، وتواصل مهني بثقة.",
-      c_eng_m1: "6 أسابيع",
-      c_eng_m2: "2–3 ساعات/أسبوع",
-      c_eng_m3: "تطبيق + تغذية راجعة",
-
-      c_py_title: "برمجة بايثون",
-      c_py_desc: "تعلم أساسيات بايثون وبناء سكربتات وأدوات ومشاريع صغيرة.",
-      c_py_m1: "8 أسابيع",
-      c_py_m2: "3–4 ساعات/أسبوع",
-      c_py_m3: "مشاريع",
-
-      c_web_title: "تطوير الويب",
-      c_web_desc: "ابنِ مواقع حديثة ومتجاوبة باستخدام HTML وCSS وJavaScript.",
-      c_web_m1: "8 أسابيع",
-      c_web_m2: "3–4 ساعات/أسبوع",
-      c_web_m3: "جاهز للبورتفوليو",
-
-      c_photo_title: "تصوير المنتجات وبناء الهوية الشخصية",
-      c_photo_desc: "اصنع صورًا نظيفة وفاخرة للمواقع والمنتجات والسوشيال ميديا.",
-      c_photo_m1: "6 أسابيع",
-      c_photo_m2: "2–3 ساعات/أسبوع",
-      c_photo_m3: "أسلوب عمل احترافي",
 
       how_title: "كيف يعمل Polaris",
       how_sub: "نظام نظيف: تعلم منظم، مخرجات حقيقية، ومراجعة مستمرة.",
@@ -360,6 +312,55 @@
       pl_2: "مشاريع تطبيقية",
       pl_3: "مراجعة جماعية",
       pl_4: "تتبع التقدم",
+
+      // ✅ Course strings (Arabic)
+      c_ai_title: "أساسيات الذكاء الاصطناعي (البرنامج الأساسي)",
+      c_ai_desc: "بداية منظمة: نماذج ذهنية، تدريب عملي، ومخرجات مشروع.",
+      c_ai_m1: "12 أسبوعًا",
+      c_ai_m2: "3–4 ساعات/أسبوع",
+      c_ai_m3: "مشروع تطبيقي",
+
+      c_sec_title: "أساسيات الأمن السيبراني (مسار مختار)",
+      c_sec_desc: "مسار نظيف من شركاء موثوقين ضمن إطار بولاريس.",
+      c_sec_m1: "6–8 أسابيع",
+      c_sec_m2: "3–4 ساعات/أسبوع",
+      c_sec_m3: "موجّه",
+
+      c_se_title: "هندسة البرمجيات — مسار البنّاء",
+      c_se_desc: "ابنِ ميزات حقيقية، راجع الكود، وطوّر عادات إنتاجية.",
+      c_se_m1: "10 أسابيع",
+      c_se_m2: "4–6 ساعات/أسبوع",
+      c_se_m3: "بناء + مراجعة",
+
+      c_it_title: "دعم تقنية المعلومات (مسار مهني)",
+      c_it_desc: "أساسيات IT العملية: حل المشاكل، الأنظمة، الشبكات، وسير عمل الدعم.",
+      c_it_m1: "8–10 أسابيع",
+      c_it_m2: "3–5 ساعات/أسبوع",
+      c_it_m3: "مختبرات عملية",
+
+      c_eng_title: "الإنجليزية للمحترفين",
+      c_eng_desc: "إيميلات، اجتماعات، مقابلات، وتواصل مهني بثقة.",
+      c_eng_m1: "6 أسابيع",
+      c_eng_m2: "2–3 ساعات/أسبوع",
+      c_eng_m3: "تدريب + ملاحظات",
+
+      c_py_title: "برمجة بايثون",
+      c_py_desc: "تعلم أساسيات بايثون وابنِ سكربتات وأدوات ومشاريع صغيرة.",
+      c_py_m1: "8 أسابيع",
+      c_py_m2: "3–4 ساعات/أسبوع",
+      c_py_m3: "مشاريع",
+
+      c_web_title: "تطوير الويب",
+      c_web_desc: "ابنِ مواقع حديثة ومتجاوبة باستخدام HTML وCSS وJavaScript.",
+      c_web_m1: "8 أسابيع",
+      c_web_m2: "3–4 ساعات/أسبوع",
+      c_web_m3: "جاهز للـPortfolio",
+
+      c_photo_title: "تصوير المنتجات وبناء الهوية",
+      c_photo_desc: "اصنع صورًا نظيفة وفخمة للمواقع والمنتجات والسوشيال ميديا.",
+      c_photo_m1: "6 أسابيع",
+      c_photo_m2: "2–3 ساعات/أسبوع",
+      c_photo_m3: "Workflow بجودة ستوديو",
     }
   };
 
@@ -390,7 +391,187 @@
   if (langToggle) {
     langToggle.addEventListener("click", () => {
       const current = html.getAttribute("lang") === "ar" ? "ar" : "en";
-      applyLang(current === "ar" ? "en" : "ar");
+      const next = current === "ar" ? "en" : "ar";
+      applyLang(next);
+
+      // ✅ re-render so AR/EN labels stay perfect even if you load from JSON later
+      renderCourses(currentFilter);
     });
   }
+
+  // =========================
+  // Dynamic Courses (from courses.json)
+  // =========================
+  const grid = $("catalogGrid");
+  const filterBtns = Array.from(document.querySelectorAll(".catalogFilters .chip"));
+
+  // ✅ Fallback courses (in case courses.json missing)
+  let courses = [
+    {
+      id: "ai-foundations",
+      track: "polaris",
+      badge: "AI",
+      org: "Polaris",
+      href: "./programs/ai-foundations.html",
+      img: "./images/courses/ai-foundations.jpg",
+      i18n: { title: "c_ai_title", desc: "c_ai_desc", m1: "c_ai_m1", m2: "c_ai_m2", m3: "c_ai_m3" }
+    },
+    {
+      id: "cybersecurity-essentials",
+      track: "curated",
+      badge: "SEC",
+      org: "Curated",
+      href: "./tracks/cybersecurity-essentials.html",
+      img: "./images/courses/cybersecurity-essentials.jpg",
+      i18n: { title: "c_sec_title", desc: "c_sec_desc", m1: "c_sec_m1", m2: "c_sec_m2", m3: "c_sec_m3" }
+    },
+    {
+      id: "software-engineering",
+      track: "polaris",
+      badge: "BUILD",
+      org: "Polaris",
+      href: "./programs/builder-track.html",
+      img: "./images/courses/software-engineering.jpg",
+      i18n: { title: "c_se_title", desc: "c_se_desc", m1: "c_se_m1", m2: "c_se_m2", m3: "c_se_m3" }
+    },
+    {
+      id: "it-support",
+      track: "polaris",
+      badge: "IT",
+      org: "Polaris",
+      href: "./programs/it-support.html",
+      img: "./images/courses/it-support.jpg",
+      i18n: { title: "c_it_title", desc: "c_it_desc", m1: "c_it_m1", m2: "c_it_m2", m3: "c_it_m3" }
+    },
+    {
+      id: "english-professionals",
+      track: "polaris",
+      badge: "ENG",
+      org: "Polaris",
+      href: "./programs/english-professionals.html",
+      img: "./images/courses/english-professionals.jpg",
+      i18n: { title: "c_eng_title", desc: "c_eng_desc", m1: "c_eng_m1", m2: "c_eng_m2", m3: "c_eng_m3" }
+    },
+    {
+      id: "python-programming",
+      track: "polaris",
+      badge: "PY",
+      org: "Polaris",
+      href: "./programs/python-programming.html",
+      img: "./images/courses/python-programming.jpg",
+      i18n: { title: "c_py_title", desc: "c_py_desc", m1: "c_py_m1", m2: "c_py_m2", m3: "c_py_m3" }
+    },
+    {
+      id: "web-development",
+      track: "polaris",
+      badge: "WEB",
+      org: "Polaris",
+      href: "./programs/web-development.html",
+      img: "./images/courses/web-development.jpg",
+      i18n: { title: "c_web_title", desc: "c_web_desc", m1: "c_web_m1", m2: "c_web_m2", m3: "c_web_m3" }
+    },
+    {
+      id: "branding-photography",
+      track: "polaris",
+      badge: "PHOTO",
+      org: "Polaris",
+      href: "./programs/branding-photography.html",
+      img: "./images/courses/branding-photography.jpg",
+      i18n: { title: "c_photo_title", desc: "c_photo_desc", m1: "c_photo_m1", m2: "c_photo_m2", m3: "c_photo_m3" }
+    }
+  ];
+
+  async function loadCoursesJSON() {
+    try {
+      const res = await fetch("./courses.json", { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) courses = data;
+    } catch {}
+  }
+
+  function t(key) {
+    const lang = html.getAttribute("lang") === "ar" ? "ar" : "en";
+    return dict[lang]?.[key] || "";
+  }
+
+  function courseCardHTML(c) {
+    const title = c.i18n?.title ? t(c.i18n.title) : (c.title || "");
+    const desc  = c.i18n?.desc  ? t(c.i18n.desc)  : (c.desc  || "");
+    const m1    = c.i18n?.m1    ? t(c.i18n.m1)    : (c.m1    || "");
+    const m2    = c.i18n?.m2    ? t(c.i18n.m2)    : (c.m2    || "");
+    const m3    = c.i18n?.m3    ? t(c.i18n.m3)    : (c.m3    || "");
+
+    return `
+      <article class="catalogCard catalogCard--click" data-track="${c.track || 'all'}">
+        <a class="cardLink" href="${c.href}" aria-label="${escapeHtml(title)}"></a>
+
+        ${c.img ? `<img class="catalogImg" src="${c.img}" alt="${escapeHtml(title)} cover" loading="lazy" />` : ""}
+
+        <div class="catalogTop">
+          <span class="catalogBadge">${escapeHtml(c.badge || "")}</span>
+          <span class="catalogOrg">${escapeHtml(c.org || "")}</span>
+        </div>
+
+        <h3 class="h3">${escapeHtml(title)}</h3>
+        <p class="p muted">${escapeHtml(desc)}</p>
+
+        <div class="metaRow">
+          <span class="meta">${escapeHtml(m1)}</span>
+          <span class="meta">${escapeHtml(m2)}</span>
+          <span class="meta">${escapeHtml(m3)}</span>
+        </div>
+
+        <div class="cardActions">
+          <a class="btn btn--ghost" href="${c.href}" data-i18n="btn_view">${t("btn_view") || "View"}</a>
+          <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">${t("btn_enroll") || "Enroll"}</a>
+        </div>
+      </article>
+    `;
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  let currentFilter = "all";
+
+  function renderCourses(filter = "all") {
+    currentFilter = filter;
+    if (!grid) return;
+
+    const list = courses.filter((c) => {
+      if (filter === "all") return true;
+      return (c.track || "").toLowerCase() === filter;
+    });
+
+    grid.innerHTML = list.map(courseCardHTML).join("");
+
+    // ✅ Make sure the overlay link doesn't break button clicks
+    grid.querySelectorAll(".cardActions a, .cardActions .btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => e.stopPropagation());
+    });
+  }
+
+  // Filter buttons
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      filterBtns.forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      const f = btn.getAttribute("data-filter") || "all";
+      renderCourses(f);
+    });
+  });
+
+  // Boot: load JSON then render
+  (async function initCourses() {
+    await loadCoursesJSON();
+    renderCourses("all");
+  })();
+
 })();
