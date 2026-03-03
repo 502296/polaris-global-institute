@@ -1867,3 +1867,125 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
   }
 
 }
+
+/* ===============================
+   PREMIUM CARD FIX (FINAL POLISH)
+   Paste at END of CSS
+================================= */
+
+/* Make the overlay calmer + prevent “double text” feeling */
+.cardOverlay{
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 14px;
+}
+
+/* Stronger overlay to calm any text baked inside the image */
+.cardOverlay::before{
+  background:
+    linear-gradient(180deg,
+      rgba(0,0,0,.18) 0%,
+      rgba(0,0,0,.40) 45%,
+      rgba(0,0,0,.74) 100%
+    ),
+    radial-gradient(900px 420px at 30% 18%, rgba(159,232,112,.16), transparent 58%);
+  opacity: .96;
+}
+
+/* Glassy boxes for readability */
+.catalogTop,
+.cardTitle,
+.cardDesc,
+.cardMeta,
+.cardActions{
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 14px;
+  padding: 10px 10px;
+  background: rgba(0,0,0,.26);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* top row spacing */
+.catalogTop{
+  padding: 8px 10px;
+  margin-bottom: 2px;
+}
+
+/* Title clean */
+.cardTitle{
+  margin: 0;
+  padding: 10px 10px;
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: .2px;
+
+  /* clamp to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Description hidden by default (shows on hover only for premium feel) */
+.cardDesc{
+  margin: 0;
+  padding: 10px 10px;
+  color: rgba(255,255,255,.90);
+  line-height: 1.5;
+
+  display: none; /* ✅ keep cards clean */
+}
+
+/* Meta row looks premium */
+.cardMeta{
+  padding: 8px 10px;
+}
+
+/* Meta chips inside overlay */
+.cardMeta .meta{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.18);
+  color: rgba(255,255,255,.92);
+}
+
+/* Actions: hide until hover */
+.cardActions{
+  padding: 10px;
+}
+.cardActions--overlay{
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .22s ease, transform .22s ease;
+}
+
+/* Hover behavior */
+.catalogCard--premium:hover .cardDesc{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.catalogCard--premium:hover .cardActions--overlay{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Make image fill perfectly */
+.cardMedia{ min-height: 270px; }
+@media (max-width: 960px){
+  .cardMedia{ min-height: 240px; }
+}
+@media (max-width: 520px){
+  .cardMedia{ min-height: 220px; }
+  .cardTitle{ font-size: 16px; }
+}
+
+/* Extra: slightly dim the image on hover for readability */
+.catalogCard--premium:hover .catalogImg{
+  filter: saturate(1.02) contrast(1.05) brightness(.92);
+}
