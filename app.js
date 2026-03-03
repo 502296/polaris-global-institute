@@ -287,47 +287,22 @@
   const grid = $("catalogGrid");
   const filterBar = document.querySelector(".catalogFilters");
 
+  // ✅ Image-only card (no overlay text at all)
   function cardHTML(c) {
     const href = c.href || "#";
 
-    // ✅ FIX: support both "image" and "img" from JSON
+    // support both "image" and "img" from JSON
     const imgPath = c.image || c.img || "";
     const imgSrc = imgPath ? url(imgPath) : "";
 
-    const tag = c.tag || c.badge || "";
-    const org = c.org || "";
-    const title = c.title || "";
-    const desc = c.desc || "";
-    const meta = Array.isArray(c.meta)
-      ? c.meta
-      : [c.duration, c.hours, c.mode].filter(Boolean);
+    const title = c.title || "Course";
 
-    // ✅ Premium Card Markup (image fills, overlay content, hover-ready)
     return `
-      <article class="catalogCard catalogCard--premium" data-cat="${(c.category || c.type || "all").toLowerCase()}">
+      <article class="catalogCard catalogCard--imageOnly" data-cat="${(c.category || c.type || "all").toLowerCase()}">
         <a class="cardLink" href="${href}" aria-label="${title}"></a>
 
-        <div class="cardMedia">
+        <div class="catalogMedia">
           ${imgSrc ? `<img class="catalogImg" src="${imgSrc}" alt="${title} cover" loading="lazy" onerror="this.style.display='none'">` : ""}
-
-          <div class="cardOverlay">
-            <div class="catalogTop">
-              ${tag ? `<span class="catalogBadge">${tag}</span>` : `<span></span>`}
-              ${org ? `<span class="catalogOrg">${org}</span>` : ``}
-            </div>
-
-            <h3 class="h3 cardTitle">${title}</h3>
-            <p class="p muted cardDesc">${desc}</p>
-
-            <div class="metaRow cardMeta">
-              ${meta.map(m => `<span class="meta">${m}</span>`).join("")}
-            </div>
-
-            <div class="cardActions cardActions--overlay">
-              <a class="btn btn--ghost" href="${href}">${(html.getAttribute("lang") === "ar") ? "عرض" : "View"}</a>
-              <a class="btn btn--primary" href="#apply">${(html.getAttribute("lang") === "ar") ? "الانضمام" : "Enroll"}</a>
-            </div>
-          </div>
         </div>
       </article>
     `;
@@ -368,6 +343,7 @@
     }
   }
 
+  // Filter clicks
   if (filterBar) {
     filterBar.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-filter]");
