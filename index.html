@@ -17,14 +17,11 @@
   <!-- Top Bar -->
   <header class="topbar">
     <div class="wrap topbar__inner">
-      <!-- ✅ LEFT: Brand link kept for accessibility, but no visible text (removes “Polari…” issue on mobile) -->
       <a class="brand brand--empty" href="./index.html" aria-label="Polaris Global Institute">
         <span class="sr-only">Polaris Global Institute</span>
       </a>
 
-      <!-- RIGHT: logo + actions -->
       <div class="topbar__actions">
-        <!-- ✅ logo path points to /images/ -->
         <img class="brandLogo" src="./images/logo.png" alt="Polaris Logo" />
 
         <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
@@ -49,7 +46,6 @@
           <a href="#courses" class="menu__link" data-i18n="nav_courses">Courses</a>
           <a href="#program" class="menu__link" data-i18n="nav_program">Program</a>
 
-          <!-- ABOUT moved here (Accordion inside menu) -->
           <button class="menu__accordion" id="menuAboutToggle" type="button" aria-expanded="false" aria-controls="menuAboutPanel">
             <span data-i18n="about_title">About Polaris</span>
             <span class="menu__accordionIcon" aria-hidden="true">▾</span>
@@ -96,11 +92,8 @@
 
   <!-- Hero -->
   <main>
-    <!-- ✅ added hero--compact to allow raising content via CSS -->
     <section class="hero hero--compact">
       <div class="wrap hero__inner">
-
-        <!-- hero grid (text + big logo) -->
         <div class="hero__grid">
           <div class="hero__content">
             <div class="hero__badge" data-i18n="badge">A Global Academic Learning Platform</div>
@@ -126,7 +119,6 @@
             </div>
           </div>
 
-          <!-- Big logo area (right in EN, left in AR automatically via CSS) -->
           <div class="hero__art" aria-label="Polaris emblem">
             <img class="heroLogo" src="./images/logo.png" alt="Polaris Logo" />
           </div>
@@ -146,215 +138,20 @@
           </div>
 
           <div class="catalogFilters" aria-label="Catalog filters">
-            <button class="chip is-active" type="button" data-i18n="filter_all">All</button>
-            <button class="chip" type="button" data-i18n="filter_polaris">Polaris Programs</button>
-            <button class="chip" type="button" data-i18n="filter_curated">Curated Tracks (MIT/Harvard)</button>
+            <button class="chip is-active" type="button" data-filter="all" data-i18n="filter_all">All</button>
+            <button class="chip" type="button" data-filter="polaris" data-i18n="filter_polaris">Polaris Programs</button>
+            <button class="chip" type="button" data-filter="curated" data-i18n="filter_curated">Curated Tracks (MIT/Harvard)</button>
           </div>
         </div>
 
-        <div class="catalogGrid">
+        <!-- ✅ JS will render cards here from courses.json -->
+        <div class="catalogGrid" id="catalogGrid"></div>
 
-          <!-- 1) AI Foundations -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./programs/ai-foundations.html" aria-label="AI Foundations (Core Program)"></a>
-
-            <img class="catalogImg" src="./images/courses/ai-foundations.jpg" alt="AI Foundations course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">AI</span>
-              <span class="catalogOrg">Polaris</span>
-            </div>
-            <h3 class="h3" data-i18n="c_ai_title">AI Foundations (Core Program)</h3>
-            <p class="p muted" data-i18n="c_ai_desc">A structured start: mental models, practice, and project output.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_ai_m1">12 weeks</span>
-              <span class="meta" data-i18n="c_ai_m2">3–4 hours/week</span>
-              <span class="meta" data-i18n="c_ai_m3">Project-based</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/ai-foundations.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-          <!-- 2) Cybersecurity Essentials -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./tracks/cybersecurity-essentials.html" aria-label="Cybersecurity Essentials (Curated Track)"></a>
-
-            <img class="catalogImg" src="./images/courses/cybersecurity-essentials.jpg" alt="Cybersecurity Essentials course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">SEC</span>
-              <span class="catalogOrg">Curated</span>
-            </div>
-            <h3 class="h3" data-i18n="c_sec_title">Cybersecurity Essentials (Curated Track)</h3>
-            <p class="p muted" data-i18n="c_sec_desc">A clean path from trusted partners, wrapped into a Polaris track.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_sec_m1">6–8 weeks</span>
-              <span class="meta" data-i18n="c_sec_m2">3–4 hours/week</span>
-              <span class="meta" data-i18n="c_sec_m3">Guided</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./tracks/cybersecurity-essentials.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-          <!-- 3) Software Engineering -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./programs/builder-track.html" aria-label="Software Engineering — Builder Track"></a>
-
-            <img class="catalogImg" src="./images/courses/software-engineering.jpg" alt="Software Engineering course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">BUILD</span>
-              <span class="catalogOrg">Polaris</span>
-            </div>
-            <h3 class="h3" data-i18n="c_se_title">Software Engineering — Builder Track</h3>
-            <p class="p muted" data-i18n="c_se_desc">Ship real features, review code, and develop production habits.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_se_m1">10 weeks</span>
-              <span class="meta" data-i18n="c_se_m2">4–6 hours/week</span>
-              <span class="meta" data-i18n="c_se_m3">Build + Review</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/builder-track.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-          <!-- 4) IT Support -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./programs/it-support.html" aria-label="IT Support (Professional Track)"></a>
-
-            <img class="catalogImg" src="./images/courses/it-support.jpg" alt="IT Support course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">IT</span>
-              <span class="catalogOrg">Polaris</span>
-            </div>
-            <h3 class="h3" data-i18n="c_it_title">IT Support (Professional Track)</h3>
-            <p class="p muted" data-i18n="c_it_desc">Practical IT foundations: troubleshooting, systems, networking, and support workflows.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_it_m1">8–10 weeks</span>
-              <span class="meta" data-i18n="c_it_m2">3–5 hours/week</span>
-              <span class="meta" data-i18n="c_it_m3">Hands-on labs</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/it-support.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-          <!-- 5) English for Professionals -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./programs/english-professionals.html" aria-label="English for Professionals"></a>
-
-            <img class="catalogImg" src="./images/courses/english-professionals.jpg" alt="English for Professionals course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">ENG</span>
-              <span class="catalogOrg">Polaris</span>
-            </div>
-            <h3 class="h3" data-i18n="c_eng_title">English for Professionals</h3>
-            <p class="p muted" data-i18n="c_eng_desc">Email, meetings, interviews, and confident professional communication.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_eng_m1">6 weeks</span>
-              <span class="meta" data-i18n="c_eng_m2">2–3 hours/week</span>
-              <span class="meta" data-i18n="c_eng_m3">Practice + feedback</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/english-professionals.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-          <!-- 6) Python Programming -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./programs/python-programming.html" aria-label="Python Programming"></a>
-
-            <img class="catalogImg" src="./images/courses/python-programming.jpg" alt="Python Programming course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">PY</span>
-              <span class="catalogOrg">Polaris</span>
-            </div>
-            <h3 class="h3" data-i18n="c_py_title">Python Programming</h3>
-            <p class="p muted" data-i18n="c_py_desc">Learn Python fundamentals and build real scripts, tools, and mini-projects.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_py_m1">8 weeks</span>
-              <span class="meta" data-i18n="c_py_m2">3–4 hours/week</span>
-              <span class="meta" data-i18n="c_py_m3">Projects</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/python-programming.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-          <!-- 7) Web Development -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./programs/web-development.html" aria-label="Web Development"></a>
-
-            <img class="catalogImg" src="./images/courses/web-development.jpg" alt="Web Development course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">WEB</span>
-              <span class="catalogOrg">Polaris</span>
-            </div>
-            <h3 class="h3" data-i18n="c_web_title">Web Development</h3>
-            <p class="p muted" data-i18n="c_web_desc">Build modern responsive websites with HTML, CSS, and JavaScript.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_web_m1">8 weeks</span>
-              <span class="meta" data-i18n="c_web_m2">3–4 hours/week</span>
-              <span class="meta" data-i18n="c_web_m3">Portfolio-ready</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/web-development.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-          <!-- 8) Branding Photography -->
-          <article class="catalogCard catalogCard--click">
-            <a class="cardLink" href="./programs/branding-photography.html" aria-label="Product & Personal Branding Photography"></a>
-
-            <img class="catalogImg" src="./images/courses/branding-photography.jpg" alt="Branding Photography course cover" loading="lazy" />
-
-            <div class="catalogTop">
-              <span class="catalogBadge">PHOTO</span>
-              <span class="catalogOrg">Polaris</span>
-            </div>
-            <h3 class="h3" data-i18n="c_photo_title">Product &amp; Personal Branding Photography</h3>
-            <p class="p muted" data-i18n="c_photo_desc">Create clean, high-end visuals for websites, products, and social media.</p>
-
-            <div class="metaRow">
-              <span class="meta" data-i18n="c_photo_m1">6 weeks</span>
-              <span class="meta" data-i18n="c_photo_m2">2–3 hours/week</span>
-              <span class="meta" data-i18n="c_photo_m3">Studio-quality workflow</span>
-            </div>
-
-            <div class="cardActions">
-              <a class="btn btn--ghost" href="./programs/branding-photography.html" data-i18n="btn_view">View</a>
-              <a class="btn btn--primary" href="#apply" data-i18n="btn_enroll">Enroll</a>
-            </div>
-          </article>
-
-        </div>
+        <noscript>
+          <p class="p muted" style="margin-top:12px;">
+            JavaScript is required to load the course catalog.
+          </p>
+        </noscript>
       </div>
     </section>
 
