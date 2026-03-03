@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ai-foundations",
+    "track": "polaris",
+    "badge": "AI",
+    "org": "Polaris",
+    "href": "./programs/ai-foundations.html",
+    "img": "./images/courses/ai-foundations.jpg",
+    "i18n": { "title": "c_ai_title", "desc": "c_ai_desc", "m1": "c_ai_m1", "m2": "c_ai_m2", "m3": "c_ai_m3" }
+  },
+  {
+    "id": "cybersecurity-essentials",
+    "track": "curated",
+    "badge": "SEC",
+    "org": "Curated",
+    "href": "./tracks/cybersecurity-essentials.html",
+    "img": "./images/courses/cybersecurity-essentials.jpg",
+    "i18n": { "title": "c_sec_title", "desc": "c_sec_desc", "m1": "c_sec_m1", "m2": "c_sec_m2", "m3": "c_sec_m3" }
+  },
+  {
+    "id": "software-engineering",
+    "track": "polaris",
+    "badge": "BUILD",
+    "org": "Polaris",
+    "href": "./programs/builder-track.html",
+    "img": "./images/courses/software-engineering.jpg",
+    "i18n": { "title": "c_se_title", "desc": "c_se_desc", "m1": "c_se_m1", "m2": "c_se_m2", "m3": "c_se_m3" }
+  },
+  {
+    "id": "it-support",
+    "track": "polaris",
+    "badge": "IT",
+    "org": "Polaris",
+    "href": "./programs/it-support.html",
+    "img": "./images/courses/it-support.jpg",
+    "i18n": { "title": "c_it_title", "desc": "c_it_desc", "m1": "c_it_m1", "m2": "c_it_m2", "m3": "c_it_m3" }
+  },
+  {
+    "id": "english-professionals",
+    "track": "polaris",
+    "badge": "ENG",
+    "org": "Polaris",
+    "href": "./programs/english-professionals.html",
+    "img": "./images/courses/english-professionals.jpg",
+    "i18n": { "title": "c_eng_title", "desc": "c_eng_desc", "m1": "c_eng_m1", "m2": "c_eng_m2", "m3": "c_eng_m3" }
+  },
+  {
+    "id": "python-programming",
+    "track": "polaris",
+    "badge": "PY",
+    "org": "Polaris",
+    "href": "./programs/python-programming.html",
+    "img": "./images/courses/python-programming.jpg",
+    "i18n": { "title": "c_py_title", "desc": "c_py_desc", "m1": "c_py_m1", "m2": "c_py_m2", "m3": "c_py_m3" }
+  },
+  {
+    "id": "web-development",
+    "track": "polaris",
+    "badge": "WEB",
+    "org": "Polaris",
+    "href": "./programs/web-development.html",
+    "img": "./images/courses/web-development.jpg",
+    "i18n": { "title": "c_web_title", "desc": "c_web_desc", "m1": "c_web_m1", "m2": "c_web_m2", "m3": "c_web_m3" }
+  },
+  {
+    "id": "branding-photography",
+    "track": "polaris",
+    "badge": "PHOTO",
+    "org": "Polaris",
+    "href": "./programs/branding-photography.html",
+    "img": "./images/courses/branding-photography.jpg",
+    "i18n": { "title": "c_photo_title", "desc": "c_photo_desc", "m1": "c_photo_m1", "m2": "c_photo_m2", "m3": "c_photo_m3" }
+  }
+]
