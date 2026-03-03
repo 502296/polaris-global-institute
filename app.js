@@ -289,15 +289,25 @@
 
   function cardHTML(c) {
     const href = c.href || "#";
-    const imgSrc = c.image ? url(c.image) : "";
-    const tag = c.tag || "";
+
+    // ✅ FIX: support both "image" and "img" from JSON
+    const imgPath = c.image || c.img || "";
+    const imgSrc = imgPath ? url(imgPath) : "";
+
+    const tag = c.tag || c.badge || "";
     const org = c.org || "";
     const title = c.title || "";
     const desc = c.desc || "";
-    const meta = Array.isArray(c.meta) ? c.meta : [];
+    const meta = Array.isArray(c.meta)
+      ? c.meta
+      : [
+          c.duration,
+          c.hours,
+          c.mode
+        ].filter(Boolean);
 
     return `
-      <article class="catalogCard catalogCard--click" data-cat="${(c.category || "all").toLowerCase()}">
+      <article class="catalogCard catalogCard--click" data-cat="${(c.category || c.type || "all").toLowerCase()}">
         <a class="cardLink" href="${href}" aria-label="${title}"></a>
 
         ${imgSrc ? `<img class="catalogImg" src="${imgSrc}" alt="${title} cover" loading="lazy" onerror="this.style.display='none'">` : ""}
@@ -335,8 +345,6 @@
   async function loadCourses() {
     if (!grid) return;
 
-    // IMPORTANT: put your JSON here:
-    // /data/courses.json  (recommended)
     const jsonURL = url("data/courses.json");
 
     try {
@@ -348,8 +356,6 @@
       if (!Array.isArray(list) || list.length === 0) throw new Error("Empty courses list");
 
       grid.innerHTML = list.map(cardHTML).join("");
-
-      // default filter = all
       applyFilter("all");
     } catch (err) {
       console.error("Catalog load error:", err);
@@ -361,7 +367,6 @@
     }
   }
 
-  // Filter clicks
   if (filterBar) {
     filterBar.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-filter]");
