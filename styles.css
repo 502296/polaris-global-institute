@@ -2,341 +2,683 @@
 
 
 
+
+
+
+
   /* =========================
+
+
 
      MIT-like Clean Palette
 
+
+
   ========================= */
+
+
 
   --bg: #f6f7f9;          /* clean paper */
 
+
+
   --bg2:#eef1f5;          /* soft gray */
+
+
 
   --card:#ffffff;
 
+
+
   --text:#0b1220;
 
+
+
   --muted:#5b667a;
+
+
 
   --stroke: rgba(11,18,32,.12);
 
 
 
+
+
+
+
   /* Accent (clean academic green) */
 
+
+
   --accent:#9FE870;       /* calm lime */
+
+
 
   --accent2:#2fbf71;      /* academic green */
 
 
 
+
+
+
+
   /* Primary button */
 
+
+
   --primary1: #9FE870;
+
+
 
   --primary2: #2fbf71;
 
 
 
+
+
+
+
   --shadow: 0 18px 60px rgba(12,18,32,.08);
 
+
+
   --shadow2: 0 10px 26px rgba(12,18,32,.10);
+
+
 
   --radius: 18px;
 
 
 
+
+
+
+
   --serif: "Playfair Display", serif;
+
+
 
   --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
+
+
 }
+
+
+
+
 
 
 
 *{ box-sizing: border-box; }
 
+
+
 html,body{ height:100%; }
+
+
+
+
 
 
 
 body{
 
+
+
   margin:0;
+
+
 
   font-family: var(--sans);
 
+
+
   background: linear-gradient(180deg, var(--bg), var(--bg2));
+
+
 
   color: var(--text);
 
+
+
   -webkit-font-smoothing: antialiased;
+
+
 
   -moz-osx-font-smoothing: grayscale;
 
+
+
 }
+
+
+
+
 
 
 
 a{ color: inherit; text-decoration: none; }
 
+
+
 .wrap{ width:min(1100px, 92vw); margin:0 auto; }
+
+
+
+
 
 
 
 /* ✅ Accessibility: visually hidden text */
 
+
+
 .sr-only{
+
+
 
   position:absolute !important;
 
+
+
   width:1px; height:1px;
+
+
 
   padding:0; margin:-1px;
 
+
+
   overflow:hidden;
+
+
 
   clip: rect(0,0,0,0);
 
+
+
   white-space: nowrap;
+
+
 
   border:0;
 
+
+
 }
+
+
+
+
 
 
 
 /* ✅ empty brand placeholder (keeps spacing clean) */
 
+
+
 .brand--empty{
+
+
 
   min-width: 0;
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    Topbar (clean + white)
+
+
 
 ========================= */
 
+
+
 .topbar{
+
+
 
   position: sticky;
 
+
+
   top:0;
+
+
 
   z-index: 20;
 
+
+
   backdrop-filter: blur(10px);
+
+
 
   -webkit-backdrop-filter: blur(10px);
 
+
+
   background: rgba(255,255,255,.86);
+
+
 
   border-bottom: 1px solid rgba(11,18,32,.10);
 
+
+
 }
+
+
+
+
 
 
 
 .topbar__inner{
 
+
+
   display:flex;
+
+
 
   align-items:center;
 
+
+
   justify-content:space-between;
+
+
 
   gap:16px;
 
+
+
   padding: 12px 0;
 
+
+
 }
+
+
+
+
 
 
 
 /* Brand (LEFT) */
 
+
+
 .brand{
+
+
 
   display:flex;
 
+
+
   align-items:center;
+
+
 
   gap:10px;
 
+
+
   letter-spacing:.2px;
+
+
 
   min-width: 0;
 
+
+
 }
+
+
+
+
 
 
 
 .brand__mark{
 
+
+
   color: rgba(11,18,32,.65);
+
+
 
   font-size: 16px;
 
+
+
   transform: translateY(-1px);
 
+
+
 }
+
+
+
+
 
 
 
 .brand__typingWrap{
 
+
+
   display:inline-flex;
+
+
 
   align-items:baseline;
 
+
+
   gap:6px;
+
+
 
   min-width: 0;
 
+
+
 }
+
+
+
+
 
 
 
 .brand__typing{
 
+
+
   font-family: var(--serif);
+
+
 
   font-weight:800;
 
+
+
   font-size: 18px;
+
+
 
   line-height: 1;
 
+
+
   white-space: nowrap;
+
+
 
   overflow: hidden;
 
+
+
   text-overflow: ellipsis;
+
+
 
   transform: translateY(-3px);
 
+
+
 }
+
+
+
+
 
 
 
 /* IMPORTANT: no typing caret now */
 
+
+
 .brand__caret{ display:none !important; }
+
+
+
+
 
 
 
 /* Sub (REMOVE) */
 
+
+
 .brand__sub{ display:none !important; }
+
+
+
+
 
 
 
 /* Right actions */
 
+
+
 .topbar__actions{
+
+
 
   display:flex;
 
+
+
   align-items:center;
+
+
 
   gap:10px;
 
+
+
 }
+
+
+
+
 
 
 
 /* ✅ Logo on the RIGHT — bigger on Desktop */
 
+
+
 .brandLogo{
+
+
 
   width: 56px;
 
+
+
   height: 56px;
+
+
 
   object-fit: contain;
 
 
 
+
+
+
+
   border-radius: 12px;
+
+
 
   background: transparent;
 
+
+
   border: none;
+
+
 
   padding: 0;
 
+
+
   transform: translateY(-6px);
+
+
 
   filter: drop-shadow(0 6px 14px rgba(12,18,32,.12));
 
+
+
 }
+
+
+
+
 
 
 
 /* ✅ Desktop boost (bigger logo on computer) */
 
+
+
 @media (min-width: 961px){
+
+
 
   .brandLogo{
 
+
+
     width: 72px;
+
+
 
     height: 72px;
 
+
+
   }
+
+
 
   .topbar__inner{
 
+
+
     padding: 10px 0; /* slightly tighter so it feels higher */
+
+
 
   }
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    Buttons (MIT clean)
+
+
 
 ========================= */
 
+
+
 .btn{
+
+
 
   display:inline-flex;
 
+
+
   align-items:center;
+
+
 
   justify-content:center;
 
+
+
   gap:8px;
+
+
 
   padding: 10px 14px;
 
+
+
   border-radius: 14px;
+
+
 
   border: 1px solid rgba(11,18,32,.14);
 
+
+
   font-weight: 700;
+
+
 
   font-size: 14px;
 
+
+
   letter-spacing: .1px;
+
+
 
   transition: transform .15s ease, background .15s ease, border-color .15s ease, filter .15s ease, box-shadow .15s ease;
 
+
+
   cursor:pointer;
+
+
 
   user-select:none;
 
+
+
   background: rgba(255,255,255,.76);
 
+
+
 }
+
+
+
+
 
 
 
@@ -344,53 +686,107 @@ a{ color: inherit; text-decoration: none; }
 
 
 
+
+
+
+
 .btn--ghost{
+
+
 
   background: rgba(11,18,32,.04);
 
+
+
   color: var(--text);
 
+
+
 }
+
+
 
 .btn--ghost:hover{
 
+
+
   background: rgba(11,18,32,.07);
+
+
 
   border-color: rgba(11,18,32,.18);
 
+
+
 }
+
+
+
+
 
 
 
 .btn--primary{
 
+
+
   background: linear-gradient(180deg, var(--primary1), var(--primary2));
+
+
 
   color: #0b1220;
 
+
+
   border-color: rgba(47,191,113,.35);
+
+
 
   box-shadow: 0 12px 24px rgba(47,191,113,.18);
 
+
+
 }
+
+
 
 .btn--primary:hover{
 
+
+
   filter: brightness(1.02);
+
+
 
   box-shadow: 0 14px 28px rgba(47,191,113,.22);
 
+
+
 }
+
+
+
+
 
 
 
 .btn--lg{
 
+
+
   padding: 12px 16px;
+
+
 
   border-radius: 16px;
 
+
+
 }
+
+
+
+
 
 
 
@@ -398,53 +794,107 @@ a{ color: inherit; text-decoration: none; }
 
 
 
+
+
+
+
 /* =========================
+
+
 
    Hero (MIT clean) + BIG HERO LOGO (printed / no frame)
 
+
+
 ========================= */
+
+
 
 .hero{
 
+
+
   position: relative;
+
+
 
   padding: 32px 0 40px;
 
+
+
   overflow:hidden;
 
+
+
 }
+
+
+
+
 
 
 
 /* ✅ Raise Hero when using hero--compact (you already added it in HTML) */
 
+
+
 .hero.hero--compact{
+
+
 
   padding: 30px 0 34px; /* was 74/40 -> now higher */
 
+
+
 }
+
+
+
+
 
 
 
 .hero::before{
 
+
+
   content:"";
+
+
 
   position:absolute;
 
+
+
   inset: 0;
+
+
 
   background:
 
+
+
     radial-gradient(900px 520px at 70% 10%, rgba(159,232,112,.18), transparent 55%),
+
+
 
     radial-gradient(700px 420px at 20% 25%, rgba(47,191,113,.10), transparent 55%),
 
+
+
     linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,0));
+
+
 
   pointer-events:none;
 
+
+
 }
+
+
+
+
 
 
 
@@ -452,337 +902,673 @@ a{ color: inherit; text-decoration: none; }
 
 
 
+
+
+
+
 .hero__badge{
+
+
 
   display:inline-flex;
 
+
+
   padding: 8px 12px;
+
+
 
   border-radius: 999px;
 
+
+
   border: 1px solid rgba(11,18,32,.12);
+
+
 
   color: rgba(11,18,32,.72);
 
+
+
   background: rgba(255,255,255,.82);
+
+
 
   font-size: 13px;
 
+
+
 }
+
+
+
+
 
 
 
 .hero__title{
 
+
+
   margin: 12px 0 8px; /* slightly tighter */
+
+
 
   font-family: var(--serif);
 
+
+
   font-size: clamp(34px, 4.6vw, 54px);
+
+
 
   line-height: 1.06;
 
+
+
   letter-spacing: .2px;
 
+
+
 }
+
+
+
+
 
 
 
 .hero__subtitle{
 
+
+
   margin: 0 0 16px; /* slightly tighter */
+
+
 
   max-width: 720px;
 
+
+
   color: rgba(11,18,32,.70);
+
+
 
   font-size: 16px;
 
+
+
   line-height: 1.72;
 
+
+
 }
+
+
+
+
 
 
 
 .hero__cta{
 
+
+
   display:flex;
+
+
 
   gap:12px;
 
+
+
   flex-wrap:wrap;
+
+
 
   margin-top: 12px; /* tighter */
 
+
+
 }
+
+
+
+
 
 
 
 /* Quick nav pills */
 
+
+
 .hero__pills{
+
+
 
   margin-top: 16px; /* tighter */
 
+
+
   display:flex;
+
+
 
   gap:10px;
 
+
+
   flex-wrap:wrap;
 
+
+
 }
+
+
+
+
 
 
 
 .pill{
 
+
+
   display:inline-flex;
+
+
 
   align-items:center;
 
+
+
   gap:8px;
+
+
 
   padding: 10px 12px;
 
+
+
   border-radius: 999px;
+
+
 
   border: 1px solid rgba(11,18,32,.12);
 
+
+
   background: rgba(255,255,255,.78);
+
+
 
   color: rgba(11,18,32,.82);
 
+
+
   font-weight: 700;
+
+
 
   font-size: 13px;
 
+
+
   transition: background .15s ease, border-color .15s ease, transform .15s ease;
 
+
+
 }
+
+
 
 .pill:hover{
 
+
+
   background: rgba(255,255,255,.94);
+
+
 
   border-color: rgba(11,18,32,.16);
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    HERO GRID: Big logo (EN right / AR left)
+
+
 
 ========================= */
 
+
+
 .hero__grid{
+
+
 
   display:flex;
 
+
+
   align-items:center;
+
+
 
   justify-content:space-between;
 
+
+
   gap: 34px;
 
+
+
 }
+
+
+
+
 
 
 
 .hero__content{
 
+
+
   flex: 1 1 auto;
+
+
 
   min-width: 0;
 
+
+
 }
+
+
+
+
 
 
 
 /* Logo container */
 
+
+
 .hero__art{
+
+
 
   flex: 0 0 auto;
 
+
+
   width: min(360px, 34vw);
+
+
 
   display:flex;
 
+
+
   justify-content: flex-end; /* EN: right */
+
+
 
   align-items:center;
 
 
 
+
+
+
+
   /* ✅ prepare for printed logo */
+
+
 
   position: relative;
 
+
+
   min-height: 260px; /* gives space to show watermark nicely */
 
+
+
 }
+
+
+
+
 
 
 
 /*
 
+
+
   ✅ Print logo with CSS (no frame)
+
+
 
   - mix-blend-mode helps remove any “white square” feeling
 
+
+
   - opacity keeps it classy
+
+
 
 */
 
+
+
 .hero__art::before{
+
+
 
   content:"";
 
+
+
   position:absolute;
 
+
+
   inset: 0;
+
+
 
   background: url("./images/logo.png") center / contain no-repeat;
 
 
 
+
+
+
+
   /* “printed” look */
+
+
 
   opacity: .92;
 
+
+
   mix-blend-mode: multiply;
+
+
 
   filter: drop-shadow(0 18px 40px rgba(12,18,32,.14));
 
+
+
   pointer-events:none;
 
+
+
 }
+
+
+
+
 
 
 
 /* Keep the <img> only for loading/SEO, hide it visually */
 
+
+
 .heroLogo{
+
+
 
   width: 100%;
 
+
+
   max-width: 340px;
+
+
 
   height: auto;
 
+
+
   object-fit: contain;
+
+
 
   opacity: 0;            /* ✅ hidden */
 
+
+
   pointer-events:none;
 
+
+
 }
+
+
+
+
 
 
 
 /* AR: flip hero (logo goes left) */
 
+
+
 html[dir="rtl"] .hero__grid{
+
+
 
   flex-direction: row-reverse;
 
+
+
 }
+
+
 
 html[dir="rtl"] .hero__art{
 
+
+
   justify-content: flex-start;
 
+
+
 }
+
+
+
+
 
 
 
 .hero__glow{
 
+
+
   position:absolute;
+
+
 
   inset: -30% -20% auto -20%;
 
+
+
   height: 520px;
+
+
 
   background:
 
+
+
     radial-gradient(circle at 30% 35%, rgba(159,232,112,.20), transparent 55%),
+
+
 
     radial-gradient(circle at 75% 20%, rgba(47,191,113,.14), transparent 50%);
 
+
+
   filter: blur(26px);
+
+
 
   z-index: 1;
 
+
+
   opacity: .40;
+
+
 
 }
 
 
 
+
+
+
+
 /* =========================
+
+
 
    Responsive hero
 
+
+
 ========================= */
+
+
 
 @media (max-width: 960px){
 
+
+
   .hero{ padding-top: 64px; }
+
+
 
   .hero.hero--compact{ padding: 50px 0 30px; }
 
 
 
+
+
+
+
   .hero__grid{
+
+
 
     flex-direction: column;
 
+
+
     align-items:flex-start;
 
+
+
   }
+
+
 
   html[dir="rtl"] .hero__grid{
 
+
+
     flex-direction: column;
+
+
 
     align-items:flex-start;
 
+
+
   }
+
+
+
+
 
 
 
   .hero__art{
 
+
+
     width: 100%;
+
+
 
     justify-content:flex-start;
 
+
+
     margin-top: 4px;
+
+
 
     min-height: 100px;
 
+
+
   }
+
+
+
+
 
 
 
   .heroLogo{
 
+
+
     max-width: 260px;
 
+
+
   }
+
+
 
 }
 
 
 
+
+
+
+
 /* =========================
+
+
 
    Sections + Typography
 
+
+
 ========================= */
+
+
 
 .section{ padding: 56px 0; }
 
@@ -800,355 +1586,767 @@ html[dir="rtl"] .hero__art{
 
 
 
+
+
+
+
 .section__head{ margin-bottom: 14px; }
 
 .section__headRow{
 
+
+
   display:flex;
+
+
 
   align-items:flex-end;
 
+
+
   justify-content:space-between;
+
+
 
   gap: 14px;
 
+
+
   flex-wrap:wrap;
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    Catalog Filters
+
+
 
 ========================= */
 
+
+
 .catalogFilters{
+
+
 
   display:flex;
 
+
+
   gap:10px;
+
+
 
   flex-wrap:wrap;
 
+
+
 }
+
+
+
+
 
 
 
 .chip{
 
+
+
   appearance:none;
+
+
 
   border: 1px solid rgba(11,18,32,.14);
 
+
+
   background: rgba(255,255,255,.88);
+
+
 
   color: rgba(11,18,32,.82);
 
+
+
   border-radius: 999px;
+
+
 
   padding: 10px 12px;
 
+
+
   font-weight: 750;
+
+
 
   font-size: 13px;
 
+
+
   cursor:pointer;
 
+
+
   transition: background .15s ease, border-color .15s ease, transform .15s ease;
+
+
 
 }
 
 .chip:hover{
 
+
+
   background: rgba(255,255,255,.98);
 
+
+
   border-color: rgba(11,18,32,.18);
+
+
 
 }
 
 .chip.is-active{
 
+
+
   border-color: rgba(47,191,113,.35);
+
+
 
   background: linear-gradient(180deg, rgba(159,232,112,.26), rgba(47,191,113,.12));
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    Catalog Grid (cards)
+
+
 
 ========================= */
 
+
+
 .catalogGrid{
+
+
 
   display:grid;
 
+
+
   grid-template-columns: repeat(3, minmax(0, 1fr));
+
+
 
   gap: 12px;
 
+
+
   margin-top: 18px;
 
+
+
 }
+
+
+
+
 
 
 
 .catalogCard{
 
+
+
   background: rgba(255,255,255,.96);
+
+
 
   border: 1px solid rgba(11,18,32,.10);
 
+
+
   border-radius: 18px;
+
+
 
   padding: 16px;
 
+
+
   box-shadow: var(--shadow2);
+
+
 
   min-height: 182px;
 
+
+
   display:flex;
+
+
 
   flex-direction:column;
 
+
+
+  position: relative; /* ✅ for media + hover polish */
+
+  overflow: hidden;   /* ✅ keeps image corners clean */
+
 }
+
+
+
+
+
+
+
+/* ✅ Course image (calm, SV-level) */
+
+.catalogImg{
+
+  width: 100%;
+
+  height: 140px;
+
+  object-fit: cover;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(11,18,32,.10);
+
+  background: rgba(11,18,32,.03);
+
+  margin-bottom: 12px;
+
+  box-shadow: 0 10px 22px rgba(12,18,32,.08);
+
+  filter: saturate(.95) contrast(1.02);
+
+}
+
+
+
+/* ✅ Optional: make entire card feel clickable (if you add class in HTML) */
+
+.catalogCard.is-clickable{
+
+  cursor: pointer;
+
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+
+}
+
+.catalogCard.is-clickable:hover{
+
+  transform: translateY(-2px);
+
+  border-color: rgba(47,191,113,.22);
+
+  box-shadow: 0 16px 36px rgba(12,18,32,.12);
+
+}
+
+.catalogCard.is-clickable:active{
+
+  transform: translateY(-1px);
+
+}
+
+
+
+
 
 
 
 .catalogTop{
 
+
+
   display:flex;
+
+
 
   align-items:center;
 
+
+
   justify-content:space-between;
+
+
 
   gap:10px;
 
+
+
   margin-bottom: 10px;
 
+
+
 }
+
+
+
+
 
 
 
 .catalogBadge{
 
+
+
   display:inline-flex;
+
+
 
   font-size: 12px;
 
+
+
   letter-spacing:.2px;
+
+
 
   padding: 6px 10px;
 
+
+
   border-radius: 999px;
+
+
 
   border: 1px solid rgba(47,191,113,.25);
 
+
+
   background: linear-gradient(180deg, rgba(159,232,112,.22), rgba(47,191,113,.10));
+
+
 
   color: rgba(11,18,32,.85);
 
+
+
 }
+
+
+
+
 
 
 
 .catalogOrg{
 
+
+
   font-size: 12px;
+
+
 
   color: rgba(11,18,32,.70);
 
+
+
   border: 1px solid rgba(11,18,32,.10);
+
+
 
   background: rgba(255,255,255,.80);
 
+
+
   padding: 6px 10px;
+
+
 
   border-radius: 999px;
 
+
+
 }
+
+
+
+
 
 
 
 .metaRow{
 
+
+
   display:flex;
+
+
 
   gap:8px;
 
+
+
   flex-wrap:wrap;
+
+
 
   margin-top: auto;
 
+
+
 }
+
+
+
+
 
 
 
 .meta{
 
+
+
   font-size: 12px;
+
+
 
   color: rgba(11,18,32,.70);
 
+
+
   border: 1px solid rgba(11,18,32,.10);
+
+
 
   background: rgba(255,255,255,.84);
 
+
+
   padding: 6px 10px;
+
+
 
   border-radius: 999px;
 
+
+
 }
+
+
+
+
 
 
 
 .cardActions{
 
+
+
   display:flex;
+
+
 
   gap:10px;
 
+
+
   flex-wrap:wrap;
+
+
 
   margin-top: 12px;
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    How it works (FIX)
+
+
 
 ========================= */
 
-#how{
 
-  display: none; /* closed by default */
 
-}
+/* ✅ IMPORTANT FIX:
+
+   Previously you had: #how{ display:none; }
+
+   That hides the section permanently. Now it follows classes from app.js
+
+*/
+
+#how.section.is-collapsed{ display: none; }
+
+#how.section.is-open{ display: block; }
+
+
+
+
 
 
 
 .howGrid{
 
+
+
   display:grid;
+
+
 
   grid-template-columns: repeat(3, minmax(0, 1fr));
 
+
+
   gap: 12px;
+
+
 
   margin-top: 16px;
 
+
+
 }
+
+
+
+
 
 
 
 .howCard{
 
+
+
   background: rgba(255,255,255,.96);
+
+
 
   border: 1px solid rgba(11,18,32,.10);
 
+
+
   border-radius: 18px;
+
+
 
   padding: 16px;
 
+
+
   box-shadow: var(--shadow2);
 
+
+
 }
+
+
+
+
 
 
 
 .howNum{
 
+
+
   width: 44px;
+
+
 
   height: 44px;
 
+
+
   border-radius: 14px;
+
+
 
   display:flex;
 
+
+
   align-items:center;
+
+
 
   justify-content:center;
 
+
+
   font-weight: 900;
+
+
 
   color: #0b1220;
 
+
+
   background: linear-gradient(180deg, var(--primary1), var(--primary2));
+
+
 
   box-shadow: 0 10px 22px rgba(47,191,113,.18);
 
+
+
   margin-bottom: 10px;
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    Fellowship Accordion
+
+
 
 ========================= */
 
+
+
 .accordionStack{
+
+
 
   display:flex;
 
+
+
   flex-direction:column;
+
+
 
   gap: 10px;
 
+
+
   margin-top: 14px;
 
+
+
 }
+
+
+
+
 
 
 
 .acc{
 
+
+
   border-radius: 18px;
+
+
 
   border: 1px solid rgba(11,18,32,.10);
 
+
+
   background: rgba(255,255,255,.96);
+
+
 
   overflow:hidden;
 
+
+
   box-shadow: 0 14px 32px rgba(12,18,32,.08);
 
+
+
 }
+
+
+
+
 
 
 
 .acc__sum{
 
+
+
   list-style: none;
+
+
 
   cursor:pointer;
 
+
+
   display:flex;
+
+
 
   align-items:center;
 
+
+
   justify-content:space-between;
+
+
 
   gap: 12px;
 
+
+
   padding: 14px 16px;
+
+
 
 }
 
 .acc__sum::-webkit-details-marker{ display:none; }
+
+
+
+
 
 
 
@@ -1158,13 +2356,27 @@ html[dir="rtl"] .hero__art{
 
 
 
+
+
+
+
 .acc[open]{
+
+
 
   border-color: rgba(47,191,113,.22);
 
+
+
   box-shadow: 0 16px 36px rgba(47,191,113,.10);
 
+
+
 }
+
+
+
+
 
 
 
@@ -1172,77 +2384,155 @@ html[dir="rtl"] .hero__art{
 
 
 
+
+
+
+
 /* =========================
+
+
 
    Apply
 
+
+
 ========================= */
+
+
 
 .apply{ padding-top: 10px; }
 
 
 
+
+
+
+
 .apply__box{
+
+
 
   border: 1px solid rgba(47,191,113,.18);
 
+
+
   background: linear-gradient(180deg, rgba(159,232,112,.14), rgba(255,255,255,.86));
+
+
 
   border-radius: 22px;
 
+
+
   padding: 22px;
+
+
 
   box-shadow: 0 16px 40px rgba(12,18,32,.08);
 
+
+
 }
+
+
+
+
 
 
 
 .apply__cta{
 
+
+
   display:flex;
+
+
 
   align-items:center;
 
+
+
   gap:12px;
+
+
 
   flex-wrap:wrap;
 
+
+
   margin-top: 12px;
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    Footer
+
+
 
 ========================= */
 
+
+
 .footer{
+
+
 
   border-top: 1px solid rgba(11,18,32,.10);
 
+
+
   padding: 26px 0 30px;
+
+
 
   background: rgba(255,255,255,.72);
 
+
+
 }
+
+
+
+
 
 
 
 .footer__inner{
 
+
+
   display:grid;
+
+
 
   grid-template-columns: 1.2fr .7fr 1.1fr;
 
+
+
   gap: 14px;
+
+
 
   align-items:start;
 
+
+
 }
+
+
+
+
 
 
 
@@ -1252,15 +2542,29 @@ html[dir="rtl"] .hero__art{
 
 
 
+
+
+
+
 .footer__links{
+
+
 
   display:flex;
 
+
+
   flex-direction:column;
+
+
 
   gap: 8px;
 
+
+
   color: rgba(11,18,32,.66);
+
+
 
 }
 
@@ -1268,47 +2572,91 @@ html[dir="rtl"] .hero__art{
 
 .link{
 
+
+
   color: rgba(11,18,32,.90);
+
+
 
   text-decoration: underline;
 
+
+
   text-decoration-color: rgba(47,191,113,.45);
+
+
 
 }
 
 
 
+
+
+
+
 /* =========================
+
+
 
    MENU (Drawer)
 
+
+
 ========================= */
+
+
 
 .menu{
 
+
+
   position: fixed;
+
+
 
   top: 0;
 
+
+
   right: 0;
+
+
 
   height: 100dvh;
 
+
+
   width: min(360px, 88vw);
+
+
 
   background: rgba(255,255,255,.96);
 
+
+
   border-left: 1px solid rgba(11,18,32,.10);
+
+
 
   transform: translateX(110%);
 
+
+
   transition: transform .22s ease;
+
+
 
   z-index: 60;
 
+
+
   backdrop-filter: blur(14px);
 
+
+
   -webkit-backdrop-filter: blur(14px);
+
+
 
 }
 
@@ -1316,127 +2664,251 @@ html[dir="rtl"] .hero__art{
 
 
 
+
+
+
+
 .menu__inner{
+
+
 
   padding: 18px;
 
+
+
   display:flex;
+
+
 
   flex-direction:column;
 
+
+
   height:100%;
 
+
+
 }
+
+
+
+
 
 
 
 .menu__head{
 
+
+
   display:flex;
+
+
 
   align-items:center;
 
+
+
   justify-content:space-between;
+
+
 
   padding-bottom: 10px;
 
+
+
   border-bottom: 1px solid rgba(11,18,32,.10);
+
+
 
 }
 
 .menu__title{
 
+
+
   font-family: var(--serif);
+
+
 
   font-weight:800;
 
+
+
   letter-spacing:.2px;
 
+
+
 }
+
+
+
+
 
 
 
 .menu__close{
 
+
+
   width: 38px;
+
+
 
   height: 38px;
 
+
+
   border-radius: 12px;
+
+
 
   border: 1px solid rgba(11,18,32,.10);
 
+
+
   background: rgba(11,18,32,.04);
+
+
 
   color: var(--text);
 
+
+
   cursor:pointer;
 
+
+
 }
+
+
+
+
 
 
 
 .menu__nav{
 
+
+
   padding-top: 14px;
+
+
 
   display:flex;
 
+
+
   flex-direction:column;
+
+
 
   gap: 10px;
 
+
+
 }
+
+
+
+
 
 
 
 .menu__link{
 
+
+
   padding: 12px 12px;
+
+
 
   border-radius: 14px;
 
+
+
   border: 1px solid rgba(11,18,32,.10);
+
+
 
   background: rgba(255,255,255,.90);
 
+
+
   color: rgba(11,18,32,.85);
 
+
+
   transition: background .15s ease, border-color .15s ease;
+
+
 
 }
 
 .menu__link:hover{
 
+
+
   background: rgba(255,255,255,1);
+
+
 
   border-color: rgba(11,18,32,.16);
 
+
+
 }
+
+
+
+
 
 
 
 .menu__link--primary{
 
+
+
   border-color: rgba(47,191,113,.22);
+
+
 
   background: linear-gradient(180deg, rgba(159,232,112,.22), rgba(47,191,113,.10));
 
+
+
 }
+
+
+
+
 
 
 
 .menu__divider{
 
+
+
   height: 1px;
+
+
 
   background: rgba(11,18,32,.10);
 
+
+
   margin: 6px 0;
+
+
 
   opacity: .9;
 
+
+
 }
+
+
+
+
 
 
 
@@ -1444,89 +2916,173 @@ html[dir="rtl"] .hero__art{
 
 
 
+
+
+
+
 .menuBackdrop{
+
+
 
   position: fixed;
 
+
+
   inset: 0;
+
+
 
   background: rgba(0,0,0,.35);
 
+
+
   z-index: 55;
+
+
 
   opacity: 0;
 
+
+
   pointer-events: none;
 
+
+
   transition: opacity .18s ease;
+
+
 
 }
 
 .menuBackdrop.is-open{
 
+
+
   opacity: 1;
+
+
 
   pointer-events: auto;
 
+
+
 }
+
+
+
+
 
 
 
 /* =========================
 
+
+
    MENU Accordion (About inside Menu)
+
+
 
 ========================= */
 
+
+
 .menu__accordion{
+
+
 
   width: 100%;
 
+
+
   display:flex;
+
+
 
   align-items:center;
 
+
+
   justify-content:space-between;
+
+
 
   gap:12px;
 
+
+
   padding: 12px 12px;
+
+
 
   border-radius: 14px;
 
+
+
   border: 1px solid rgba(11,18,32,.10);
+
+
 
   background: rgba(255,255,255,.90);
 
+
+
   color: rgba(11,18,32,.88);
 
+
+
   cursor:pointer;
+
+
 
 }
 
 .menu__accordion:hover{
 
+
+
   background: rgba(255,255,255,1);
+
+
 
   border-color: rgba(11,18,32,.16);
 
+
+
 }
+
+
+
+
 
 
 
 .menu__accordionIcon{
 
+
+
   opacity:.85;
 
+
+
   transition: transform .18s ease;
+
+
 
 }
 
 .menu__accordion[aria-expanded="true"] .menu__accordionIcon{
 
+
+
   transform: rotate(180deg);
 
+
+
 }
+
+
+
+
 
 
 
@@ -1534,25 +3090,49 @@ html[dir="rtl"] .hero__art{
 
 
 
+
+
+
+
 .menu__aboutCard{
+
+
 
   background: rgba(11,18,32,.03);
 
+
+
   border: 1px solid rgba(11,18,32,.10);
+
+
 
   border-radius: 14px;
 
+
+
   padding: 12px;
+
+
 
 }
 
 
 
+
+
+
+
 /* =========================
+
+
 
    RTL
 
+
+
 ========================= */
+
+
 
 html[dir="rtl"] body{ font-family: var(--sans); }
 
@@ -1562,13 +3142,25 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+
+
+
+
 /* =========================
+
+
 
    Responsive
 
+
+
 ========================= */
 
+
+
 @media (max-width: 960px){
+
+
 
   .footer__inner{ grid-template-columns: 1fr; }
 
@@ -1582,7 +3174,13 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+
+
+
+
 @media (max-width: 520px){
+
+
 
   .hero{ padding: 66px 0 26px; }
 
@@ -1590,7 +3188,15 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+
+
+
+
   .hero__subtitle{ font-size: 15.5px; line-height: 1.62; }
+
+
+
+
 
 
 
@@ -1600,27 +3206,53 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+
+
+
+
   .hero__pills{
+
+
 
     display:grid;
 
+
+
     grid-template-columns: 1fr 1fr;
+
+
 
     gap: 10px;
 
+
+
     margin-top: 14px;
+
+
 
   }
 
   .pill{
 
+
+
     justify-content:center;
+
+
 
     padding: 10px 10px;
 
+
+
     font-size: 12.5px;
 
+
+
   }
+
+
+
+
 
 
 
@@ -1632,17 +3264,33 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+
+
+
+
   .catalogFilters{
+
+
 
     flex-wrap: nowrap;
 
+
+
     overflow-x: auto;
+
+
 
     -webkit-overflow-scrolling: touch;
 
+
+
     gap: 10px;
 
+
+
     padding-bottom: 6px;
+
+
 
   }
 
@@ -1650,15 +3298,31 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+
+
+
+
   .chip{
+
+
 
     white-space: nowrap;
 
+
+
     padding: 9px 12px;
+
+
 
     font-size: 12.5px;
 
+
+
   }
+
+
+
+
 
 
 
@@ -1668,7 +3332,21 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+  /* ✅ image height a bit shorter on small screens */
+
+  .catalogImg{ height: 128px; }
+
+
+
+
+
+
+
   .meta{ font-size: 11.5px; padding: 6px 9px; }
+
+
+
+
 
 
 
@@ -1678,7 +3356,15 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
+
+
+
+
   .howCard{ padding: 15px; }
+
+
+
+
 
 
 
@@ -1688,14 +3374,26 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
   .brandLogo{
 
+
+
     width: 56px;
+
+
 
     height: 56px;
 
+
+
     padding: 0;
+
+
 
     transform: translateY(-3px);
 
+
+
   }
+
+
 
 }
