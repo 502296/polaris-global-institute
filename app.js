@@ -1,5 +1,7 @@
 // app.js — Polaris (Menu + i18n + Smooth Scroll + How Toggle + Dynamic Catalog)
 // ✅ UPDATED: Catalog cards are IMAGE ONLY (no overlay text)
+// ✅ UPDATED: Cards are translated (aria-label) via i18n keys in courses.json
+// ✅ UPDATED: Filtering uses "track" (polaris / curated)
 
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -7,9 +9,8 @@
   // -------------------------
   // Helpers: base-safe URLs (GitHub Pages project OR custom domain)
   // -------------------------
-  const BASE_URL = new URL(document.baseURI); // always correct for current page
+  const BASE_URL = new URL(document.baseURI);
   function url(path) {
-    // path like "images/..." or "data/courses.json"
     return new URL(path, BASE_URL).toString();
   }
 
@@ -85,7 +86,6 @@
     howSection.classList.toggle("is-open", open);
     howSection.classList.toggle("is-collapsed", !open);
 
-    // IMPORTANT: do NOT rely on CSS "display:none" only
     howSection.style.display = open ? "" : "none";
 
     howSection.setAttribute("aria-hidden", String(!open));
@@ -188,6 +188,16 @@
       pl_2: "Applied projects",
       pl_3: "Peer review",
       pl_4: "Progress tracking",
+
+      // ✅ Course titles (for aria-label + future reuse)
+      c_ai_title: "AI Foundations (Core Program)",
+      c_sec_title: "Cybersecurity Essentials (Curated Track)",
+      c_se_title: "Software Engineering — Builder Track",
+      c_it_title: "IT Support (Professional Track)",
+      c_eng_title: "English for Professionals",
+      c_py_title: "Python Programming",
+      c_web_title: "Web Development",
+      c_photo_title: "Product & Personal Branding Photography"
     },
 
     ar: {
@@ -248,8 +258,26 @@
       pl_2: "مشاريع تطبيقية",
       pl_3: "مراجعة جماعية",
       pl_4: "تتبع التقدم",
+
+      // ✅ Course titles (for aria-label + future reuse)
+      c_ai_title: "أساسيات الذكاء الاصطناعي (البرنامج الأساسي)",
+      c_sec_title: "أساسيات الأمن السيبراني (مسار مختار)",
+      c_se_title: "هندسة البرمجيات — مسار البناء",
+      c_it_title: "دعم تقنية المعلومات (مسار احترافي)",
+      c_eng_title: "الإنجليزية للمهنيين",
+      c_py_title: "برمجة بايثون",
+      c_web_title: "تطوير الويب",
+      c_photo_title: "تصوير المنتجات وبناء الهوية الشخصية"
     }
   };
+
+  function t(lang, key, fallback = "") {
+    return dict?.[lang]?.[key] || fallback;
+  }
+
+  function getSavedLang() {
+    try { return localStorage.getItem("pgi_lang"); } catch { return null; }
+  }
 
   function applyLang(lang) {
     const isArabic = lang === "ar";
@@ -265,14 +293,13 @@
     });
 
     try { localStorage.setItem("pgi_lang", lang); } catch {}
-  }
 
-  function getSavedLang() {
-    try { return localStorage.getItem("pgi_lang"); } catch { return null; }
+    // ✅ Re-render catalog so aria-label uses the new language
+    loadCourses();
   }
 
   const saved = getSavedLang();
-  const initial = saved || "en";
+  const initial = saved || (html.getAttribute("lang") === "ar" ? "ar" : "en") || "en";
   applyLang(initial);
 
   if (langToggle) {
@@ -288,16 +315,19 @@
   const grid = $("catalogGrid");
   const filterBar = document.querySelector(".catalogFilters");
 
-  // ✅ IMAGE ONLY CARD (no text injected above images)
+  // ✅ IMAGE ONLY CARD + translated aria-label via i18n keys
   function cardHTML(c) {
     const href = c.href || "#";
 
-    // support both "image" and "img"
     const imgPath = c.image || c.img || "";
     const imgSrc = imgPath ? url(imgPath) : "";
 
-    const title = c.title || "Course";
-    const cat = (c.category || c.type || "all").toLowerCase();
+    const lang = (html.getAttribute("lang") === "ar") ? "ar" : "en";
+    const titleKey = c.i18n?.title;
+    const title = titleKey ? t(lang, titleKey, "Course") : (c.title || "Course");
+
+    // ✅ Filter should use track (polaris/curated)
+    const cat = (c.track || c.category || c.type || "all").toLowerCase();
 
     return `
       <article class="catalogCard catalogCard--img" data-cat="${cat}">
@@ -358,5 +388,6 @@
     });
   }
 
+  // first render
   loadCourses();
 })();
