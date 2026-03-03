@@ -1620,10 +1620,36 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
   }
 
+  
+/* Force equal card heights + perfect crop */
+.catalogGrid{ align-items: stretch; }
+.cardMedia{ height: 260px; min-height: 0 !important; }
+@media (max-width: 960px){ .cardMedia{ height: 240px; } }
+@media (max-width: 520px){ .cardMedia{ height: 220px; } }
 
 
   /* no jump on mobile hover */
 
   .catalogCard:hover{ transform: none; }
 
+}
+
+/* Luxury shine on hover */
+.catalogCard::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: linear-gradient(115deg,
+    transparent 35%,
+    rgba(255,255,255,.18) 45%,
+    transparent 55%);
+  transform: translateX(-30%) rotate(6deg);
+  opacity: 0;
+  transition: opacity .25s ease, transform .55s ease;
+  pointer-events:none;
+  z-index: 3;
+}
+.catalogCard:hover::before{
+  opacity: 1;
+  transform: translateX(30%) rotate(6deg);
 }
