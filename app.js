@@ -300,33 +300,34 @@
     const desc = c.desc || "";
     const meta = Array.isArray(c.meta)
       ? c.meta
-      : [
-          c.duration,
-          c.hours,
-          c.mode
-        ].filter(Boolean);
+      : [c.duration, c.hours, c.mode].filter(Boolean);
 
+    // ✅ Premium Card Markup (image fills, overlay content, hover-ready)
     return `
-      <article class="catalogCard catalogCard--click" data-cat="${(c.category || c.type || "all").toLowerCase()}">
+      <article class="catalogCard catalogCard--premium" data-cat="${(c.category || c.type || "all").toLowerCase()}">
         <a class="cardLink" href="${href}" aria-label="${title}"></a>
 
-        ${imgSrc ? `<img class="catalogImg" src="${imgSrc}" alt="${title} cover" loading="lazy" onerror="this.style.display='none'">` : ""}
+        <div class="cardMedia">
+          ${imgSrc ? `<img class="catalogImg" src="${imgSrc}" alt="${title} cover" loading="lazy" onerror="this.style.display='none'">` : ""}
 
-        <div class="catalogTop">
-          <span class="catalogBadge">${tag}</span>
-          <span class="catalogOrg">${org}</span>
-        </div>
+          <div class="cardOverlay">
+            <div class="catalogTop">
+              ${tag ? `<span class="catalogBadge">${tag}</span>` : `<span></span>`}
+              ${org ? `<span class="catalogOrg">${org}</span>` : ``}
+            </div>
 
-        <h3 class="h3">${title}</h3>
-        <p class="p muted">${desc}</p>
+            <h3 class="h3 cardTitle">${title}</h3>
+            <p class="p muted cardDesc">${desc}</p>
 
-        <div class="metaRow">
-          ${meta.map(m => `<span class="meta">${m}</span>`).join("")}
-        </div>
+            <div class="metaRow cardMeta">
+              ${meta.map(m => `<span class="meta">${m}</span>`).join("")}
+            </div>
 
-        <div class="cardActions">
-          <a class="btn btn--ghost" href="${href}">${(html.getAttribute("lang") === "ar") ? "عرض" : "View"}</a>
-          <a class="btn btn--primary" href="#apply">${(html.getAttribute("lang") === "ar") ? "الانضمام" : "Enroll"}</a>
+            <div class="cardActions cardActions--overlay">
+              <a class="btn btn--ghost" href="${href}">${(html.getAttribute("lang") === "ar") ? "عرض" : "View"}</a>
+              <a class="btn btn--primary" href="#apply">${(html.getAttribute("lang") === "ar") ? "الانضمام" : "Enroll"}</a>
+            </div>
+          </div>
         </div>
       </article>
     `;
