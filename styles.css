@@ -792,17 +792,15 @@ html[dir="rtl"] .hero__art{ justify-content: flex-start; }
 
 
 
-/* =======================================================================
+/* =========================================================
 
-   ✅ PREMIUM CATALOG CARD
+   ✅ IMAGE ONLY PREMIUM CARD (NO TEXT / NO OVERLAY)
 
    - Full image cover
 
-   - Text overlay on top
+   - Hover: lift + zoom + shadow + subtle vignette
 
-   - Hover: image zoom + darker overlay + actions appear
-
-======================================================================= */
+========================================================= */
 
 
 
@@ -810,21 +808,25 @@ html[dir="rtl"] .hero__art{ justify-content: flex-start; }
 
   position: relative;
 
-  border-radius: 18px;
+  padding: 0;
+
+  border-radius: 20px;
 
   overflow: hidden;
 
-  border: 1px solid rgba(11,18,32,.10);
+  background: #fff;
 
-  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(11,18,32,.08);
 
   box-shadow: var(--shadow2);
+
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+  cursor: pointer;
 
 }
 
 
-
-/* We use this wrapper from app.js premium markup */
 
 .cardMedia{
 
@@ -832,13 +834,13 @@ html[dir="rtl"] .hero__art{ justify-content: flex-start; }
 
   width: 100%;
 
-  min-height: 260px; /* desktop card height */
+  min-height: 270px;
+
+  background: rgba(11,18,32,.03);
 
 }
 
 
-
-/* Full-bleed image */
 
 .catalogImg{
 
@@ -850,275 +852,21 @@ html[dir="rtl"] .hero__art{ justify-content: flex-start; }
 
   height:100%;
 
-  object-fit: cover;             /* ✅ fill the whole card */
+  object-fit: cover;
 
   transform: scale(1);
 
-  transition: transform .35s ease, filter .35s ease;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1),
+
+              filter .35s ease;
 
   filter: saturate(.98) contrast(1.02);
 
-  border: 0;
-
-  margin: 0;
-
-  border-radius: 0;
-
-  box-shadow: none;
-
-  background: rgba(11,18,32,.03);
-
 }
 
 
 
-/* Overlay that holds everything */
-
-.cardOverlay{
-
-  position:absolute;
-
-  inset:0;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:flex-end;
-
-  padding: 14px 14px 14px;
-
-  color: #fff;
-
-  z-index: 2;
-
-}
-
-
-
-/* Elegant overlay gradients */
-
-.cardOverlay::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-
-    linear-gradient(180deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.35) 52%, rgba(0,0,0,.62) 100%),
-
-    radial-gradient(800px 380px at 30% 20%, rgba(159,232,112,.16), transparent 55%);
-
-  opacity: .92;
-
-  transition: opacity .25s ease;
-
-  z-index: 0;
-
-}
-
-
-
-/* Keep overlay content above gradient */
-
-.cardOverlay > *{ position: relative; z-index: 1; }
-
-
-
-/* top pills inside overlay */
-
-.catalogTop{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:10px;
-
-  margin-bottom: 10px;
-
-}
-
-
-
-.catalogBadge{
-
-  display:inline-flex;
-
-  font-size: 12px;
-
-  letter-spacing:.2px;
-
-  padding: 6px 10px;
-
-  border-radius: 999px;
-
-  border: 1px solid rgba(255,255,255,.26);
-
-  background: rgba(255,255,255,.14);
-
-  color: rgba(255,255,255,.95);
-
-  backdrop-filter: blur(8px);
-
-  -webkit-backdrop-filter: blur(8px);
-
-}
-
-
-
-.catalogOrg{
-
-  font-size: 12px;
-
-  color: rgba(255,255,255,.92);
-
-  border: 1px solid rgba(255,255,255,.22);
-
-  background: rgba(255,255,255,.10);
-
-  padding: 6px 10px;
-
-  border-radius: 999px;
-
-  backdrop-filter: blur(8px);
-
-  -webkit-backdrop-filter: blur(8px);
-
-}
-
-
-
-/* title/desc */
-
-.cardTitle{
-
-  margin: 0 0 6px;
-
-  font-size: 18px;
-
-  font-weight: 850;
-
-  letter-spacing: .2px;
-
-  text-shadow: 0 10px 22px rgba(0,0,0,.35);
-
-}
-
-.cardDesc{
-
-  margin: 0 0 10px;
-
-  color: rgba(255,255,255,.88);
-
-  line-height: 1.55;
-
-  text-shadow: 0 10px 22px rgba(0,0,0,.25);
-
-}
-
-
-
-/* meta chips */
-
-.cardMeta{
-
-  display:flex;
-
-  gap:8px;
-
-  flex-wrap:wrap;
-
-  margin-top: 0;
-
-}
-
-
-
-.meta{
-
-  font-size: 12px;
-
-  color: rgba(255,255,255,.92);
-
-  border: 1px solid rgba(255,255,255,.20);
-
-  background: rgba(0,0,0,.18);
-
-  padding: 6px 10px;
-
-  border-radius: 999px;
-
-  backdrop-filter: blur(8px);
-
-  -webkit-backdrop-filter: blur(8px);
-
-}
-
-
-
-/* Actions: hidden until hover */
-
-.cardActions{
-
-  display:flex;
-
-  gap:10px;
-
-  flex-wrap:wrap;
-
-  margin-top: 12px;
-
-}
-
-.cardActions--overlay{
-
-  opacity: 0;
-
-  transform: translateY(6px);
-
-  transition: opacity .22s ease, transform .22s ease;
-
-}
-
-
-
-/* Make overlay buttons look premium on dark */
-
-.cardActions--overlay .btn--ghost{
-
-  background: rgba(255,255,255,.14);
-
-  border-color: rgba(255,255,255,.22);
-
-  color:#fff;
-
-}
-
-.cardActions--overlay .btn--ghost:hover{
-
-  background: rgba(255,255,255,.20);
-
-  border-color: rgba(255,255,255,.30);
-
-}
-
-
-
-.cardActions--overlay .btn--primary{
-
-  color: #0b1220;
-
-}
-
-
-
-/* Entire-card link sits behind buttons */
+/* Entire-card link */
 
 .cardLink{
 
@@ -1126,73 +874,87 @@ html[dir="rtl"] .hero__art{ justify-content: flex-start; }
 
   inset:0;
 
-  z-index: 1; /* behind overlay content */
+  z-index: 5;
 
 }
-
-
-
-/* ✅ Ensure buttons are clickable above the big link */
-
-.cardOverlay a.btn{ position: relative; z-index: 3; }
 
 
 
 /* Premium hover */
 
-.catalogCard--premium{
+.catalogCard:hover{
 
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  transform: translateY(-6px);
 
-  cursor: pointer;
+  border-color: rgba(47,191,113,.25);
 
-}
-
-.catalogCard--premium:hover{
-
-  transform: translateY(-2px);
-
-  border-color: rgba(47,191,113,.22);
-
-  box-shadow: 0 18px 44px rgba(12,18,32,.14);
-
-}
-
-.catalogCard--premium:hover .catalogImg{
-
-  transform: scale(1.06);
-
-  filter: saturate(1.02) contrast(1.05);
-
-}
-
-.catalogCard--premium:hover .cardOverlay::before{
-
-  opacity: 1;
-
-}
-
-.catalogCard--premium:hover .cardActions--overlay{
-
-  opacity: 1;
-
-  transform: translateY(0);
-
-}
-
-.catalogCard--premium:active{
-
-  transform: translateY(-1px);
+  box-shadow: 0 25px 60px rgba(12,18,32,.18);
 
 }
 
 
 
-/* If image missing, keep card readable */
+.catalogCard:hover .catalogImg{
 
-.catalogCard--premium .catalogImg[style*="display: none"] + .cardOverlay::before{
+  transform: scale(1.08);
 
-  background: linear-gradient(180deg, rgba(11,18,32,.12), rgba(11,18,32,.60));
+  filter: saturate(1.05) contrast(1.05);
+
+}
+
+
+
+/* subtle cinematic edge darkening */
+
+.catalogCard::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background: radial-gradient(circle at center,
+
+             rgba(0,0,0,0) 55%,
+
+             rgba(0,0,0,.10) 100%);
+
+  opacity:0;
+
+  transition: opacity .3s ease;
+
+  pointer-events:none;
+
+  z-index: 2;
+
+}
+
+.catalogCard:hover::after{ opacity:1; }
+
+
+
+.catalogCard:active{
+
+  transform: translateY(-3px);
+
+}
+
+
+
+/* If image missing, keep it clean */
+
+.catalogImg[style*="display: none"]{
+
+  position: static;
+
+  display:block;
+
+  width:100%;
+
+  height:270px;
+
+  object-fit: cover;
 
 }
 
@@ -1756,8 +1518,6 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
-  /* premium card height on mobile */
-
   .cardMedia{ min-height: 230px; }
 
 }
@@ -1844,12 +1604,6 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 
 
-  .cardActions{ gap: 10px; }
-
-  .cardActions .btn{ flex: 1 1 auto; }
-
-
-
   /* ✅ Topbar mobile */
 
   .topbar__inner{ padding: 10px 0; }
@@ -1866,126 +1620,10 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
   }
 
-}
 
-/* ===============================
-   PREMIUM CARD FIX (FINAL POLISH)
-   Paste at END of CSS
-================================= */
 
-/* Make the overlay calmer + prevent “double text” feeling */
-.cardOverlay{
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 14px;
-}
+  /* no jump on mobile hover */
 
-/* Stronger overlay to calm any text baked inside the image */
-.cardOverlay::before{
-  background:
-    linear-gradient(180deg,
-      rgba(0,0,0,.18) 0%,
-      rgba(0,0,0,.40) 45%,
-      rgba(0,0,0,.74) 100%
-    ),
-    radial-gradient(900px 420px at 30% 18%, rgba(159,232,112,.16), transparent 58%);
-  opacity: .96;
-}
+  .catalogCard:hover{ transform: none; }
 
-/* Glassy boxes for readability */
-.catalogTop,
-.cardTitle,
-.cardDesc,
-.cardMeta,
-.cardActions{
-  width: fit-content;
-  max-width: 100%;
-  border-radius: 14px;
-  padding: 10px 10px;
-  background: rgba(0,0,0,.26);
-  border: 1px solid rgba(255,255,255,.14);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* top row spacing */
-.catalogTop{
-  padding: 8px 10px;
-  margin-bottom: 2px;
-}
-
-/* Title clean */
-.cardTitle{
-  margin: 0;
-  padding: 10px 10px;
-  font-size: 17px;
-  line-height: 1.25;
-  font-weight: 900;
-  letter-spacing: .2px;
-
-  /* clamp to 2 lines */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Description hidden by default (shows on hover only for premium feel) */
-.cardDesc{
-  margin: 0;
-  padding: 10px 10px;
-  color: rgba(255,255,255,.90);
-  line-height: 1.5;
-
-  display: none; /* ✅ keep cards clean */
-}
-
-/* Meta row looks premium */
-.cardMeta{
-  padding: 8px 10px;
-}
-
-/* Meta chips inside overlay */
-.cardMeta .meta{
-  background: rgba(255,255,255,.10);
-  border-color: rgba(255,255,255,.18);
-  color: rgba(255,255,255,.92);
-}
-
-/* Actions: hide until hover */
-.cardActions{
-  padding: 10px;
-}
-.cardActions--overlay{
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .22s ease, transform .22s ease;
-}
-
-/* Hover behavior */
-.catalogCard--premium:hover .cardDesc{
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.catalogCard--premium:hover .cardActions--overlay{
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Make image fill perfectly */
-.cardMedia{ min-height: 270px; }
-@media (max-width: 960px){
-  .cardMedia{ min-height: 240px; }
-}
-@media (max-width: 520px){
-  .cardMedia{ min-height: 220px; }
-  .cardTitle{ font-size: 16px; }
-}
-
-/* Extra: slightly dim the image on hover for readability */
-.catalogCard--premium:hover .catalogImg{
-  filter: saturate(1.02) contrast(1.05) brightness(.92);
 }
