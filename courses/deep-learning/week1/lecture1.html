@@ -1,181 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecture 1 - Introduction to Deep Learning</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Lecture 1 - Introduction to Deep Learning</title>
-
-<style>
-
-body{
-font-family: Arial, Helvetica, sans-serif;
-background:#f4f6f8;
-margin:0;
-padding:0;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
-
-h1{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.subtitle{
-color:#666;
-margin-bottom:30px;
-}
-
-.video-box{
-position:relative;
-padding-bottom:56.25%;
-height:0;
-overflow:hidden;
-border-radius:10px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-margin-bottom:40px;
-}
-
-.video-box iframe{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-}
-
-.section{
-margin-top:40px;
-}
-
-.section h2{
-margin-bottom:10px;
-}
-
-ul{
-line-height:1.8;
-}
-
-.quiz li{
-margin-bottom:10px;
-}
-
-</style>
-
+  <!-- ✅ Use your main site stylesheet -->
+  <link rel="stylesheet" href="../../styles.css" />
 </head>
-
 
 <body>
 
-<div class="container">
+  <!-- ✅ Lesson Wrapper -->
+  <main class="lessonWrap">
 
-<h1>Lecture 1 — Introduction to Deep Learning</h1>
+    <!-- ✅ Header (Title + Language Button) -->
+    <div class="lessonHead">
 
-<p class="subtitle">
-Deep Learning Course — Polaris Global Institute
-</p>
+      <div>
+        <h1 class="lessonTitle" data-i18n="dl.w1.l1.title">
+          Lecture 1 — Introduction to Deep Learning
+        </h1>
 
+        <p class="lessonSub" data-i18n="dl.w1.l1.subtitle">
+          Deep Learning Course — Polaris Global Institute
+        </p>
+      </div>
 
-<div class="video-box">
+      <div class="lessonActions">
+        <!-- ✅ Language button (will be wired in lang.js next) -->
+        <button id="langBtn" class="btn btn--ghost" type="button">
+          🌐 <span id="langLabel">AR</span>
+        </button>
 
-<iframe
-src="https://player.vimeo.com/video/1170172559"
-frameborder="0"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen>
-</iframe>
+        <!-- Optional back to week page -->
+        <a class="btn btn--ghost" href="./week1.html" data-i18n="common.backToWeek">
+          ← Back to Week 1
+        </a>
+      </div>
 
-</div>
+    </div>
 
+    <!-- ✅ Video Card -->
+    <div class="videoCard">
+      <div class="videoBox">
+        <iframe
+          src="https://player.vimeo.com/video/1170172559"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="Lecture 1 Video">
+        </iframe>
+      </div>
 
-<div class="section">
+      <div class="lessonMeta">
+        <span class="metaPill" data-i18n="common.duration">Duration:</span>
+        <span class="metaPill">1:00:51</span>
 
-<h2>Introduction</h2>
+        <span class="metaPill" data-i18n="common.level">Level:</span>
+        <span class="metaPill" data-i18n="common.beginner">Beginner</span>
 
-<p>
-In this lecture we explore the foundations of Deep Learning.
-You will understand how neural networks evolved and why deep learning
-became powerful in modern artificial intelligence systems.
-</p>
+        <span class="metaPill" data-i18n="common.topic">Topic:</span>
+        <span class="metaPill" data-i18n="dl.topic.foundations">Deep Learning Foundations</span>
+      </div>
+    </div>
 
-</div>
+    <!-- ✅ Introduction -->
+    <section class="lessonSection">
+      <h2 data-i18n="common.introduction">Introduction</h2>
+      <p data-i18n="dl.w1.l1.intro.p1">
+        In this lecture we explore the foundations of Deep Learning.
+        You will understand how neural networks evolved and why deep learning
+        became powerful in modern artificial intelligence systems.
+      </p>
+    </section>
 
+    <!-- ✅ Arabic Summary (this will auto switch via lang.js later) -->
+    <section class="lessonSection">
+      <h2 data-i18n="common.arabicSummary">Arabic Summary</h2>
+      <p data-i18n="dl.w1.l1.ar.summary">
+        في هذا الدرس نتعرف على أساسيات التعلم العميق. سوف نفهم كيف تعمل الشبكات العصبية ولماذا أصبح
+        التعلم العميق من أهم تقنيات الذكاء الاصطناعي في العصر الحديث.
+      </p>
+    </section>
 
-<div class="section">
+    <!-- ✅ Key Concepts -->
+    <section class="lessonSection">
+      <h2 data-i18n="common.keyConcepts">Key Concepts</h2>
+      <ul>
+        <li data-i18n="dl.w1.l1.concepts.nn">Artificial Neural Networks</li>
+        <li data-i18n="dl.w1.l1.concepts.layers">Deep Learning Layers</li>
+        <li data-i18n="dl.w1.l1.concepts.data">Training Data</li>
+        <li data-i18n="dl.w1.l1.concepts.params">Model Parameters</li>
+        <li data-i18n="dl.w1.l1.concepts.fwd">Forward Propagation</li>
+        <li data-i18n="dl.w1.l1.concepts.bwd">Backpropagation</li>
+      </ul>
+    </section>
 
-<h2>Arabic Summary</h2>
+    <!-- ✅ Detailed Notes (new) -->
+    <section class="lessonSection">
+      <h2 data-i18n="common.detailedNotes">Detailed Notes</h2>
 
-<p>
-في هذا الدرس نتعرف على أساسيات التعلم العميق.
-سوف نفهم كيف تعمل الشبكات العصبية ولماذا أصبح
-التعلم العميق من أهم تقنيات الذكاء الاصطناعي في العصر الحديث.
-</p>
+      <p data-i18n="dl.w1.l1.notes.p1">
+        Deep learning is a modern approach to machine learning that uses multiple layers of computation
+        (neural networks) to learn patterns directly from data. Instead of manually crafting features,
+        deep learning systems can learn representations automatically.
+      </p>
 
-</div>
+      <p data-i18n="dl.w1.l1.notes.p2">
+        A neural network is made of layers. Each layer applies a mathematical transformation to the input,
+        producing an output that becomes the input to the next layer. When we stack many layers, the model
+        can represent complex patterns (images, speech, language).
+      </p>
 
+      <p data-i18n="dl.w1.l1.notes.p3">
+        Training is the process where the model adjusts its internal parameters (weights) to reduce error.
+        This usually happens through backpropagation + gradient descent. The main reason deep learning
+        became powerful recently is the combination of big data, faster GPUs, and better algorithms.
+      </p>
+    </section>
 
-<div class="section">
+    <!-- ✅ Toggles Stack: Glossary + Quiz under buttons -->
+    <div class="toggleStack">
 
-<h2>Key Concepts</h2>
+      <!-- ✅ Glossary Toggle -->
+      <details class="toggleBox">
+        <summary>
+          <span class="toggleLabel">
+            📘 <span data-i18n="common.glossary">Glossary</span>
+            <span class="toggleHint" data-i18n="common.tapToOpen">Tap to open</span>
+          </span>
+          <span class="toggleChevron">⌄</span>
+        </summary>
 
-<ul>
+        <div class="toggleBody">
 
-<li>Artificial Neural Networks</li>
+          <div class="glossItem">
+            <div class="glossTerm" data-i18n="dl.glossary.nn.term">Neural Network</div>
+            <div class="glossDef" data-i18n="dl.glossary.nn.def">
+              A computing model inspired by the human brain.
+            </div>
+          </div>
 
-<li>Deep Learning Layers</li>
+          <div class="glossItem">
+            <div class="glossTerm" data-i18n="dl.glossary.training.term">Training</div>
+            <div class="glossDef" data-i18n="dl.glossary.training.def">
+              The process of teaching a model using data.
+            </div>
+          </div>
 
-<li>Training Data</li>
+          <div class="glossItem">
+            <div class="glossTerm" data-i18n="dl.glossary.params.term">Parameters</div>
+            <div class="glossDef" data-i18n="dl.glossary.params.def">
+              Values inside the model that are adjusted during training.
+            </div>
+          </div>
 
-<li>Model Parameters</li>
+        </div>
+      </details>
 
-<li>Forward Propagation</li>
+      <!-- ✅ Quiz Toggle -->
+      <details class="toggleBox">
+        <summary>
+          <span class="toggleLabel">
+            🧠 <span data-i18n="common.quickQuiz">Quick Quiz</span>
+            <span class="toggleHint" data-i18n="common.tapToOpen">Tap to open</span>
+          </span>
+          <span class="toggleChevron">⌄</span>
+        </summary>
 
-<li>Backpropagation</li>
+        <div class="toggleBody">
+          <ol class="quizList">
+            <li data-i18n="dl.w1.l1.quiz.q1">What is the main idea behind deep learning?</li>
+            <li data-i18n="dl.w1.l1.quiz.q2">What is a neural network inspired by?</li>
+            <li data-i18n="dl.w1.l1.quiz.q3">What is the role of training data?</li>
+            <li data-i18n="dl.w1.l1.quiz.q4">Why did deep learning become powerful in recent years?</li>
+          </ol>
+        </div>
+      </details>
 
-</ul>
+    </div>
 
-</div>
+    <!-- ✅ Lesson Navigation -->
+    <div class="lessonNav">
+      <a class="btn btn--ghost" href="./week1.html" data-i18n="common.backToWeek">
+        ← Back to Week 1
+      </a>
 
+      <a class="btn btn--primary" href="./lecture2.html" data-i18n="common.nextLecture">
+        Next Lecture →
+      </a>
+    </div>
 
-<div class="section">
+  </main>
 
-<h2>Glossary</h2>
-
-<p><b>Neural Network</b> — A computing model inspired by the human brain.</p>
-
-<p><b>Training</b> — The process of teaching a model using data.</p>
-
-<p><b>Parameters</b> — Values inside the model that are adjusted during training.</p>
-
-</div>
-
-
-<div class="section">
-
-<h2>Quick Quiz</h2>
-
-<ol class="quiz">
-
-<li>What is the main idea behind deep learning?</li>
-
-<li>What is a neural network inspired by?</li>
-
-<li>What is the role of training data?</li>
-
-<li>Why did deep learning become powerful in recent years?</li>
-
-</ol>
-
-</div>
-
-</div>
-
+  <!-- ✅ Next file will handle language switch -->
+  <script src="../../lang.js"></script>
 </body>
 </html>
