@@ -796,13 +796,7 @@ html[dir="rtl"] .hero__art{ justify-content: flex-start; }
 
    ✅ IMAGE ONLY PREMIUM CARD (NO TEXT / NO OVERLAY)
 
-   - Full image cover
-
-   - Hover: lift + zoom + shadow + subtle vignette
-
 ========================================================= */
-
-
 
 .catalogCard{
 
@@ -1620,12 +1614,18 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
   }
 
-  
-/* Force equal card heights + perfect crop */
-.catalogGrid{ align-items: stretch; }
-.cardMedia{ height: 260px; min-height: 0 !important; }
-@media (max-width: 960px){ .cardMedia{ height: 240px; } }
-@media (max-width: 520px){ .cardMedia{ height: 220px; } }
+
+
+  /* Force equal card heights + perfect crop */
+
+  .catalogGrid{ align-items: stretch; }
+
+  .cardMedia{ height: 260px; min-height: 0 !important; }
+
+  @media (max-width: 960px){ .cardMedia{ height: 240px; } }
+
+  @media (max-width: 520px){ .cardMedia{ height: 220px; } }
+
 
 
   /* no jump on mobile hover */
@@ -1634,22 +1634,522 @@ html[dir="rtl"] .brand__typing { direction: ltr; unicode-bidi: plaintext; }
 
 }
 
+
+
 /* Luxury shine on hover */
+
 .catalogCard::before{
+
   content:"";
+
   position:absolute;
+
   inset:-40%;
+
   background: linear-gradient(115deg,
+
     transparent 35%,
+
     rgba(255,255,255,.18) 45%,
+
     transparent 55%);
+
   transform: translateX(-30%) rotate(6deg);
+
   opacity: 0;
+
   transition: opacity .25s ease, transform .55s ease;
+
   pointer-events:none;
+
   z-index: 3;
+
 }
+
 .catalogCard:hover::before{
+
   opacity: 1;
+
   transform: translateX(30%) rotate(6deg);
+
+}
+
+
+
+/* =========================================================
+
+   ✅ ADDITIONS: LESSON PAGES (Lecture / Week)
+
+   - Video card
+
+   - Lesson sections
+
+   - Toggle buttons (Quiz / Glossary) using <details>
+
+   - Language switch button styling inside lessons
+
+========================================================= */
+
+
+
+/* Lesson page wrapper */
+
+.lessonWrap{
+
+  width: min(920px, 92vw);
+
+  margin: 0 auto;
+
+  padding: 34px 0 60px;
+
+}
+
+
+
+/* Lesson header row (title + actions like language/back/next) */
+
+.lessonHead{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:space-between;
+
+  gap: 14px;
+
+  flex-wrap:wrap;
+
+  margin-bottom: 14px;
+
+}
+
+
+
+.lessonTitle{
+
+  font-family: var(--serif);
+
+  font-weight: 900;
+
+  letter-spacing:.2px;
+
+  font-size: clamp(26px, 3.2vw, 34px);
+
+  margin: 0;
+
+}
+
+
+
+.lessonSub{
+
+  color: rgba(11,18,32,.62);
+
+  margin: 6px 0 0;
+
+  line-height: 1.6;
+
+}
+
+
+
+.lessonActions{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+}
+
+
+
+/* Video card */
+
+.videoCard{
+
+  border-radius: 22px;
+
+  border: 1px solid rgba(11,18,32,.10);
+
+  background: rgba(255,255,255,.96);
+
+  box-shadow: var(--shadow2);
+
+  overflow:hidden;
+
+  margin: 16px 0 18px;
+
+}
+
+
+
+/* Responsive video box */
+
+.videoBox{
+
+  position: relative;
+
+  padding-bottom: 56.25%;
+
+  height: 0;
+
+  overflow: hidden;
+
+}
+
+.videoBox iframe{
+
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+
+  height:100%;
+
+  border:0;
+
+}
+
+
+
+/* Small meta under video */
+
+.lessonMeta{
+
+  display:flex;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  padding: 12px 14px 14px;
+
+  border-top: 1px solid rgba(11,18,32,.08);
+
+  color: rgba(11,18,32,.62);
+
+  font-size: 13px;
+
+}
+
+.metaPill{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding: 8px 10px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(11,18,32,.10);
+
+  background: rgba(11,18,32,.03);
+
+}
+
+
+
+/* Content sections (cards) */
+
+.lessonSection{
+
+  margin-top: 14px;
+
+  padding: 16px 16px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(11,18,32,.10);
+
+  background: rgba(255,255,255,.96);
+
+  box-shadow: 0 14px 34px rgba(12,18,32,.08);
+
+}
+
+.lessonSection h2{
+
+  margin: 0 0 8px;
+
+  font-size: 18px;
+
+  letter-spacing:.1px;
+
+}
+
+.lessonSection p{
+
+  margin: 0 0 10px;
+
+  line-height: 1.75;
+
+  color: rgba(11,18,32,.78);
+
+}
+
+.lessonSection ul,
+
+.lessonSection ol{
+
+  margin: 10px 0 0;
+
+  padding-left: 18px;
+
+  line-height: 1.85;
+
+  color: rgba(11,18,32,.78);
+
+}
+
+
+
+html[dir="rtl"] .lessonSection ul,
+
+html[dir="rtl"] .lessonSection ol{
+
+  padding-left: 0;
+
+  padding-right: 18px;
+
+}
+
+
+
+/* ✅ Toggles for Quiz / Glossary using <details class="toggleBox"> */
+
+.toggleStack{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap: 10px;
+
+  margin-top: 14px;
+
+}
+
+
+
+.toggleBox{
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(11,18,32,.10);
+
+  background: rgba(255,255,255,.96);
+
+  box-shadow: var(--shadow2);
+
+  overflow:hidden;
+
+}
+
+
+
+.toggleBox > summary{
+
+  list-style:none;
+
+  cursor:pointer;
+
+  padding: 14px 16px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap: 12px;
+
+  font-weight: 900;
+
+}
+
+.toggleBox > summary::-webkit-details-marker{ display:none; }
+
+
+
+.toggleLabel{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.toggleHint{
+
+  color: rgba(11,18,32,.56);
+
+  font-weight: 700;
+
+  font-size: 12.5px;
+
+}
+
+
+
+.toggleChevron{
+
+  width: 34px;
+
+  height: 34px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(11,18,32,.10);
+
+  background: rgba(11,18,32,.04);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  transition: transform .18s ease;
+
+}
+
+
+
+.toggleBox[open]{
+
+  border-color: rgba(47,191,113,.22);
+
+  box-shadow: 0 16px 36px rgba(47,191,113,.10);
+
+}
+
+.toggleBox[open] .toggleChevron{
+
+  transform: rotate(180deg);
+
+}
+
+
+
+.toggleBody{
+
+  padding: 0 16px 14px;
+
+  color: rgba(11,18,32,.78);
+
+  line-height: 1.8;
+
+}
+
+
+
+/* Quiz styles */
+
+.quizList{
+
+  margin: 10px 0 0;
+
+  padding-left: 18px;
+
+}
+
+.quizList li{ margin-bottom: 10px; }
+
+
+
+html[dir="rtl"] .quizList{
+
+  padding-left: 0;
+
+  padding-right: 18px;
+
+}
+
+
+
+/* Glossary styles */
+
+.glossItem{
+
+  padding: 10px 12px;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(11,18,32,.08);
+
+  background: rgba(11,18,32,.03);
+
+  margin-top: 10px;
+
+}
+
+.glossTerm{
+
+  font-weight: 900;
+
+}
+
+.glossDef{
+
+  margin-top: 6px;
+
+  color: rgba(11,18,32,.72);
+
+}
+
+
+
+/* Lesson nav buttons row */
+
+.lessonNav{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap: 10px;
+
+  flex-wrap:wrap;
+
+  margin-top: 16px;
+
+}
+
+
+
+/* Make Arabic look nice in lesson content */
+
+html[dir="rtl"] .lessonTitle,
+
+html[dir="rtl"] .lessonSection h2{
+
+  letter-spacing: 0;
+
+}
+
+
+
+/* Mobile lesson spacing */
+
+@media (max-width: 520px){
+
+  .lessonWrap{ padding: 26px 0 52px; }
+
+  .lessonSection{ padding: 14px 14px; }
+
+  .toggleBox > summary{ padding: 13px 14px; }
+
 }
