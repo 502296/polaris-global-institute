@@ -5,124 +5,585 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lecture 1 - Introduction to Deep Learning</title>
 
-  <!-- ✅ Use your main site stylesheet -->
-  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../../styles.css" />
+
+  <style>
+    :root{
+      --lesson-bg: #f7f8f4;
+      --lesson-card: #ffffff;
+      --lesson-text: #17202a;
+      --lesson-muted: #5f6b76;
+      --lesson-border: #e4e7eb;
+      --lesson-gold: #b9932f;
+      --lesson-navy: #10243f;
+      --lesson-accent: #84cc16;
+      --lesson-shadow: 0 12px 30px rgba(16, 36, 63, 0.08);
+      --lesson-radius: 20px;
+    }
+
+    body{
+      background: linear-gradient(180deg, #f8faf7 0%, #f3f4ef 100%);
+      color: var(--lesson-text);
+    }
+
+    .lessonWrap{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 42px 20px 70px;
+    }
+
+    .lessonHero{
+      background: linear-gradient(135deg, rgba(16,36,63,0.98), rgba(24,46,78,0.92));
+      color: #fff;
+      border-radius: 28px;
+      padding: 34px 28px;
+      box-shadow: 0 18px 40px rgba(16, 36, 63, 0.18);
+      margin-bottom: 26px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .lessonHeroTop{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .lessonEyebrow{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .lessonTitle{
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .lessonSub{
+      margin: 14px 0 0;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+      max-width: 760px;
+    }
+
+    .lessonActions{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .lessonActions .btn{
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    .lessonActions .btn--ghost{
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .lessonActions .btn--ghost:hover{
+      background: rgba(255,255,255,0.14);
+    }
+
+    .heroMetaRow{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .heroMetaPill{
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .lessonGrid{
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 0.95fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .videoCard,
+    .sideCard,
+    .lessonSection,
+    .toggleBox{
+      background: var(--lesson-card);
+      border: 1px solid var(--lesson-border);
+      border-radius: var(--lesson-radius);
+      box-shadow: var(--lesson-shadow);
+    }
+
+    .videoCard{
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .videoBox{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0b1220;
+    }
+
+    .videoBox iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .lessonMeta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .metaPill{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #f5f7fa;
+      border: 1px solid #e8edf2;
+      color: #233240;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .sideColumn{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .sideCard{
+      padding: 20px;
+    }
+
+    .sideCard h3{
+      margin: 0 0 12px;
+      font-size: 1.02rem;
+      color: var(--lesson-navy);
+    }
+
+    .sideCard p,
+    .sideCard li{
+      color: var(--lesson-muted);
+      line-height: 1.75;
+      font-size: 0.97rem;
+    }
+
+    .sideCard ul{
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .sectionStack{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .lessonSection{
+      padding: 24px;
+    }
+
+    .lessonSection h2{
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+      color: var(--lesson-navy);
+      letter-spacing: -0.01em;
+    }
+
+    .lessonSection p{
+      margin: 0;
+      color: var(--lesson-muted);
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .lessonSection p + p{
+      margin-top: 16px;
+    }
+
+    .lessonSection ul{
+      margin: 0;
+      padding-left: 22px;
+      color: var(--lesson-muted);
+    }
+
+    .lessonSection li{
+      margin: 10px 0;
+      line-height: 1.7;
+    }
+
+    .conceptGrid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .conceptGrid li{
+      margin: 0;
+      padding: 16px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid #e9eef3;
+      color: #203244;
+      font-weight: 600;
+    }
+
+    .toggleStack{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .toggleBox{
+      overflow: hidden;
+    }
+
+    .toggleBox summary{
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .toggleBox summary::-webkit-details-marker{
+      display: none;
+    }
+
+    .toggleLabel{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-weight: 700;
+      color: var(--lesson-navy);
+    }
+
+    .toggleHint{
+      font-size: 13px;
+      color: var(--lesson-muted);
+      font-weight: 500;
+    }
+
+    .toggleChevron{
+      font-size: 22px;
+      color: var(--lesson-muted);
+      transition: transform 0.2s ease;
+    }
+
+    .toggleBox[open] .toggleChevron{
+      transform: rotate(180deg);
+    }
+
+    .toggleBody{
+      padding: 0 22px 22px;
+      border-top: 1px solid #edf1f4;
+    }
+
+    .glossItem{
+      padding: 16px 0;
+      border-bottom: 1px solid #eef2f5;
+    }
+
+    .glossItem:last-child{
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .glossTerm{
+      font-weight: 700;
+      color: var(--lesson-navy);
+      margin-bottom: 6px;
+    }
+
+    .glossDef{
+      color: var(--lesson-muted);
+      line-height: 1.8;
+    }
+
+    .quizList{
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .quizList li{
+      margin: 12px 0;
+      color: var(--lesson-muted);
+      line-height: 1.8;
+    }
+
+    .lessonNav{
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .lessonNav .btn{
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lessonNav .btn--ghost{
+      background: #fff;
+      color: var(--lesson-navy);
+      border: 1px solid var(--lesson-border);
+    }
+
+    .lessonNav .btn--primary{
+      background: linear-gradient(135deg, #8fd11a, #75b50e);
+      color: #10243f;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 10px 22px rgba(132, 204, 22, 0.28);
+    }
+
+    .lessonNav .btn--primary:hover{
+      transform: translateY(-1px);
+    }
+
+    .noteBox{
+      background: linear-gradient(180deg, #fff9ec, #fffdf7);
+      border: 1px solid #f2dfb0;
+      border-radius: 18px;
+      padding: 16px;
+      color: #5b4a22;
+      line-height: 1.8;
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 980px){
+      .lessonGrid{
+        grid-template-columns: 1fr;
+      }
+
+      .lessonHero{
+        padding: 28px 20px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .lessonWrap{
+        padding: 22px 14px 56px;
+      }
+
+      .lessonTitle{
+        font-size: 2rem;
+      }
+
+      .lessonSection,
+      .sideCard,
+      .videoCard{
+        padding: 16px;
+      }
+
+      .conceptGrid{
+        grid-template-columns: 1fr;
+      }
+
+      .lessonNav{
+        flex-direction: column;
+      }
+
+      .lessonNav .btn{
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- ✅ Lesson Wrapper -->
   <main class="lessonWrap">
 
-    <!-- ✅ Header (Title + Language Button) -->
-    <div class="lessonHead">
+    <section class="lessonHero">
+      <div class="lessonHeroTop">
+        <div>
+          <div class="lessonEyebrow">🎓 Polaris Deep Learning Program</div>
 
+          <h1 class="lessonTitle" data-i18n="dl.w1.l1.title">
+            Lecture 1 — Introduction to Deep Learning
+          </h1>
+
+          <p class="lessonSub" data-i18n="dl.w1.l1.subtitle">
+            Deep Learning Course — Polaris Global Institute
+          </p>
+        </div>
+
+        <div class="lessonActions">
+          <button id="langBtn" class="btn btn--ghost" type="button">
+            🌐 <span id="langLabel">AR</span>
+          </button>
+
+          <a class="btn btn--ghost" href="./week1.html" data-i18n="common.backToWeek">
+            ← Back to Week 1
+          </a>
+        </div>
+      </div>
+
+      <div class="heroMetaRow">
+        <span class="heroMetaPill">⏱ 1:00:51</span>
+        <span class="heroMetaPill">🎓 Beginner</span>
+        <span class="heroMetaPill">📚 Deep Learning Foundations</span>
+        <span class="heroMetaPill">🌍 English + Arabic Support</span>
+      </div>
+    </section>
+
+    <section class="lessonGrid">
       <div>
-        <h1 class="lessonTitle" data-i18n="dl.w1.l1.title">
-          Lecture 1 — Introduction to Deep Learning
-        </h1>
+        <div class="videoCard">
+          <div class="videoBox">
+            <iframe
+              src="https://player.vimeo.com/video/1170172559"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              title="Lecture 1 Video">
+            </iframe>
+          </div>
 
-        <p class="lessonSub" data-i18n="dl.w1.l1.subtitle">
-          Deep Learning Course — Polaris Global Institute
-        </p>
+          <div class="lessonMeta">
+            <span class="metaPill" data-i18n="common.duration">Duration:</span>
+            <span class="metaPill">1:00:51</span>
+
+            <span class="metaPill" data-i18n="common.level">Level:</span>
+            <span class="metaPill" data-i18n="common.beginner">Beginner</span>
+
+            <span class="metaPill" data-i18n="common.topic">Topic:</span>
+            <span class="metaPill" data-i18n="dl.topic.foundations">Deep Learning Foundations</span>
+          </div>
+        </div>
+
+        <div class="sectionStack">
+          <section class="lessonSection">
+            <h2 data-i18n="common.introduction">Introduction</h2>
+            <p data-i18n="dl.w1.l1.intro.p1">
+              In this lecture we explore the foundations of Deep Learning.
+              You will understand how neural networks evolved and why deep learning
+              became powerful in modern artificial intelligence systems.
+            </p>
+          </section>
+
+          <section class="lessonSection">
+            <h2 data-i18n="common.arabicSummary">Arabic Summary</h2>
+            <p data-i18n="dl.w1.l1.ar.summary">
+              في هذا الدرس نتعرف على أساسيات التعلم العميق. سوف نفهم كيف تعمل الشبكات العصبية ولماذا أصبح
+              التعلم العميق من أهم تقنيات الذكاء الاصطناعي في العصر الحديث.
+            </p>
+          </section>
+
+          <section class="lessonSection">
+            <h2 data-i18n="common.keyConcepts">Key Concepts</h2>
+            <ul class="conceptGrid">
+              <li data-i18n="dl.w1.l1.concepts.nn">Artificial Neural Networks</li>
+              <li data-i18n="dl.w1.l1.concepts.layers">Deep Learning Layers</li>
+              <li data-i18n="dl.w1.l1.concepts.data">Training Data</li>
+              <li data-i18n="dl.w1.l1.concepts.params">Model Parameters</li>
+              <li data-i18n="dl.w1.l1.concepts.fwd">Forward Propagation</li>
+              <li data-i18n="dl.w1.l1.concepts.bwd">Backpropagation</li>
+            </ul>
+          </section>
+
+          <section class="lessonSection">
+            <h2 data-i18n="common.detailedNotes">Detailed Notes</h2>
+
+            <p data-i18n="dl.w1.l1.notes.p1">
+              Deep learning is a modern approach to machine learning that uses multiple layers of computation
+              (neural networks) to learn patterns directly from data. Instead of manually crafting features,
+              deep learning systems can learn representations automatically.
+            </p>
+
+            <p data-i18n="dl.w1.l1.notes.p2">
+              A neural network is made of layers. Each layer applies a mathematical transformation to the input,
+              producing an output that becomes the input to the next layer. When we stack many layers, the model
+              can represent complex patterns (images, speech, language).
+            </p>
+
+            <p data-i18n="dl.w1.l1.notes.p3">
+              Training is the process where the model adjusts its internal parameters (weights) to reduce error.
+              This usually happens through backpropagation + gradient descent. The main reason deep learning
+              became powerful recently is the combination of big data, faster GPUs, and better algorithms.
+            </p>
+          </section>
+        </div>
       </div>
 
-      <div class="lessonActions">
-        <!-- ✅ Language button (will be wired in lang.js next) -->
-        <button id="langBtn" class="btn btn--ghost" type="button">
-          🌐 <span id="langLabel">AR</span>
-        </button>
+      <aside class="sideColumn">
+        <div class="sideCard">
+          <h3>About this lesson</h3>
+          <p>
+            This opening lecture introduces the core logic behind deep learning and prepares the student
+            for the rest of the program in a structured and beginner-friendly way.
+          </p>
+        </div>
 
-        <!-- Optional back to week page -->
-        <a class="btn btn--ghost" href="./week1.html" data-i18n="common.backToWeek">
-          ← Back to Week 1
-        </a>
-      </div>
+        <div class="sideCard">
+          <h3>What you will learn</h3>
+          <ul>
+            <li>Why deep learning matters in modern AI</li>
+            <li>How neural networks process information</li>
+            <li>What layers, parameters, and training mean</li>
+            <li>Why data and compute changed the field</li>
+          </ul>
+        </div>
 
-    </div>
-
-    <!-- ✅ Video Card -->
-    <div class="videoCard">
-      <div class="videoBox">
-        <iframe
-          src="https://player.vimeo.com/video/1170172559"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-          title="Lecture 1 Video">
-        </iframe>
-      </div>
-
-      <div class="lessonMeta">
-        <span class="metaPill" data-i18n="common.duration">Duration:</span>
-        <span class="metaPill">1:00:51</span>
-
-        <span class="metaPill" data-i18n="common.level">Level:</span>
-        <span class="metaPill" data-i18n="common.beginner">Beginner</span>
-
-        <span class="metaPill" data-i18n="common.topic">Topic:</span>
-        <span class="metaPill" data-i18n="dl.topic.foundations">Deep Learning Foundations</span>
-      </div>
-    </div>
-
-    <!-- ✅ Introduction -->
-    <section class="lessonSection">
-      <h2 data-i18n="common.introduction">Introduction</h2>
-      <p data-i18n="dl.w1.l1.intro.p1">
-        In this lecture we explore the foundations of Deep Learning.
-        You will understand how neural networks evolved and why deep learning
-        became powerful in modern artificial intelligence systems.
-      </p>
+        <div class="sideCard">
+          <h3>Polaris Note</h3>
+          <div class="noteBox">
+            This lesson combines a world-class lecture source with Polaris explanations,
+            Arabic support, and structured review to make advanced topics easier to understand.
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <!-- ✅ Arabic Summary (this will auto switch via lang.js later) -->
-    <section class="lessonSection">
-      <h2 data-i18n="common.arabicSummary">Arabic Summary</h2>
-      <p data-i18n="dl.w1.l1.ar.summary">
-        في هذا الدرس نتعرف على أساسيات التعلم العميق. سوف نفهم كيف تعمل الشبكات العصبية ولماذا أصبح
-        التعلم العميق من أهم تقنيات الذكاء الاصطناعي في العصر الحديث.
-      </p>
-    </section>
-
-    <!-- ✅ Key Concepts -->
-    <section class="lessonSection">
-      <h2 data-i18n="common.keyConcepts">Key Concepts</h2>
-      <ul>
-        <li data-i18n="dl.w1.l1.concepts.nn">Artificial Neural Networks</li>
-        <li data-i18n="dl.w1.l1.concepts.layers">Deep Learning Layers</li>
-        <li data-i18n="dl.w1.l1.concepts.data">Training Data</li>
-        <li data-i18n="dl.w1.l1.concepts.params">Model Parameters</li>
-        <li data-i18n="dl.w1.l1.concepts.fwd">Forward Propagation</li>
-        <li data-i18n="dl.w1.l1.concepts.bwd">Backpropagation</li>
-      </ul>
-    </section>
-
-    <!-- ✅ Detailed Notes (new) -->
-    <section class="lessonSection">
-      <h2 data-i18n="common.detailedNotes">Detailed Notes</h2>
-
-      <p data-i18n="dl.w1.l1.notes.p1">
-        Deep learning is a modern approach to machine learning that uses multiple layers of computation
-        (neural networks) to learn patterns directly from data. Instead of manually crafting features,
-        deep learning systems can learn representations automatically.
-      </p>
-
-      <p data-i18n="dl.w1.l1.notes.p2">
-        A neural network is made of layers. Each layer applies a mathematical transformation to the input,
-        producing an output that becomes the input to the next layer. When we stack many layers, the model
-        can represent complex patterns (images, speech, language).
-      </p>
-
-      <p data-i18n="dl.w1.l1.notes.p3">
-        Training is the process where the model adjusts its internal parameters (weights) to reduce error.
-        This usually happens through backpropagation + gradient descent. The main reason deep learning
-        became powerful recently is the combination of big data, faster GPUs, and better algorithms.
-      </p>
-    </section>
-
-    <!-- ✅ Toggles Stack: Glossary + Quiz under buttons -->
     <div class="toggleStack">
 
-      <!-- ✅ Glossary Toggle -->
       <details class="toggleBox">
         <summary>
           <span class="toggleLabel">
@@ -133,7 +594,6 @@
         </summary>
 
         <div class="toggleBody">
-
           <div class="glossItem">
             <div class="glossTerm" data-i18n="dl.glossary.nn.term">Neural Network</div>
             <div class="glossDef" data-i18n="dl.glossary.nn.def">
@@ -154,11 +614,9 @@
               Values inside the model that are adjusted during training.
             </div>
           </div>
-
         </div>
       </details>
 
-      <!-- ✅ Quiz Toggle -->
       <details class="toggleBox">
         <summary>
           <span class="toggleLabel">
@@ -180,7 +638,6 @@
 
     </div>
 
-    <!-- ✅ Lesson Navigation -->
     <div class="lessonNav">
       <a class="btn btn--ghost" href="./week1.html" data-i18n="common.backToWeek">
         ← Back to Week 1
@@ -193,7 +650,6 @@
 
   </main>
 
-  <!-- ✅ Next file will handle language switch -->
-  <script src="../../lang.js"></script>
+  <script src="../../../lang.js"></script>
 </body>
 </html>
