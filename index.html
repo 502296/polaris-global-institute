@@ -4,13 +4,219 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Polaris Global Institute</title>
-  <meta name="description" content="Polaris Global Institute — Structured learning for AI, cybersecurity, and future skills." />
+  <meta
+    name="description"
+    content="Polaris Global Institute — Structured learning for AI, cybersecurity, and future skills."
+  />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="./styles.css" />
+
+  <style>
+    /* =========================================================
+       INDEX-ONLY POLISH
+       - Better logo top-left
+       - Stronger hero balance
+       - Small premium refinements
+    ========================================================= */
+
+    .topbar__inner{
+      gap: 18px;
+    }
+
+    .brand{
+      display: inline-flex !important;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .brand--empty{
+      min-width: 0;
+    }
+
+    .brand__logoShell{
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(246,247,249,.92));
+      border: 1px solid rgba(11,18,32,.08);
+      box-shadow:
+        0 10px 24px rgba(12,18,32,.08),
+        inset 0 1px 0 rgba(255,255,255,.9);
+      flex: 0 0 auto;
+    }
+
+    .brand__logo{
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 12px rgba(16,36,63,.10));
+    }
+
+    .brand__text{
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .brand__name{
+      font-family: var(--serif);
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--navy);
+      letter-spacing: .1px;
+      white-space: nowrap;
+    }
+
+    .brand__tagline{
+      font-size: .78rem;
+      color: rgba(11,18,32,.58);
+      white-space: nowrap;
+    }
+
+    .topbar__actions{
+      flex: 0 0 auto;
+    }
+
+    /* remove old top-right logo visual if any */
+    .topbar__actions .brandLogo{
+      display: none !important;
+    }
+
+    .hero__title{
+      max-width: 760px;
+    }
+
+    .hero__subtitle{
+      max-width: 760px;
+    }
+
+    .hero__content{
+      max-width: 760px;
+    }
+
+    .hero__art{
+      align-self: center;
+    }
+
+    .hero__art::before{
+      opacity: .98;
+      filter: drop-shadow(0 24px 50px rgba(16,36,63,.16));
+    }
+
+    .heroCardNote{
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(11,18,32,.08);
+      box-shadow: 0 10px 20px rgba(12,18,32,.05);
+      color: rgba(11,18,32,.72);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .coursesIntroNote{
+      margin-top: 10px;
+      color: rgba(11,18,32,.58);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .footer__meta{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (max-width: 960px){
+      .brand__logoShell{
+        width: 58px;
+        height: 58px;
+        border-radius: 15px;
+      }
+
+      .brand__logo{
+        width: 46px;
+        height: 46px;
+      }
+
+      .brand__name{
+        font-size: 1rem;
+      }
+
+      .brand__tagline{
+        font-size: .74rem;
+      }
+    }
+
+    @media (max-width: 640px){
+      .topbar__inner{
+        align-items: center;
+      }
+
+      .brand{
+        gap: 10px;
+      }
+
+      .brand__logoShell{
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+      }
+
+      .brand__logo{
+        width: 41px;
+        height: 41px;
+      }
+
+      .brand__tagline{
+        display: none;
+      }
+
+      .topbar__actions{
+        gap: 8px;
+      }
+
+      .topbar__actions .btn{
+        padding: 9px 11px;
+      }
+
+      .heroCardNote{
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 520px){
+      .brand__name{
+        font-size: .95rem;
+      }
+
+      .topbar__actions .btn--primary{
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -18,17 +224,37 @@
   <header class="topbar">
     <div class="wrap topbar__inner">
       <a class="brand brand--empty" href="./index.html" aria-label="Polaris Global Institute">
+        <span class="brand__logoShell" aria-hidden="true">
+          <img class="brand__logo" src="./images/logo.png" alt="" />
+        </span>
+
+        <span class="brand__text">
+          <span class="brand__name">Polaris Global Institute</span>
+          <span class="brand__tagline">AI • Cybersecurity • Future Technologies</span>
+        </span>
+
         <span class="sr-only">Polaris Global Institute</span>
       </a>
 
       <div class="topbar__actions">
-        <img class="brandLogo" src="./images/logo.png" alt="Polaris Logo" />
-
-        <button id="langToggle" class="btn btn--ghost" type="button" aria-label="Switch language">العربية</button>
+        <button
+          id="langToggle"
+          class="btn btn--ghost"
+          type="button"
+          aria-label="Switch language"
+        >
+          العربية
+        </button>
 
         <a class="btn btn--primary" href="./login.html" data-i18n="signin">Sign in</a>
 
-        <button id="menuBtn" class="btn btn--ghost menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel">
+        <button
+          id="menuBtn"
+          class="btn btn--ghost menuBtn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="menuPanel"
+        >
           <span data-i18n="menu">Menu</span>
         </button>
       </div>
@@ -46,18 +272,27 @@
           <a href="#courses" class="menu__link" data-i18n="nav_courses">Courses</a>
           <a href="#program" class="menu__link" data-i18n="nav_program">Program</a>
 
-          <button class="menu__accordion" id="menuAboutToggle" type="button" aria-expanded="false" aria-controls="menuAboutPanel">
+          <button
+            class="menu__accordion"
+            id="menuAboutToggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menuAboutPanel"
+          >
             <span data-i18n="about_title">About Polaris</span>
             <span class="menu__accordionIcon" aria-hidden="true">▾</span>
           </button>
+
           <div class="menu__accordionPanel" id="menuAboutPanel" hidden>
             <div class="menu__aboutCard">
               <p class="p muted" data-i18n="about_p1">
                 Polaris Global Institute is an independent learning initiative focused on rigorous, structured education.
               </p>
+
               <p class="p muted" data-i18n="about_p2">
                 We start small, build real capability, and scale with quality — not noise.
               </p>
+
               <div class="small muted" style="margin-top:10px;" data-i18n="pillars_title">Program Pillars</div>
               <ul class="list">
                 <li data-i18n="pl_1">Clear mental models</li>
@@ -82,7 +317,9 @@
         </nav>
 
         <div class="menu__footer">
-          <div class="small muted" data-i18n="menu_note">Clean, structured learning — built to scale.</div>
+          <div class="small muted" data-i18n="menu_note">
+            Clean, structured learning — built to scale.
+          </div>
         </div>
       </div>
     </div>
@@ -105,17 +342,33 @@
             </p>
 
             <div class="hero__cta">
-              <a class="btn btn--primary btn--lg" href="#apply" data-i18n="cta_primary">Apply to Founding Fellowship</a>
-              <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_secondary">Explore Courses</a>
+              <a class="btn btn--primary btn--lg" href="#apply" data-i18n="cta_primary">
+                Apply to Founding Fellowship
+              </a>
+
+              <a class="btn btn--ghost btn--lg" href="#courses" data-i18n="cta_secondary">
+                Explore Courses
+              </a>
             </div>
 
             <div class="hero__pills" aria-label="Quick navigation">
               <a class="pill" href="#courses" data-i18n="pill_catalog">Browse Catalog</a>
               <a class="pill" href="#program" data-i18n="pill_program">Fellowship Program</a>
 
-              <button class="pill pill--btn" id="howToggle" type="button" aria-expanded="false" aria-controls="how">
+              <button
+                class="pill pill--btn"
+                id="howToggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="how"
+              >
                 <span data-i18n="pill_how">How It Works</span>
               </button>
+            </div>
+
+            <div class="heroCardNote">
+              <span>🎓</span>
+              <span>Learn from world-class lectures, Polaris explanations, Arabic summaries, and structured review.</span>
             </div>
           </div>
 
@@ -135,6 +388,9 @@
           <div>
             <h2 class="h2" data-i18n="courses_title">Courses</h2>
             <p class="p muted" data-i18n="courses_sub">A curated set of courses will appear here next week.</p>
+            <div class="coursesIntroNote">
+              Academic-style learning paths with clear structure, guided progression, and bilingual support.
+            </div>
           </div>
 
           <div class="catalogFilters" aria-label="Catalog filters">
@@ -144,7 +400,6 @@
           </div>
         </div>
 
-        <!-- ✅ JS will render cards here from courses.json -->
         <div class="catalogGrid" id="catalogGrid"></div>
 
         <noscript>
@@ -160,7 +415,9 @@
       <div class="wrap">
         <div class="section__head">
           <h2 class="h2" data-i18n="how_title">How Polaris Works</h2>
-          <p class="p muted" data-i18n="how_sub">A clean system: learn with structure, build real output, and earn review.</p>
+          <p class="p muted" data-i18n="how_sub">
+            A clean system: learn with structure, build real output, and earn review.
+          </p>
         </div>
 
         <div class="howGrid">
