@@ -1,31 +1,544 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<title>Lecture 2 — Deep Learning</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecture 2 — Neural Networks Basics</title>
 
-<link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../styles.css" />
 
+  <style>
+    .localLectureWrap{
+      width: min(1200px, 94vw);
+      margin: 0 auto;
+      padding: 40px 0 70px;
+    }
+
+    .localHero{
+      background: linear-gradient(135deg, rgba(16,36,63,.98), rgba(24,46,78,.92));
+      color: #fff;
+      border-radius: 28px;
+      padding: 34px 28px;
+      box-shadow: 0 18px 40px rgba(16,36,63,.18);
+      margin-bottom: 26px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .localHeroTop{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .localEyebrow{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,.92);
+      font-weight: 700;
+    }
+
+    .localTitle{
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .localSub{
+      margin: 14px 0 0;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,.82);
+      max-width: 760px;
+    }
+
+    .localActions{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .localBtn{
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .localBtn:hover{
+      background: rgba(255,255,255,.14);
+    }
+
+    .localMetaRow{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .localMetaPill{
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .localGrid{
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, .95fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .localCard,
+    .localSection,
+    .localToggle{
+      background: rgba(255,255,255,.98);
+      border: 1px solid rgba(11,18,32,.08);
+      border-radius: 22px;
+      box-shadow: 0 10px 26px rgba(12,18,32,.10);
+    }
+
+    .localCard{
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .localVideoBox{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0b1220;
+    }
+
+    .localVideoBox iframe{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .localLessonMeta{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 16px;
+    }
+
+    .localMeta{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(11,18,32,.03);
+      font-weight: 700;
+      color: rgba(11,18,32,.78);
+      font-size: 13px;
+    }
+
+    .localSide{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .localSideCard{
+      background: rgba(255,255,255,.98);
+      border: 1px solid rgba(11,18,32,.08);
+      border-radius: 22px;
+      box-shadow: 0 10px 26px rgba(12,18,32,.10);
+      padding: 20px;
+    }
+
+    .localSideCard h3{
+      margin: 0 0 12px;
+      font-size: 1.03rem;
+      color: #10243f;
+    }
+
+    .localSideCard p,
+    .localSideCard li{
+      color: #5b667a;
+      line-height: 1.78;
+      font-size: .97rem;
+    }
+
+    .localSideCard ul{
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .localSectionStack{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .localSection{
+      padding: 22px;
+    }
+
+    .localSection h2{
+      margin: 0 0 10px;
+      font-size: 19px;
+      color: #10243f;
+    }
+
+    .localSection p{
+      margin: 0 0 12px;
+      line-height: 1.85;
+      color: rgba(11,18,32,.78);
+    }
+
+    .localSection p:last-child{
+      margin-bottom: 0;
+    }
+
+    .localConceptGrid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .localConceptGrid li{
+      margin: 0;
+      padding: 16px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid #e9eef3;
+      color: #203244;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .localToggleStack{
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .localToggle{
+      overflow: hidden;
+    }
+
+    .localToggle summary{
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 900;
+      color: #10243f;
+    }
+
+    .localToggle summary::-webkit-details-marker{
+      display: none;
+    }
+
+    .localToggleBody{
+      padding: 0 18px 18px;
+      color: rgba(11,18,32,.78);
+      line-height: 1.8;
+      border-top: 1px solid rgba(11,18,32,.06);
+    }
+
+    .localGloss{
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(11,18,32,.08);
+    }
+
+    .localGloss:last-child{
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .localGlossTerm{
+      font-weight: 900;
+      color: #10243f;
+    }
+
+    .localGlossDef{
+      margin-top: 6px;
+      color: rgba(11,18,32,.72);
+    }
+
+    .localQuiz{
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .localQuiz li{
+      margin-bottom: 10px;
+      line-height: 1.8;
+      color: rgba(11,18,32,.78);
+    }
+
+    .localNav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .localNavBtn{
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(11,18,32,.10);
+      background: #fff;
+      color: #10243f;
+    }
+
+    .localNavBtn.primary{
+      background: linear-gradient(180deg, #9FE870, #2fbf71);
+      color: #0b1220;
+      border-color: rgba(47,191,113,.30);
+      box-shadow: 0 14px 30px rgba(47,191,113,.18);
+    }
+
+    @media (max-width: 980px){
+      .localGrid{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .localLectureWrap{
+        width: min(94vw, 100%);
+        padding: 26px 0 56px;
+      }
+
+      .localHero{
+        padding: 24px 18px;
+        border-radius: 22px;
+      }
+
+      .localTitle{
+        font-size: 2rem;
+      }
+
+      .localSection,
+      .localSideCard,
+      .localCard{
+        padding: 16px;
+      }
+
+      .localConceptGrid{
+        grid-template-columns: 1fr;
+      }
+
+      .localNav{
+        flex-direction: column;
+      }
+
+      .localNavBtn{
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <main class="localLectureWrap">
 
-<h1>Lecture 2 — Neural Networks Basics</h1>
+    <section class="localHero">
+      <div class="localHeroTop">
+        <div>
+          <div class="localEyebrow">🎓 Polaris Deep Learning Program</div>
+          <h1 class="localTitle">Lecture 2 — Neural Networks Basics</h1>
+          <p class="localSub">
+            This lecture introduces the basic structure of neural networks and explains how information moves through layers.
+          </p>
+        </div>
 
-<div class="videoBox">
+        <div class="localActions">
+          <a class="localBtn" href="./week2.html">← Back to Week 2</a>
+          <a class="localBtn" href="./lecture1.html">Previous Lecture</a>
+        </div>
+      </div>
 
-<iframe
-src="https://player.vimeo.com/video/1170715628"
-width="100%"
-height="520"
-frameborder="0"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen>
-</iframe>
+      <div class="localMetaRow">
+        <span class="localMetaPill">⏱ 1:19:34</span>
+        <span class="localMetaPill">🎓 Beginner</span>
+        <span class="localMetaPill">📚 Neural Networks Basics</span>
+        <span class="localMetaPill">🌍 English + Arabic Support</span>
+      </div>
+    </section>
 
-</div>
+    <section class="localGrid">
+      <div>
+        <div class="localCard">
+          <div class="localVideoBox">
+            <iframe
+              src="https://player.vimeo.com/video/1170715628"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              title="Lecture 2 Video">
+            </iframe>
+          </div>
 
+          <div class="localLessonMeta">
+            <span class="localMeta">Duration: 1:19:34</span>
+            <span class="localMeta">Level: Beginner</span>
+            <span class="localMeta">Topic: Neural Networks</span>
+          </div>
+        </div>
+
+        <div class="localSectionStack">
+          <section class="localSection">
+            <h2>Introduction</h2>
+            <p>
+              In this lecture we begin studying the fundamental idea of neural networks. You will understand
+              what a network is, how layers are connected, and why these models became central in modern AI.
+            </p>
+          </section>
+
+          <section class="localSection">
+            <h2>Arabic Summary</h2>
+            <p>
+              في هذا الدرس نبدأ بفهم البنية الأساسية للشبكات العصبية. سنتعرف على معنى الطبقات، وكيف تنتقل المعلومات
+              داخل النموذج، ولماذا أصبحت الشبكات العصبية من أهم أدوات الذكاء الاصطناعي الحديث.
+            </p>
+          </section>
+
+          <section class="localSection">
+            <h2>Key Concepts</h2>
+            <ul class="localConceptGrid">
+              <li>Input Layer</li>
+              <li>Hidden Layers</li>
+              <li>Output Layer</li>
+              <li>Neurons</li>
+              <li>Weights and Biases</li>
+              <li>Information Flow</li>
+            </ul>
+          </section>
+
+          <section class="localSection">
+            <h2>Detailed Notes</h2>
+            <p>
+              A neural network is a computational structure made of connected units called neurons. These neurons are
+              organized in layers. The input layer receives the raw data, hidden layers process that data, and the output
+              layer produces the final prediction or result.
+            </p>
+            <p>
+              Each connection in the network has a weight, and each neuron may also have a bias. Together, these values
+              determine how strongly information moves from one layer to another. During training, the model adjusts these
+              values to improve performance.
+            </p>
+            <p>
+              This lecture is important because it builds the conceptual base for later topics such as activation functions,
+              forward propagation, backpropagation, and optimization.
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <aside class="localSide">
+        <div class="localSideCard">
+          <h3>About this lesson</h3>
+          <p>
+            This lesson lays the foundation for understanding how neural networks are built and how they process data.
+          </p>
+        </div>
+
+        <div class="localSideCard">
+          <h3>What you will learn</h3>
+          <ul>
+            <li>What a neural network is</li>
+            <li>How layers are organized</li>
+            <li>Why weights and biases matter</li>
+            <li>How information moves through the model</li>
+          </ul>
+        </div>
+
+        <div class="localSideCard">
+          <h3>Polaris Note</h3>
+          <p>
+            This lecture should be studied carefully because it is the bridge between general AI ideas and the actual
+            mathematical structure of deep learning systems.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <div class="localToggleStack">
+      <details class="localToggle">
+        <summary>📘 Glossary</summary>
+        <div class="localToggleBody">
+          <div class="localGloss">
+            <div class="localGlossTerm">Neuron</div>
+            <div class="localGlossDef">A basic computational unit in a neural network.</div>
+          </div>
+          <div class="localGloss">
+            <div class="localGlossTerm">Weight</div>
+            <div class="localGlossDef">A value that controls the strength of a connection between neurons.</div>
+          </div>
+          <div class="localGloss">
+            <div class="localGlossTerm">Bias</div>
+            <div class="localGlossDef">An additional value that helps shift the output of a neuron.</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="localToggle">
+        <summary>🧠 Quick Quiz</summary>
+        <div class="localToggleBody">
+          <ol class="localQuiz">
+            <li>What is the role of the input layer?</li>
+            <li>What do hidden layers do?</li>
+            <li>Why are weights important in neural networks?</li>
+            <li>What is the difference between a neuron and a layer?</li>
+          </ol>
+        </div>
+      </details>
+    </div>
+
+    <div class="localNav">
+      <a class="localNavBtn" href="./week2.html">← Back to Week 2</a>
+      <a class="localNavBtn primary" href="./lecture3.html">Next Lecture →</a>
+    </div>
+
+  </main>
 </body>
-
 </html>
