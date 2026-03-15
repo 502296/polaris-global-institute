@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 2 — Training Neural Networks</title>
+
+  <link rel="stylesheet" href="../../../styles.css" />
+
+  <style>
+    .weekHeroCard{
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(11,18,32,.08);
+      box-shadow: 0 10px 20px rgba(12,18,32,.05);
+      color: rgba(11,18,32,.72);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .weekStats{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .weekStat{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(11,18,32,.09);
+      box-shadow: 0 8px 18px rgba(12,18,32,.04);
+      color: rgba(11,18,32,.80);
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .weekSectionTop{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .weekMiniNote{
+      margin-top: 10px;
+      color: rgba(11,18,32,.58);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+
+    .weekIntroPanel{
+      margin-bottom: 18px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(11,18,32,.08);
+      background: rgba(255,255,255,.94);
+      box-shadow: var(--shadow2);
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(240px, .9fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .weekIntroPanel h3{
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+      color: var(--navy);
+    }
+
+    .weekIntroPanel p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: .97rem;
+    }
+
+    .weekChecklist{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .weekChecklist li{
+      margin: 8px 0;
+      line-height: 1.7;
+    }
+
+    .weekCard{
+      min-height: 108px;
+    }
+
+    .weekCard__title{
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .weekCard__meta{
+      line-height: 1.65;
+    }
+
+    .weekCard__arrow{
+      font-size: 1.1rem;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .weekCard:hover .weekCard__arrow{
+      transform: translateX(3px);
+      opacity: 1;
+    }
+
+    .weekCard--featured{
+      border-color: rgba(47,191,113,.22);
+      background: linear-gradient(180deg, rgba(159,232,112,.12), rgba(255,255,255,.96));
+      box-shadow: 0 18px 34px rgba(47,191,113,.10);
+    }
+
+    .weekBadge{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(11,18,32,.04);
+      border: 1px solid rgba(11,18,32,.08);
+      color: rgba(11,18,32,.65);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .weekFooterMeta{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (max-width: 900px){
+      .weekIntroPanel{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .weekHeroCard{
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="../../../index.html" aria-label="Polaris Global Institute">
+        <span class="brand__logoShell" aria-hidden="true" style="width:58px;height:58px;border-radius:15px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(246,247,249,.92));border:1px solid rgba(11,18,32,.08);box-shadow:0 10px 24px rgba(12,18,32,.08), inset 0 1px 0 rgba(255,255,255,.9);">
+          <img src="../../../images/logo.png" alt="" style="width:46px;height:46px;object-fit:contain;filter:drop-shadow(0 6px 12px rgba(16,36,63,.10));">
+        </span>
+
+        <span class="brand__text" style="display:flex;flex-direction:column;gap:2px;">
+          <span class="brand__name" style="font-family:var(--serif);font-size:1.05rem;font-weight:800;line-height:1.05;color:var(--navy);letter-spacing:.1px;">
+            Polaris Global Institute
+          </span>
+          <span class="brand__tagline" style="font-size:.76rem;color:rgba(11,18,32,.58);">
+            Deep Learning Program
+          </span>
+        </span>
+      </a>
+
+      <div class="topbar__actions">
+        <a class="btn btn--ghost" href="../../../index.html">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero hero--compact">
+    <div class="wrap hero__inner">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <div class="hero__badge">Deep Learning Course</div>
+
+          <h1 class="hero__title">Week 2 — Training Neural Networks</h1>
+
+          <p class="hero__subtitle">
+            This week focuses on how neural networks learn: backpropagation, gradient descent, and loss functions.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="./lecture1.html">
+              Start Lecture 1 →
+            </a>
+
+            <a class="btn btn--ghost btn--lg" href="../../../index.html">
+              Back to Home
+            </a>
+          </div>
+
+          <div class="hero__pills">
+            <span class="pill">Backpropagation</span>
+            <span class="pill">Gradient Descent</span>
+            <span class="pill">Loss Functions</span>
+            <span class="pill">Training Foundations</span>
+          </div>
+
+          <div class="weekStats">
+            <span class="weekStat">🎓 Beginner / Intermediate</span>
+            <span class="weekStat">📚 3 Lectures</span>
+            <span class="weekStat">🌍 English + Arabic</span>
+            <span class="weekStat">🧠 Learning Mechanics</span>
+          </div>
+
+          <div class="weekHeroCard">
+            <span>⚙️</span>
+            <span>Week 2 explains how the network improves itself through error correction and optimization.</span>
+          </div>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <img class="heroLogo" src="../../../images/logo.png" alt="Polaris Logo" />
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__glow" aria-hidden="true"></div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="weekSectionTop">
+        <div class="section__head">
+          <h2 class="h2">Week 2 Lectures</h2>
+          <p class="p muted">
+            3 lectures — learn how neural networks train, reduce error, and improve predictions.
+          </p>
+          <div class="weekMiniNote">
+            This week moves from static network structure into the actual learning process used in deep learning systems.
+          </div>
+        </div>
+
+        <div class="catalogFilters">
+          <a class="chip is-active" href="#lectures">All</a>
+          <a class="chip" href="../../../index.html#courses">Catalog</a>
+        </div>
+      </div>
+
+      <div class="weekIntroPanel">
+        <div>
+          <h3>What happens in Week 2</h3>
+          <p>
+            In this week, students begin understanding the mechanics of training. You will learn how neural networks measure
+            error, send corrective signals backward through the model, and update weights using optimization methods.
+          </p>
+        </div>
+
+        <div>
+          <h3>Recommended approach</h3>
+          <ul class="weekChecklist">
+            <li>Watch Lecture 1 first to understand error flow</li>
+            <li>Move to Gradient Descent after Backpropagation</li>
+            <li>Study Loss Functions carefully</li>
+            <li>Review all 3 lectures together</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="lectures" class="weekGrid">
+
+        <a class="weekCard weekCard--featured" href="./lecture1.html">
+          <div class="weekCard__num">01</div>
+          <div class="weekCard__body">
+            <div class="weekCard__title">Lecture 1 — Backpropagation</div>
+            <div class="weekCard__meta">Arabic summary • Key concepts • Detailed notes</div>
+            <div class="weekBadge">Start here</div>
+          </div>
+          <div class="weekCard__arrow">→</div>
+        </a>
+
+        <a class="weekCard" href="./lecture2.html">
+          <div class="weekCard__num">02</div>
+          <div class="weekCard__body">
+            <div class="weekCard__title">Lecture 2 — Gradient Descent</div>
+            <div class="weekCard__meta">Arabic summary • Key concepts • Detailed notes</div>
+          </div>
+          <div class="weekCard__arrow">→</div>
+        </a>
+
+        <a class="weekCard" href="./lecture3.html">
+          <div class="weekCard__num">03</div>
+          <div class="weekCard__body">
+            <div class="weekCard__title">Lecture 3 — Loss Functions</div>
+            <div class="weekCard__meta">Arabic summary • Key concepts • Detailed notes</div>
+          </div>
+          <div class="weekCard__arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div>
+        <div class="footer__brand">Polaris Global Institute</div>
+        <div class="footer__tag muted">Structured learning — Arabic + English.</div>
+      </div>
+
+      <div class="footer__links">
+        <a href="../../../index.html" class="link">Home</a>
+        <a href="../week1/week1.html" class="link">Week 1</a>
+      </div>
+
+      <div class="weekFooterMeta">
+        <div class="muted small">© <span id="year"></span> Polaris</div>
+        <div class="muted small">Week 2 • Training Neural Networks</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
