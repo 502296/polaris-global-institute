@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 3 — Loss Functions</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f6f7f9;
+      color:#0b1220;
+    }
+
+    .page{
+      width:min(1300px,92vw);
+      margin:auto;
+      padding:30px 0 60px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      gap:24px;
+    }
+
+    .sidebar{
+      background:#fff;
+      border-radius:20px;
+      padding:18px;
+      box-shadow:0 10px 24px rgba(0,0,0,.08);
+      position:sticky;
+      top:20px;
+      height:fit-content;
+    }
+
+    .sidebar h3{
+      margin-top:0;
+      color:#10243f;
+    }
+
+    .lecture{
+      display:block;
+      padding:14px;
+      margin-bottom:10px;
+      border-radius:12px;
+      background:#10243f;
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      line-height:1.5;
+    }
+
+    .lecture:hover{
+      background:#1a3558;
+    }
+
+    .lecture.active{
+      background:#9FE870;
+      color:#0b1220;
+    }
+
+    .hero{
+      background:#10243f;
+      color:white;
+      padding:28px;
+      border-radius:20px;
+      margin-bottom:20px;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:40px;
+      line-height:1.1;
+    }
+
+    .hero p{
+      line-height:1.8;
+      color:rgba(255,255,255,.9);
+    }
+
+    .heroBtns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .btn-dark{
+      background:rgba(255,255,255,.12);
+      color:white;
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .btn-green{
+      background:#9FE870;
+      color:#0b1220;
+    }
+
+    .video{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      border-radius:18px;
+      overflow:hidden;
+      background:black;
+      margin-bottom:24px;
+      box-shadow:0 10px 20px rgba(0,0,0,.08);
+    }
+
+    .video iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .card{
+      background:white;
+      padding:20px;
+      border-radius:18px;
+      margin-bottom:16px;
+      box-shadow:0 10px 20px rgba(0,0,0,.08);
+    }
+
+    .card h2{
+      margin-top:0;
+      color:#10243f;
+    }
+
+    .card p, .card li{
+      line-height:1.8;
+      color:#5b667a;
+      font-size:17px;
+    }
+
+    .card ul{
+      padding-left:20px;
+    }
+
+    @media (max-width: 980px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero h1{
+        font-size:32px;
+      }
+
+      .card p, .card li{
+        font-size:16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h3>Week 2 Lectures</h3>
+
+      <a class="lecture" href="./lecture1.html">
+        Lecture 1 — Backpropagation
+      </a>
+
+      <a class="lecture" href="./lecture2.html">
+        Lecture 2 — Gradient Descent
+      </a>
+
+      <a class="lecture active" href="./lecture3.html">
+        Lecture 3 — Loss Functions
+      </a>
+    </aside>
+
+    <div>
+
+      <div class="hero">
+        <h1>Lecture 3 — Loss Functions</h1>
+
+        <p>
+          In this lecture we explore loss functions and how they measure
+          the difference between model predictions and the correct answers.
+        </p>
+
+        <div class="heroBtns">
+          <a class="btn btn-dark" href="./week2.html">← Back to Week 2</a>
+          <a class="btn btn-green" href="./lecture2.html">← Back to Lecture 2</a>
+        </div>
+      </div>
+
+      <div class="video">
+        <iframe
+          src="https://player.vimeo.com/video/1173678563"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="card">
+        <h2>Arabic Summary</h2>
+        <p>
+          في هذه المحاضرة نتعرف على دوال الخسارة (Loss Functions)، وهي الأدوات
+          التي تقيس مقدار الفرق بين التوقع الذي ينتجه النموذج والنتيجة الصحيحة.
+          كلما كانت قيمة الخسارة أقل، كان أداء النموذج أفضل.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Key Concepts</h2>
+        <ul>
+          <li>Loss Function</li>
+          <li>Error Measurement</li>
+          <li>Prediction vs Target</li>
+          <li>Optimization Objective</li>
+          <li>Training Signal</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Detailed Notes</h2>
+        <p>
+          A loss function is a mathematical way to measure how wrong a model’s
+          prediction is. It compares the output of the neural network with the
+          true label or target value.
+        </p>
+
+        <p>
+          Different tasks use different loss functions. For example, regression
+          problems often use Mean Squared Error, while classification problems
+          often use Cross-Entropy Loss.
+        </p>
+
+        <p>
+          Loss functions are essential because they provide the signal that tells
+          the model how to improve. During training, the network tries to reduce
+          this loss over many iterations.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
