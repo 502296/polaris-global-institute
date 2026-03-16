@@ -1,217 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lecture 3 — Forward Propagation</title>
 
-<style>
+<title>Polaris – Week 1 Lecture 3</title>
 
-body{
-margin:0;
-font-family:Arial;
-background:#f6f7f9;
-color:#0b1220;
-}
+<link rel="stylesheet" href="course.css">
 
-.page{
-width:min(1300px,92vw);
-margin:auto;
-padding:30px 0 60px;
-}
-
-.layout{
-display:grid;
-grid-template-columns:260px 1fr;
-gap:24px;
-}
-
-.sidebar{
-background:#fff;
-border-radius:20px;
-padding:18px;
-box-shadow:0 10px 24px rgba(0,0,0,.08);
-}
-
-.sidebar h3{
-margin-top:0;
-color:#10243f;
-}
-
-.lecture{
-display:block;
-padding:14px;
-margin-bottom:10px;
-border-radius:12px;
-background:#10243f;
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
-.lecture.active{
-background:#9FE870;
-color:#0b1220;
-}
-
-.hero{
-background:#10243f;
-color:white;
-padding:28px;
-border-radius:20px;
-margin-bottom:20px;
-}
-
-.hero h1{
-margin:0 0 10px;
-font-size:40px;
-}
-
-.video{
-position:relative;
-width:100%;
-padding-top:56.25%;
-border-radius:18px;
-overflow:hidden;
-background:black;
-margin-bottom:24px;
-}
-
-.video iframe{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-border:0;
-}
-
-.card{
-background:white;
-padding:20px;
-border-radius:18px;
-margin-bottom:16px;
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-}
-
-.card h2{
-margin-top:0;
-color:#10243f;
-}
-
-.card p, li{
-line-height:1.8;
-color:#5b667a;
-}
-
-</style>
 </head>
 
 <body>
 
-<div class="page">
+<header>
+Polaris Global Institute  
+Week 1 – Lecture 3
+</header>
 
-<div class="layout">
+<div class="course-container">
 
-<aside class="sidebar">
+<h2>Lecture 3 — Forward Pass and Predictions</h2>
 
-<h3>Week 1 Lectures</h3>
+<!-- VIDEO -->
+<div style="margin-top:30px">
+  <iframe
+    width="100%"
+    height="450"
+    src="https://player.vimeo.com/video/1173678563"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
 
-<a class="lecture" href="./lecture1.html">المحاضرة الأولى — Introduction to Deep Learning</a>
-
-<a class="lecture" href="./lecture2.html">المحاضرة الثانية — Neural Networks Basics</a>
-
-<a class="lecture active" href="./lecture3.html">المحاضرة الثالثة — Forward Propagation</a>
-
-<a class="lecture" href="./lecture4.html">المحاضرة الرابعة</a>
-
-<a class="lecture" href="./lecture5.html">المحاضرة الخامسة</a>
-
-</aside>
-
-<div>
-
-<div class="hero">
-
-<h1>Lecture 3 — Forward Propagation</h1>
+<!-- SUMMARY -->
+<h3 style="margin-top:40px">Lecture Summary | ملخص المحاضرة</h3>
 
 <p>
-In this lecture we explore how information flows through a neural network
-from the input layer to the final prediction.
+In this lecture we study how information moves forward through a neural network.
+This process is called the forward pass. Data enters the input layer, travels
+through hidden layers, and reaches the output layer where the model produces
+a final prediction.
+
+<br><br>
+
+في هذه المحاضرة ندرس كيف تنتقل المعلومات داخل الشبكة العصبية من البداية
+إلى النهاية. هذه العملية تسمى الانتشار الأمامي أو Forward Pass.
+تدخل البيانات من طبقة الإدخال، ثم تمر عبر الطبقات المخفية،
+وفي النهاية تصل إلى طبقة الإخراج حيث ينتج النموذج التنبؤ النهائي.
+
+<br><br>
+
+The forward pass is important because it is the step where the model actually
+computes an answer. Later, during training, this answer is compared with the
+correct answer so the network can improve.
+
+<br><br>
+
+الانتشار الأمامي مهم جداً لأنه المرحلة التي يحسب فيها النموذج الجواب فعلياً.
+بعد ذلك، أثناء التدريب، تتم مقارنة هذا الجواب مع الجواب الصحيح
+حتى تتمكن الشبكة من تحسين نفسها.
 </p>
 
-</div>
+<!-- QUIZ -->
+<h3 style="margin-top:40px">Quiz | اختبار</h3>
 
-<div class="video">
+<form id="quiz-form">
 
-<iframe
-src="https://player.vimeo.com/video/1173674334"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen>
-</iframe>
+  <p>
+    1. What is the forward pass? <br>
+    ما هو الانتشار الأمامي؟
+  </p>
+  <label><input type="radio" name="q1" value="a"> Moving data from input to output</label><br>
+  <label><input type="radio" name="q1" value="b"> Deleting data</label><br>
+  <label><input type="radio" name="q1" value="c"> Saving files only</label>
 
-</div>
+  <p style="margin-top:20px">
+    2. Where does the final prediction come from? <br>
+    من أين يأتي التنبؤ النهائي؟
+  </p>
+  <label><input type="radio" name="q2" value="a"> From the output layer</label><br>
+  <label><input type="radio" name="q2" value="b"> From the keyboard</label><br>
+  <label><input type="radio" name="q2" value="c"> From the browser menu</label>
 
-<div class="card">
+  <p style="margin-top:20px">
+    3. Why is forward pass important? <br>
+    لماذا الانتشار الأمامي مهم؟
+  </p>
+  <label><input type="radio" name="q3" value="a"> It computes the model’s answer</label><br>
+  <label><input type="radio" name="q3" value="b"> It turns off the model</label><br>
+  <label><input type="radio" name="q3" value="c"> It changes the screen color</label>
 
-<h2>Arabic Summary</h2>
+  <br><br>
 
-<p>
-في هذه المحاضرة نتعرف على مفهوم الانتشار الأمامي (Forward Propagation).
-وهو العملية التي تنتقل فيها البيانات من طبقة الإدخال عبر الطبقات المخفية
-حتى تصل إلى طبقة الإخراج لإنتاج التنبؤ النهائي للنموذج.
-</p>
+  <button type="button" onclick="submitQuiz(1,3,['a','a','a'])">
+    Submit Quiz | إرسال الاختبار
+  </button>
 
-</div>
+</form>
 
-<div class="card">
+<div id="quiz-result" style="margin-top:20px"></div>
 
-<h2>Key Concepts</h2>
+<!-- FINISH WEEK -->
+<button
+  id="next-lecture-btn"
+  style="display:none;margin-top:30px"
+  onclick="finishWeek1()">
 
-<ul>
+  Finish Week 1 → Go to Week 2  
+  إنهاء الأسبوع الأول والانتقال إلى الأسبوع الثاني
 
-<li>Forward Propagation</li>
-
-<li>Activation Functions</li>
-
-<li>Weights and Bias</li>
-
-<li>Layer Computation</li>
-
-<li>Prediction Output</li>
-
-</ul>
-
-</div>
-
-<div class="card">
-
-<h2>Detailed Notes</h2>
-
-<p>
-Forward propagation is the process of computing the output of a neural
-network given an input. Data enters the input layer and moves through
-hidden layers where each neuron performs calculations using weights,
-biases, and activation functions.
-</p>
-
-<p>
-Each layer transforms the information into a more meaningful representation.
-The deeper the network, the more complex patterns it can learn from the data.
-</p>
-
-<p>
-The final layer produces the prediction of the model. This prediction will
-later be compared with the correct answer during training so the model
-can improve its weights.
-</p>
+</button>
 
 </div>
 
-</div>
+<script src="quiz.js"></script>
 
-</div>
-
-</div>
+<script>
+function finishWeek1() {
+  const progress = JSON.parse(localStorage.getItem("polaris_progress")) || {};
+  progress.week1Completed = true;
+  localStorage.setItem("polaris_progress", JSON.stringify(progress));
+  window.location.href = "../week2/week2.html";
+}
+</script>
 
 </body>
 </html>
