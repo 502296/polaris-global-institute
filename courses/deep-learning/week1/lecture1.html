@@ -3,64 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lecture 2 — Neural Networks Basics</title>
+  <title>Lecture 2 — Neural Networks Basics | Polaris</title>
 
   <style>
+    :root{
+      --bg:#f6f7f9;
+      --card:#ffffff;
+      --text:#0b1220;
+      --muted:#5b667a;
+      --line:#e4e7eb;
+      --navy:#10243f;
+      --navy-2:#16345b;
+      --green:#9FE870;
+      --green-2:#2fbf71;
+      --shadow:0 10px 26px rgba(12,18,32,.08);
+      --radius:18px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
-      font-family: Arial, sans-serif;
-      background:#f6f7f9;
-      color:#0b1220;
+      font-family:Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    a{
+      color:inherit;
     }
 
     .page{
-      width:min(1320px, 94vw);
+      width:min(1380px, 94vw);
       margin:0 auto;
-      padding:32px 0 60px;
+      padding:24px 0 60px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:var(--navy);
+    }
+
+    .brand-badge{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      background:linear-gradient(180deg, #10243f, #1b3760);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      box-shadow:var(--shadow);
+    }
+
+    .top-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
     .layout{
       display:grid;
-      grid-template-columns:260px minmax(0, 1fr);
+      grid-template-columns:290px minmax(0, 1fr);
       gap:24px;
       align-items:start;
     }
 
     .sidebar{
-      background:#ffffff;
-      border:1px solid #e4e7eb;
-      border-radius:20px;
-      padding:18px;
-      box-shadow:0 10px 26px rgba(12,18,32,.08);
       position:sticky;
-      top:20px;
+      top:16px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
-    .sidebar h3{
-      margin:0 0 14px;
-      font-size:20px;
-      color:#10243f;
+    .side-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .side-title{
+      margin:0 0 12px;
+      font-size:18px;
+      color:var(--navy);
+    }
+
+    .week-list,
+    .lecture-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .week-item,
+    .lecture-item{
+      display:block;
+      text-decoration:none;
+      border-radius:14px;
+      padding:13px 14px;
+      font-weight:700;
+      line-height:1.5;
+      transition:.18s ease;
+    }
+
+    .week-item{
+      background:#eef2f6;
+      color:var(--navy);
+      border:1px solid #dfe5ec;
+    }
+
+    .week-item:hover{
+      background:#e7edf4;
+    }
+
+    .week-item.active{
+      background:linear-gradient(180deg, #10243f, #173357);
+      color:#fff;
+      border-color:transparent;
     }
 
     .lecture-item{
-      display:block;
-      padding:14px 16px;
-      margin-bottom:10px;
-      border-radius:14px;
-      background:#10243f;
+      background:var(--navy);
       color:#fff;
-      text-decoration:none;
-      font-weight:700;
-      line-height:1.5;
     }
 
     .lecture-item:hover{
-      background:#16345b;
+      background:var(--navy-2);
+      transform:translateY(-1px);
     }
 
     .lecture-item.active{
-      background:linear-gradient(180deg, #9FE870, #2fbf71);
+      background:linear-gradient(180deg, var(--green), var(--green-2));
       color:#0b1220;
+    }
+
+    .lecture-note{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:10px;
+      line-height:1.6;
+    }
+
+    .progress-box{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .progress-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .progress-bar{
+      width:100%;
+      height:10px;
+      border-radius:999px;
+      background:#e9edf2;
+      overflow:hidden;
+    }
+
+    .progress-fill{
+      width:66%;
+      height:100%;
+      background:linear-gradient(90deg, var(--green), var(--green-2));
     }
 
     .main{
@@ -68,25 +201,40 @@
     }
 
     .hero{
-      background:#10243f;
-      color:white;
+      background:linear-gradient(135deg, #10243f 0%, #1a2c4f 100%);
+      color:#fff;
       padding:28px;
       border-radius:22px;
-      margin-bottom:24px;
+      margin-bottom:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      font-weight:700;
+      color:rgba(255,255,255,.92);
     }
 
     .hero h1{
       margin:0 0 10px;
-      font-size:46px;
-      line-height:1.08;
+      font-size:42px;
+      line-height:1.12;
     }
 
     .hero p{
       margin:0;
-      line-height:1.8;
-      font-size:18px;
-      color:rgba(255,255,255,.9);
-      max-width:760px;
+      line-height:1.85;
+      font-size:17px;
+      color:rgba(255,255,255,.92);
+      max-width:860px;
     }
 
     .hero-actions{
@@ -97,21 +245,82 @@
     }
 
     .btn{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
       padding:12px 18px;
       border-radius:999px;
       text-decoration:none;
-      font-weight:bold;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      transition:.18s ease;
+      font-size:15px;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
     }
 
     .btn-dark{
       background:rgba(255,255,255,.12);
-      color:white;
+      color:#fff;
       border:1px solid rgba(255,255,255,.18);
     }
 
     .btn-green{
-      background:#9FE870;
+      background:var(--green);
+      color:#0b1220;
+    }
+
+    .btn-light{
+      background:#fff;
+      color:var(--navy);
+      border:1px solid var(--line);
+    }
+
+    .toolbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .toolbar-left,
+    .toolbar-right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--navy);
+      font-size:14px;
+      font-weight:700;
+      box-shadow:var(--shadow);
+      text-decoration:none;
+    }
+
+    .lang-btn{
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--navy);
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(180deg, var(--green), var(--green-2));
+      border-color:transparent;
       color:#0b1220;
     }
 
@@ -122,7 +331,7 @@
       border-radius:18px;
       overflow:hidden;
       background:#000;
-      margin-bottom:24px;
+      margin-bottom:20px;
       box-shadow:0 10px 26px rgba(12,18,32,.10);
     }
 
@@ -135,29 +344,67 @@
     }
 
     .card{
-      background:white;
+      background:#fff;
       border-radius:18px;
-      padding:20px;
+      padding:22px;
       margin-bottom:18px;
-      box-shadow:0 10px 26px rgba(12,18,32,.10);
+      box-shadow:0 10px 26px rgba(12,18,32,.08);
+      border:1px solid #edf0f3;
     }
 
     .card h2{
-      margin-top:0;
-      color:#10243f;
+      margin:0 0 14px;
+      color:var(--navy);
+      font-size:28px;
     }
 
-    .card p, .card li{
-      line-height:1.85;
-      color:#5b667a;
+    .card p,
+    .card li{
+      line-height:1.95;
+      color:var(--muted);
       font-size:17px;
     }
 
     .card ul{
+      margin:0;
       padding-left:20px;
     }
 
-    @media (max-width: 980px){
+    .section-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .notice{
+      background:#f7fbf2;
+      border:1px solid #dcefc8;
+      color:#204116;
+      border-radius:16px;
+      padding:14px 16px;
+      line-height:1.8;
+      font-size:15px;
+      margin-bottom:18px;
+    }
+
+    .bottom-nav{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    @media (max-width: 1100px){
       .layout{
         grid-template-columns:1fr;
       }
@@ -167,18 +414,41 @@
       }
     }
 
-    @media (max-width: 640px){
+    @media (max-width: 700px){
       .page{
-        width:min(94vw, 100%);
-        padding:20px 0 44px;
+        width:min(95vw, 100%);
+        padding:18px 0 40px;
+      }
+
+      .hero{
+        padding:22px;
       }
 
       .hero h1{
-        font-size:34px;
+        font-size:32px;
       }
 
-      .card p, .card li{
+      .card{
+        padding:18px;
+      }
+
+      .card h2{
+        font-size:24px;
+      }
+
+      .card p,
+      .card li{
         font-size:16px;
+      }
+
+      .btn,
+      .pill{
+        width:100%;
+      }
+
+      .toolbar-left,
+      .toolbar-right{
+        width:100%;
       }
     }
   </style>
@@ -186,30 +456,114 @@
 <body>
 
   <div class="page">
+
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-badge">PGI</div>
+        <div>
+          <div>Polaris Global Institute</div>
+          <div class="muted" style="font-size:13px;">Deep Learning Program</div>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <a class="pill" href="./week1.html">← Back to Week 1</a>
+        <a class="pill" href="../index.html">Course Home</a>
+      </div>
+    </div>
+
     <div class="layout">
 
       <aside class="sidebar">
-        <h3>Week 1 Lectures</h3>
 
-        <a class="lecture-item" href="./lecture1.html">المحاضرة الأولى — Introduction to Deep Learning</a>
-        <a class="lecture-item active" href="./lecture2.html">المحاضرة الثانية — Neural Networks Basics</a>
-        <a class="lecture-item" href="./lecture3.html">المحاضرة الثالثة</a>
-        <a class="lecture-item" href="./lecture4.html">المحاضرة الرابعة</a>
-        <a class="lecture-item" href="./lecture5.html">المحاضرة الخامسة</a>
+        <div class="side-card">
+          <h3 class="side-title">Course Weeks</h3>
+
+          <div class="week-list">
+            <a class="week-item active" href="./week1.html">Week 1 — Foundations</a>
+            <a class="week-item" href="../week2/week2.html">Week 2 — Neural Networks</a>
+            <a class="week-item" href="../week3/week3.html">Week 3 — Optimization</a>
+            <a class="week-item" href="../week4/week4.html">Week 4 — Computer Vision</a>
+            <a class="week-item" href="../week5/week5.html">Week 5 — Sequence Models</a>
+          </div>
+
+          <div class="lecture-note">
+            اختر الأسبوع الذي تريد دراسته. إذا لم تكن الصفحات جاهزة بعد، يمكنك لاحقاً جعلها تظهر كـ Coming Soon.
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3 class="side-title">Week 1 Lectures</h3>
+
+          <div class="lecture-list">
+            <a class="lecture-item" href="./lecture1.html">المحاضرة الأولى — Introduction to Deep Learning</a>
+            <a class="lecture-item active" href="./lecture2.html">المحاضرة الثانية — Neural Networks Basics</a>
+            <a class="lecture-item" href="./lecture3.html">المحاضرة الثالثة — Forward Pass and Predictions</a>
+          </div>
+
+          <div class="lecture-note">
+            في هذا الأسبوع توجد 3 محاضرات فقط. تم حذف المحاضرات غير الموجودة حتى لا يتشتت الطالب.
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3 class="side-title">Your Progress</h3>
+
+          <div class="progress-box">
+            <div class="progress-row">
+              <span>Current lesson</span>
+              <strong>Lecture 2</strong>
+            </div>
+
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+
+            <div class="progress-row">
+              <span>Week progress</span>
+              <strong>2 / 3 lectures</strong>
+            </div>
+
+            <button class="btn btn-light" id="resumeBtn" type="button">Continue where you left off</button>
+          </div>
+        </div>
+
       </aside>
 
       <section class="main">
 
         <div class="hero">
+          <div class="eyebrow">Week 1 • Lecture 2 • Beginner Friendly</div>
+
           <h1>Lecture 2 — Neural Networks Basics</h1>
+
           <p>
-            This lecture introduces the basic structure of neural networks and explains how information moves through layers.
+            This lecture explains the basic structure of neural networks, how layers work together,
+            and how information moves from input to output in a simple and intuitive way.
           </p>
 
           <div class="hero-actions">
             <a class="btn btn-dark" href="./week1.html">← Back to Week 1</a>
-            <a class="btn btn-green" href="./lecture1.html">← Back to Lecture 1</a>
+            <a class="btn btn-dark" href="./lecture1.html">← Previous Lecture</a>
+            <a class="btn btn-green" href="./lecture3.html">Next Lecture →</a>
           </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <span class="pill">Last saved automatically</span>
+            <span class="pill" id="lastVisitedText">Tracking your place in this course</span>
+          </div>
+
+          <div class="toolbar-right">
+            <button class="btn lang-btn active" type="button" data-lang="bilingual">Bilingual</button>
+            <button class="btn lang-btn" type="button" data-lang="en">English</button>
+            <button class="btn lang-btn" type="button" data-lang="ar">العربية</button>
+          </div>
+        </div>
+
+        <div class="notice">
+          إذا خرجت من الموقع أو أخذت استراحة، سيحفظ Polaris آخر محاضرة فتحتها لتعود إليها بسهولة لاحقاً.
         </div>
 
         <div class="videoBox">
@@ -220,15 +574,39 @@
           </iframe>
         </div>
 
-        <div class="card">
+        <div class="card" id="arabicSummaryCard">
           <h2>Arabic Summary</h2>
+
           <p>
-            في هذا الدرس نبدأ بفهم البنية الأساسية للشبكات العصبية. سنتعرف على معنى الطبقات، وكيف تنتقل المعلومات داخل النموذج،
-            ولماذا أصبحت الشبكات العصبية من أهم أدوات الذكاء الاصطناعي الحديث.
+            في هذا الدرس نبدأ بفهم الفكرة الأساسية للشبكات العصبية بشكل مبسط وواضح. الفكرة العامة أن النموذج لا يستقبل
+            البيانات ويعطي النتيجة مباشرة، بل تمر المعلومات عبر طبقات متعددة، وكل طبقة تعالج جزءًا معينًا من هذه المعلومات.
+            بهذه الطريقة يستطيع النموذج أن يتعلم الأنماط شيئًا فشيئًا بدلًا من الاعتماد على خطوة واحدة فقط.
           </p>
+
+          <p>
+            سنتعرف هنا على معنى <strong>Input Layer</strong> وهي الطبقة التي تستقبل البيانات الأصلية، ثم <strong>Hidden Layers</strong>
+            وهي الطبقات الداخلية التي تقوم بعمليات المعالجة، وأخيرًا <strong>Output Layer</strong> التي تنتج القرار النهائي أو التوقع.
+            هذا التنظيم هو الذي يجعل الشبكات العصبية قوية وقادرة على التعامل مع مسائل معقدة مثل الصور والصوت والنصوص.
+          </p>
+
+          <p>
+            من المهم أيضًا أن نفهم أن كل اتصال بين خلية وأخرى له قيمة تسمى <strong>Weight</strong>، وقد توجد قيمة إضافية اسمها
+            <strong>Bias</strong>. هاتان القيمتان تؤثران على طريقة انتقال المعلومات داخل النموذج. أثناء التدريب، يقوم النموذج
+            بتعديل هذه القيم مرات كثيرة حتى تصبح النتيجة أدق وأفضل.
+          </p>
+
+          <p>
+            الهدف من هذا الدرس ليس حفظ المصطلحات فقط، بل بناء صورة عقلية واضحة: المعلومات تدخل من البداية، تتحرك بين الطبقات،
+            تتغير أهميتها بحسب الأوزان والانحيازات، ثم تصل في النهاية إلى نتيجة. عندما يفهم الطالب هذا المسار، يصبح فهم
+            الدروس القادمة أسهل بكثير، خصوصًا موضوع التنبؤ، التدريب، والخطأ.
+          </p>
+
+          <div class="section-actions">
+            <button class="btn btn-light translate-btn" type="button">Translate / ترجمة</button>
+          </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="keyConceptsCard">
           <h2>Key Concepts</h2>
           <ul>
             <li>Input Layer</li>
@@ -238,23 +616,160 @@
             <li>Weights and Biases</li>
             <li>Information Flow</li>
           </ul>
+
+          <div class="section-actions">
+            <button class="btn btn-light translate-btn" type="button">Translate / ترجمة</button>
+          </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="detailedNotesCard">
           <h2>Detailed Notes</h2>
-          <p>
-            A neural network is a computational structure made of connected units called neurons. These neurons are organized in layers.
-            The input layer receives raw data, hidden layers process that data, and the output layer produces the final prediction or result.
-          </p>
-          <p>
-            Each connection in the network has a weight, and each neuron may also have a bias. Together, these values determine how strongly
-            information moves from one layer to another. During training, the model adjusts these values to improve performance.
-          </p>
+
+          <div class="lang-block lang-en">
+            <p>
+              A neural network is a computational model made of connected units called neurons. These neurons are arranged
+              into layers. The input layer receives raw data, the hidden layers process and transform that data, and the
+              output layer produces the final prediction or result.
+            </p>
+
+            <p>
+              Each connection between neurons has a weight, and each neuron may also include a bias. These values determine
+              how strongly information moves from one layer to another. During training, the network updates these values
+              to reduce error and improve performance over time.
+            </p>
+
+            <p>
+              You can think of the network as a system that gradually refines information. Instead of solving the problem
+              all at once, it processes the data step by step through multiple layers until a meaningful output is produced.
+            </p>
+          </div>
+
+          <div class="lang-block lang-ar">
+            <p>
+              الشبكة العصبية هي نموذج حسابي يتكون من وحدات مترابطة تُسمى الخلايا العصبية أو <strong>neurons</strong>.
+              يتم تنظيم هذه الخلايا داخل طبقات. تستقبل طبقة الإدخال البيانات الأولية، ثم تقوم الطبقات المخفية بمعالجة هذه البيانات،
+              وفي النهاية تعطي طبقة الإخراج النتيجة أو التوقع النهائي.
+            </p>
+
+            <p>
+              لكل اتصال بين الخلايا قيمة تُسمى <strong>weight</strong>، وقد تحتوي الخلية نفسها على قيمة إضافية تُسمى
+              <strong>bias</strong>. هذه القيم تحدد مدى تأثير الإشارة وانتقالها من طبقة إلى أخرى. أثناء التدريب، يتم تعديل
+              هذه القيم تدريجيًا لكي يصبح أداء النموذج أفضل وتقل الأخطاء.
+            </p>
+
+            <p>
+              يمكن تخيل الشبكة العصبية على أنها نظام يعالج البيانات خطوة خطوة. بدلاً من الوصول إلى الإجابة مباشرة، تمر
+              المعلومات بعدة مراحل من التحليل الداخلي حتى نحصل في النهاية على نتيجة مفهومة ودقيقة نسبيًا.
+            </p>
+          </div>
+
+          <div class="section-actions">
+            <button class="btn btn-light translate-btn" type="button">Translate / ترجمة</button>
+          </div>
+        </div>
+
+        <div class="bottom-nav">
+          <a class="btn btn-light" href="./lecture1.html">← Previous Lecture</a>
+          <a class="btn btn-green" href="./lecture3.html">Next Lecture →</a>
         </div>
 
       </section>
     </div>
   </div>
+
+  <script>
+    (function () {
+      const courseState = {
+        course: "deep-learning",
+        week: 1,
+        lecture: 2,
+        title: "Lecture 2 — Neural Networks Basics",
+        path: "./lecture2.html",
+        updatedAt: new Date().toISOString()
+      };
+
+      localStorage.setItem("polaris_last_visited", JSON.stringify(courseState));
+
+      const resumeBtn = document.getElementById("resumeBtn");
+      const lastVisitedText = document.getElementById("lastVisitedText");
+
+      const saved = localStorage.getItem("polaris_last_visited");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.title) {
+            lastVisitedText.textContent = "Last lesson: " + parsed.title;
+          }
+        } catch (e) {}
+      }
+
+      if (resumeBtn) {
+        resumeBtn.addEventListener("click", function () {
+          const savedResume = localStorage.getItem("polaris_last_visited");
+          if (!savedResume) return;
+
+          try {
+            const parsed = JSON.parse(savedResume);
+            if (parsed && parsed.path) {
+              window.location.href = parsed.path;
+            }
+          } catch (e) {}
+        });
+      }
+
+      const langButtons = document.querySelectorAll(".lang-btn");
+      const arabicSummaryCard = document.getElementById("arabicSummaryCard");
+      const keyConceptsCard = document.getElementById("keyConceptsCard");
+      const detailedNotesCard = document.getElementById("detailedNotesCard");
+
+      function setLanguage(mode) {
+        langButtons.forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.lang === mode);
+        });
+
+        const enBlocks = document.querySelectorAll(".lang-en");
+        const arBlocks = document.querySelectorAll(".lang-ar");
+
+        if (mode === "en") {
+          arabicSummaryCard.classList.add("hidden");
+          enBlocks.forEach(el => el.classList.remove("hidden"));
+          arBlocks.forEach(el => el.classList.add("hidden"));
+        } else if (mode === "ar") {
+          arabicSummaryCard.classList.remove("hidden");
+          enBlocks.forEach(el => el.classList.add("hidden"));
+          arBlocks.forEach(el => el.classList.remove("hidden"));
+        } else {
+          arabicSummaryCard.classList.remove("hidden");
+          enBlocks.forEach(el => el.classList.remove("hidden"));
+          arBlocks.forEach(el => el.classList.remove("hidden"));
+        }
+      }
+
+      langButtons.forEach(btn => {
+        btn.addEventListener("click", function () {
+          setLanguage(this.dataset.lang);
+          localStorage.setItem("polaris_language_mode", this.dataset.lang);
+        });
+      });
+
+      const savedMode = localStorage.getItem("polaris_language_mode") || "bilingual";
+      setLanguage(savedMode);
+
+      const translateButtons = document.querySelectorAll(".translate-btn");
+      translateButtons.forEach(btn => {
+        btn.addEventListener("click", function () {
+          const currentMode = localStorage.getItem("polaris_language_mode") || "bilingual";
+          const nextMode =
+            currentMode === "bilingual" ? "ar" :
+            currentMode === "ar" ? "en" : "bilingual";
+
+          localStorage.setItem("polaris_language_mode", nextMode);
+          setLanguage(nextMode);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
