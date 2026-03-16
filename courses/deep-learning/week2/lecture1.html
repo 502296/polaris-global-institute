@@ -1,217 +1,521 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lecture 1 — Backpropagation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecture 1 — Backpropagation | Polaris</title>
 
-<style>
+  <style>
+    :root{
+      --bg:#f6f7f9;
+      --card:#ffffff;
+      --text:#0b1220;
+      --muted:#5b667a;
+      --line:#e4e7eb;
+      --navy:#10243f;
+      --green:#9FE870;
+      --green-2:#2fbf71;
+      --shadow:0 10px 26px rgba(12,18,32,.08);
+    }
 
-body{
-margin:0;
-font-family:Arial;
-background:#f6f7f9;
-color:#0b1220;
-}
+    *{ box-sizing:border-box; }
 
-.page{
-width:min(1300px,92vw);
-margin:auto;
-padding:30px 0 60px;
-}
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
 
-.layout{
-display:grid;
-grid-template-columns:260px 1fr;
-gap:24px;
-}
+    .page{
+      width:min(1380px, 94vw);
+      margin:0 auto;
+      padding:24px 0 56px;
+    }
 
-.sidebar{
-background:#fff;
-border-radius:20px;
-padding:18px;
-box-shadow:0 10px 24px rgba(0,0,0,.08);
-}
+    .layout{
+      display:grid;
+      grid-template-columns:280px minmax(0, 1fr);
+      gap:22px;
+      align-items:start;
+    }
 
-.sidebar h3{
-margin-top:0;
-color:#10243f;
-}
+    .sidebar{
+      position:sticky;
+      top:16px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
 
-.lecture{
-display:block;
-padding:14px;
-margin-bottom:10px;
-border-radius:12px;
-background:#10243f;
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
+    .side-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
 
-.lecture.active{
-background:#9FE870;
-color:#0b1220;
-}
+    .side-title{
+      margin:0 0 12px;
+      color:var(--navy);
+      font-size:18px;
+    }
 
-.hero{
-background:#10243f;
-color:white;
-padding:28px;
-border-radius:20px;
-margin-bottom:20px;
-}
+    .side-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
 
-.hero h1{
-margin:0 0 10px;
-font-size:40px;
-}
+    .side-link{
+      display:block;
+      text-decoration:none;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      line-height:1.5;
+      background:#eef2f6;
+      color:var(--navy);
+      border:1px solid #dfe6ed;
+    }
 
-.video{
-position:relative;
-width:100%;
-padding-top:56.25%;
-border-radius:18px;
-overflow:hidden;
-background:black;
-margin-bottom:24px;
-}
+    .side-link.active{
+      background:linear-gradient(180deg, var(--green), var(--green-2));
+      color:#0b1220;
+      border-color:transparent;
+    }
 
-.video iframe{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-border:0;
-}
+    .hero{
+      background:linear-gradient(135deg, #10243f, #1b3154);
+      color:#fff;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
 
-.card{
-background:white;
-padding:20px;
-border-radius:18px;
-margin-bottom:16px;
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-}
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      margin-bottom:14px;
+    }
 
-.card h2{
-margin-top:0;
-color:#10243f;
-}
+    .hero h1{
+      margin:0 0 10px;
+      font-size:42px;
+      line-height:1.1;
+    }
 
-.card p, li{
-line-height:1.8;
-color:#5b667a;
-}
+    .hero p{
+      margin:0;
+      line-height:1.85;
+      color:rgba(255,255,255,.92);
+      font-size:17px;
+      max-width:820px;
+    }
 
-</style>
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:11px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--navy);
+      cursor:pointer;
+    }
+
+    .btn-dark{
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .btn-primary{
+      background:linear-gradient(180deg, var(--green), var(--green-2));
+      border-color:transparent;
+      color:#0b1220;
+    }
+
+    .toolbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .lang-group{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(180deg, var(--green), var(--green-2));
+      border-color:transparent;
+      color:#0b1220;
+    }
+
+    .video{
+      position:relative;
+      padding-top:56.25%;
+      border-radius:18px;
+      overflow:hidden;
+      background:#000;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+
+    .video iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      margin-bottom:16px;
+    }
+
+    .card h2{
+      margin:0 0 12px;
+      color:var(--navy);
+      font-size:28px;
+    }
+
+    .card p, .card li, .card label{
+      color:var(--muted);
+      line-height:1.9;
+      font-size:16px;
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:20px;
+    }
+
+    .quiz-question{
+      margin-bottom:18px;
+      padding-bottom:18px;
+      border-bottom:1px solid #edf1f4;
+    }
+
+    .quiz-question:last-child{
+      border-bottom:0;
+      padding-bottom:0;
+    }
+
+    .quiz-question h3{
+      margin:0 0 10px;
+      font-size:18px;
+      color:var(--navy);
+    }
+
+    .quiz-options{
+      display:grid;
+      gap:10px;
+    }
+
+    .quiz-result{
+      margin-top:16px;
+      font-weight:700;
+      color:var(--navy);
+    }
+
+    .locked-note{
+      background:#fff8e8;
+      border:1px solid #f2dfb0;
+      color:#6a5621;
+      border-radius:16px;
+      padding:14px 16px;
+      line-height:1.8;
+      margin-top:14px;
+    }
+
+    .complete-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:16px;
+    }
+
+    .hidden{ display:none !important; }
+
+    @media (max-width: 1050px){
+      .layout{ grid-template-columns:1fr; }
+      .sidebar{ position:static; }
+    }
+
+    @media (max-width: 720px){
+      .hero h1{ font-size:32px; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <div class="layout">
 
-<div class="page">
+      <aside class="sidebar">
 
-<div class="layout">
+        <div class="side-card">
+          <h3 class="side-title">Course Weeks</h3>
+          <div class="side-list">
+            <a class="side-link" href="../week1/week1.html">Week 1 — Foundations</a>
+            <a class="side-link active" href="./week2.html">Week 2 — Training Neural Networks</a>
+            <a class="side-link" href="../week3/week3.html">Week 3 — Optimization</a>
+            <a class="side-link" href="../week4/week4.html">Week 4 — Computer Vision</a>
+            <a class="side-link" href="../week5/week5.html">Week 5 — Sequence Models</a>
+          </div>
+        </div>
 
-<aside class="sidebar">
+        <div class="side-card">
+          <h3 class="side-title">Week 2 Lectures</h3>
+          <div class="side-list">
+            <a class="side-link active" href="./lecture1.html">Lecture 1 — Backpropagation</a>
+            <a class="side-link" href="./lecture2.html">Lecture 2 — Gradient Descent</a>
+            <a class="side-link" href="./lecture3.html">Lecture 3 — Loss Functions</a>
+          </div>
+        </div>
 
-<h3>Week 2 Lectures</h3>
+      </aside>
 
-<a class="lecture active" href="./lecture1.html">
-Lecture 1 — Backpropagation
-</a>
+      <main>
+        <section class="hero">
+          <div class="hero-badge">Week 2 • Lecture 1</div>
+          <h1>Lecture 1 — Backpropagation</h1>
+          <p>
+            In this lecture we study how neural networks learn from their errors using the backpropagation algorithm.
+          </p>
 
-<a class="lecture" href="./lecture2.html">
-Lecture 2 — Gradient Descent
-</a>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="./week2.html">← Back to Week 2</a>
+            <a class="btn btn-dark" href="../week1/week1.html">← Back to Week 1</a>
+            <button class="btn btn-primary hidden" id="nextTopBtn" type="button">Next Lecture →</button>
+          </div>
+        </section>
 
-<a class="lecture" href="./lecture3.html">
-Lecture 3 — Loss Functions
-</a>
+        <div class="toolbar">
+          <div class="lang-group">
+            <button class="btn lang-btn active" data-lang="bi" type="button">Bilingual</button>
+            <button class="btn lang-btn" data-lang="en" type="button">English</button>
+            <button class="btn lang-btn" data-lang="ar" type="button">العربية</button>
+          </div>
+          <div style="color:#5b667a;font-weight:700;">Quiz / امتحان نهاية الدرس</div>
+        </div>
 
-</aside>
+        <div class="video">
+          <iframe
+            src="https://player.vimeo.com/video/1173676984"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
 
-<div>
+        <section class="card ar">
+          <h2>Arabic Summary</h2>
+          <p>
+            في هذه المحاضرة نتعرف على خوارزمية الانتشار العكسي (Backpropagation). بعد أن ينتج النموذج تنبؤًا، يتم حساب الخطأ بين التنبؤ والنتيجة الصحيحة، ثم يُعاد هذا الخطأ إلى الخلف عبر طبقات الشبكة.
+          </p>
+          <p>
+            الهدف من هذه العملية هو معرفة مدى مساهمة كل وزن في الخطأ النهائي، ومن ثم تعديل الأوزان بشكل يساعد الشبكة على التعلم والتحسن مع الوقت.
+          </p>
+          <p>
+            هذه المحاضرة أساسية جدًا لأنها تشرح كيف تتعلم الشبكات العصبية فعليًا، وليس فقط كيف تعطي تنبؤات.
+          </p>
+        </section>
 
-<div class="hero">
+        <section class="card en">
+          <h2>English Notes</h2>
+          <p>
+            Backpropagation is the algorithm used to train neural networks. After the model makes a prediction, the error is calculated and propagated backward through the network.
+          </p>
+          <p>
+            This allows the model to determine how much each weight contributed to the error. Then the weights are adjusted to reduce future error.
+          </p>
+          <p>
+            Backpropagation is one of the most important ideas in deep learning because it gives the network a way to improve step by step.
+          </p>
+        </section>
 
-<h1>Lecture 1 — Backpropagation</h1>
+        <section class="card">
+          <h2>Key Concepts</h2>
+          <ul>
+            <li>Backpropagation</li>
+            <li>Loss Function</li>
+            <li>Gradient</li>
+            <li>Weight Update</li>
+            <li>Training Neural Networks</li>
+          </ul>
+        </section>
 
-<p>
-In this lecture we study how neural networks learn from their errors
-using the backpropagation algorithm.
-</p>
+        <section class="card">
+          <h2>Quiz / امتحان نهاية الدرس</h2>
 
-</div>
+          <div class="quiz-question">
+            <h3>1) What is backpropagation used for? / ما استخدام خوارزمية الانتشار العكسي؟</h3>
+            <div class="quiz-options">
+              <label><input type="radio" name="q1" value="a"> Training neural networks / تدريب الشبكات العصبية</label>
+              <label><input type="radio" name="q1" value="b"> Turning off computers / إطفاء الحاسوب</label>
+              <label><input type="radio" name="q1" value="c"> Deleting data / حذف البيانات</label>
+            </div>
+          </div>
 
-<div class="video">
+          <div class="quiz-question">
+            <h3>2) What moves backward during backpropagation? / ما الذي يعود إلى الخلف أثناء الانتشار العكسي؟</h3>
+            <div class="quiz-options">
+              <label><input type="radio" name="q2" value="a"> Error signal / إشارة الخطأ</label>
+              <label><input type="radio" name="q2" value="b"> Screen color / لون الشاشة</label>
+              <label><input type="radio" name="q2" value="c"> Keyboard input / إدخال لوحة المفاتيح</label>
+            </div>
+          </div>
 
-<iframe
-src="https://player.vimeo.com/video/1173676984"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen>
-</iframe>
+          <div class="quiz-question">
+            <h3>3) Why are weights adjusted? / لماذا يتم تعديل الأوزان؟</h3>
+            <div class="quiz-options">
+              <label><input type="radio" name="q3" value="a"> To reduce error / لتقليل الخطأ</label>
+              <label><input type="radio" name="q3" value="b"> To change the video / لتغيير الفيديو</label>
+              <label><input type="radio" name="q3" value="c"> To close the browser / لإغلاق المتصفح</label>
+            </div>
+          </div>
 
-</div>
+          <div class="complete-row">
+            <button class="btn btn-primary" id="submitQuizBtn" type="button">Submit Quiz</button>
+            <button class="btn hidden" id="nextBtn" type="button">Unlock Lecture 2 →</button>
+          </div>
 
-<div class="card">
+          <div class="quiz-result" id="quizResult"></div>
+          <div class="locked-note" id="lockedNote">
+            You must complete the quiz first before opening Lecture 2.  
+            يجب إنهاء الامتحان أولًا قبل فتح المحاضرة الثانية.
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
 
-<h2>Arabic Summary</h2>
+  <script>
+    const lectureId = 1;
+    const nextLecture = "./lecture2.html";
+    localStorage.setItem("polaris_last_lecture", "./lecture1.html");
 
-<p>
-في هذه المحاضرة نتعرف على خوارزمية الانتشار العكسي (Backpropagation).
-بعد أن يقوم النموذج بإنتاج توقع، يتم حساب الخطأ بين التوقع والنتيجة الصحيحة،
-ثم يتم نشر هذا الخطأ عكسياً عبر طبقات الشبكة من أجل تعديل الأوزان وتحسين الأداء.
-</p>
+    function getCompleted() {
+      try {
+        return JSON.parse(localStorage.getItem("polaris_week2_completed")) || [];
+      } catch (e) {
+        return [];
+      }
+    }
 
-</div>
+    function saveCompleted(list){
+      localStorage.setItem("polaris_week2_completed", JSON.stringify(list));
+    }
 
-<div class="card">
+    function setLanguage(mode){
+      const ar = document.querySelectorAll(".ar");
+      const en = document.querySelectorAll(".en");
 
-<h2>Key Concepts</h2>
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === mode);
+      });
 
-<ul>
+      if(mode === "ar"){
+        ar.forEach(el => el.classList.remove("hidden"));
+        en.forEach(el => el.classList.add("hidden"));
+      } else if(mode === "en"){
+        ar.forEach(el => el.classList.add("hidden"));
+        en.forEach(el => el.classList.remove("hidden"));
+      } else {
+        ar.forEach(el => el.classList.remove("hidden"));
+        en.forEach(el => el.classList.remove("hidden"));
+      }
 
-<li>Backpropagation</li>
+      localStorage.setItem("polaris_lang_mode", mode);
+    }
 
-<li>Loss Function</li>
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
 
-<li>Gradient</li>
+    setLanguage(localStorage.getItem("polaris_lang_mode") || "bi");
 
-<li>Weight Update</li>
+    function unlockNext(){
+      document.getElementById("nextBtn").classList.remove("hidden");
+      document.getElementById("nextTopBtn").classList.remove("hidden");
+      document.getElementById("lockedNote").classList.add("hidden");
+    }
 
-<li>Training Neural Networks</li>
+    function markCompleted(){
+      const completed = getCompleted();
+      if(!completed.includes(lectureId)){
+        completed.push(lectureId);
+        saveCompleted(completed);
+      }
+      unlockNext();
+    }
 
-</ul>
+    if(getCompleted().includes(lectureId)){
+      unlockNext();
+    }
 
-</div>
+    function goNext(){
+      window.location.href = nextLecture;
+    }
 
-<div class="card">
+    document.getElementById("nextBtn").addEventListener("click", goNext);
+    document.getElementById("nextTopBtn").addEventListener("click", goNext);
 
-<h2>Detailed Notes</h2>
+    document.getElementById("submitQuizBtn").addEventListener("click", function(){
+      const answers = {
+        q1: "a",
+        q2: "a",
+        q3: "a"
+      };
 
-<p>
-Backpropagation is the algorithm used to train neural networks.
-It calculates how much each weight contributes to the final error
-and then adjusts these weights to reduce that error.
-</p>
+      let score = 0;
+      let total = Object.keys(answers).length;
 
-<p>
-The process works by propagating the error backward from the output layer
-to the earlier layers using derivatives and the chain rule of calculus.
-</p>
+      for (const key in answers) {
+        const checked = document.querySelector(`input[name="${key}"]:checked`);
+        if (checked && checked.value === answers[key]) score++;
+      }
 
-<p>
-Once gradients are computed, optimization algorithms such as gradient
-descent update the weights to improve the network’s predictions.
-</p>
+      const result = document.getElementById("quizResult");
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+      if (score === total) {
+        result.textContent = "Excellent — quiz completed successfully. الامتحان مكتمل بنجاح.";
+        markCompleted();
+      } else {
+        result.textContent = `You scored ${score}/${total}. Please review and try again. نتيجتك ${score}/${total}، حاول مرة أخرى.`;
+      }
+    });
+  </script>
 </body>
 </html>
