@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lecture 2 — Gradient Descent | Polaris</title>
+  <title>Lecture 1 — Backpropagation | Polaris</title>
 
   <style>
     :root{
@@ -299,8 +299,8 @@
         <div class="side-card">
           <h3 class="side-title">Week 2 Lectures</h3>
           <div class="side-list">
-            <a class="side-link" href="./lecture1.html">Lecture 1 — Backpropagation</a>
-            <a class="side-link active" href="./lecture2.html">Lecture 2 — Gradient Descent</a>
+            <a class="side-link active" href="./lecture1.html">Lecture 1 — Backpropagation</a>
+            <a class="side-link" href="./lecture2.html">Lecture 2 — Gradient Descent</a>
             <a class="side-link" href="./lecture3.html">Lecture 3 — Loss Functions</a>
           </div>
         </div>
@@ -309,15 +309,15 @@
 
       <main>
         <section class="hero">
-          <div class="hero-badge">Week 2 • Lecture 2</div>
-          <h1>Lecture 2 — Gradient Descent</h1>
+          <div class="hero-badge">Week 2 • Lecture 1</div>
+          <h1>Lecture 1 — Backpropagation</h1>
           <p>
-            In this lecture we explore gradient descent, the optimization method used to update model parameters and reduce prediction error over time.
+            In this lecture we study how neural networks learn from their errors using the backpropagation algorithm.
           </p>
 
           <div class="hero-actions">
             <a class="btn btn-dark" href="./week2.html">← Back to Week 2</a>
-            <a class="btn btn-dark" href="./lecture1.html">← Previous Lecture</a>
+            <a class="btn btn-dark" href="../week1/week1.html">← Back to Week 1</a>
             <button class="btn btn-primary hidden" id="nextTopBtn" type="button">Next Lecture →</button>
           </div>
         </section>
@@ -333,7 +333,7 @@
 
         <div class="video">
           <iframe
-            src="https://player.vimeo.com/video/1173677836"
+            src="https://player.vimeo.com/video/1173676984"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
@@ -342,37 +342,37 @@
         <section class="card ar">
           <h2>Arabic Summary</h2>
           <p>
-            في هذه المحاضرة نتعرف على خوارزمية الانحدار التدريجي (Gradient Descent)، وهي الطريقة التي يستخدمها النموذج لتعديل الأوزان تدريجيًا من أجل تقليل الخطأ.
+            في هذه المحاضرة نتعرف على خوارزمية الانتشار العكسي (Backpropagation). بعد أن ينتج النموذج تنبؤًا، يتم حساب الخطأ بين التنبؤ والنتيجة الصحيحة، ثم يُعاد هذا الخطأ إلى الخلف عبر طبقات الشبكة.
           </p>
           <p>
-            في كل خطوة من خطوات التدريب، ينظر النموذج إلى اتجاه الخطأ، ثم يتحرك في الاتجاه المعاكس له لكي يصل إلى قيمة خسارة أقل. بهذه الطريقة تتحسن التوقعات شيئًا فشيئًا.
+            الهدف من هذه العملية هو معرفة مدى مساهمة كل وزن في الخطأ النهائي، ومن ثم تعديل الأوزان بشكل يساعد الشبكة على التعلم والتحسن مع الوقت.
           </p>
           <p>
-            من أهم عناصر هذه الخوارزمية قيمة تُسمى معدل التعلم (Learning Rate)، وهي التي تحدد حجم الخطوة التي يتحركها النموذج في كل تحديث.
+            هذه المحاضرة أساسية جدًا لأنها تشرح كيف تتعلم الشبكات العصبية فعليًا، وليس فقط كيف تعطي تنبؤات.
           </p>
         </section>
 
         <section class="card en">
           <h2>English Notes</h2>
           <p>
-            Gradient descent is an optimization algorithm used to minimize the loss of a neural network. After gradients are computed, the model updates its weights in the opposite direction of the gradient.
+            Backpropagation is the algorithm used to train neural networks. After the model makes a prediction, the error is calculated and propagated backward through the network.
           </p>
           <p>
-            The size of each update is controlled by the learning rate. If the learning rate is too large, the model may overshoot the best solution. If it is too small, learning becomes slow.
+            This allows the model to determine how much each weight contributed to the error. Then the weights are adjusted to reduce future error.
           </p>
           <p>
-            This method is central to deep learning because it allows the network to improve step by step across many iterations.
+            Backpropagation is one of the most important ideas in deep learning because it gives the network a way to improve step by step.
           </p>
         </section>
 
         <section class="card">
           <h2>Key Concepts</h2>
           <ul>
-            <li>Gradient Descent</li>
-            <li>Learning Rate</li>
+            <li>Backpropagation</li>
+            <li>Loss Function</li>
+            <li>Gradient</li>
             <li>Weight Update</li>
-            <li>Optimization</li>
-            <li>Error Reduction</li>
+            <li>Training Neural Networks</li>
           </ul>
         </section>
 
@@ -380,41 +380,41 @@
           <h2>Quiz / امتحان نهاية الدرس</h2>
 
           <div class="quiz-question">
-            <h3>1) What does gradient descent do? / ماذا تفعل خوارزمية الانحدار التدريجي؟</h3>
+            <h3>1) What is backpropagation used for? / ما استخدام خوارزمية الانتشار العكسي؟</h3>
             <div class="quiz-options">
-              <label><input type="radio" name="q1" value="a"> Updates weights to reduce error / تعدّل الأوزان لتقليل الخطأ</label>
-              <label><input type="radio" name="q1" value="b"> Deletes the network / تحذف الشبكة</label>
-              <label><input type="radio" name="q1" value="c"> Changes screen brightness / تغيّر سطوع الشاشة</label>
+              <label><input type="radio" name="q1" value="a"> Training neural networks / تدريب الشبكات العصبية</label>
+              <label><input type="radio" name="q1" value="b"> Turning off computers / إطفاء الحاسوب</label>
+              <label><input type="radio" name="q1" value="c"> Deleting data / حذف البيانات</label>
             </div>
           </div>
 
           <div class="quiz-question">
-            <h3>2) What controls the size of each update? / ما الذي يتحكم بحجم كل تحديث؟</h3>
+            <h3>2) What moves backward during backpropagation? / ما الذي يعود إلى الخلف أثناء الانتشار العكسي؟</h3>
             <div class="quiz-options">
-              <label><input type="radio" name="q2" value="a"> Learning Rate / معدل التعلم</label>
-              <label><input type="radio" name="q2" value="b"> Keyboard speed / سرعة لوحة المفاتيح</label>
-              <label><input type="radio" name="q2" value="c"> Browser tab / تبويب المتصفح</label>
+              <label><input type="radio" name="q2" value="a"> Error signal / إشارة الخطأ</label>
+              <label><input type="radio" name="q2" value="b"> Screen color / لون الشاشة</label>
+              <label><input type="radio" name="q2" value="c"> Keyboard input / إدخال لوحة المفاتيح</label>
             </div>
           </div>
 
           <div class="quiz-question">
-            <h3>3) Why is gradient descent important? / لماذا الانحدار التدريجي مهم؟</h3>
+            <h3>3) Why are weights adjusted? / لماذا يتم تعديل الأوزان؟</h3>
             <div class="quiz-options">
-              <label><input type="radio" name="q3" value="a"> It helps the model improve step by step / يساعد النموذج على التحسن خطوة بخطوة</label>
-              <label><input type="radio" name="q3" value="b"> It prints documents / يطبع المستندات</label>
-              <label><input type="radio" name="q3" value="c"> It closes the lesson / يغلق الدرس</label>
+              <label><input type="radio" name="q3" value="a"> To reduce error / لتقليل الخطأ</label>
+              <label><input type="radio" name="q3" value="b"> To change the video / لتغيير الفيديو</label>
+              <label><input type="radio" name="q3" value="c"> To close the browser / لإغلاق المتصفح</label>
             </div>
           </div>
 
           <div class="complete-row">
             <button class="btn btn-primary" id="submitQuizBtn" type="button">Submit Quiz</button>
-            <button class="btn hidden" id="nextBtn" type="button">Unlock Lecture 3 →</button>
+            <button class="btn hidden" id="nextBtn" type="button">Unlock Lecture 2 →</button>
           </div>
 
           <div class="quiz-result" id="quizResult"></div>
           <div class="locked-note" id="lockedNote">
-            You must complete the quiz first before opening Lecture 3.  
-            يجب إنهاء الامتحان أولًا قبل فتح المحاضرة الثالثة.
+            You must complete the quiz first before opening Lecture 2.  
+            يجب إنهاء الامتحان أولًا قبل فتح المحاضرة الثانية.
           </div>
         </section>
       </main>
@@ -422,10 +422,9 @@
   </div>
 
   <script>
-    const lectureId = 2;
-    const previousRequired = 1;
-    const nextLecture = "./lecture3.html";
-    localStorage.setItem("polaris_last_lecture", "./lecture2.html");
+    const lectureId = 1;
+    const nextLecture = "./lecture2.html";
+    localStorage.setItem("polaris_last_lecture", "./lecture1.html");
 
     function getCompleted() {
       try {
@@ -437,12 +436,6 @@
 
     function saveCompleted(list){
       localStorage.setItem("polaris_week2_completed", JSON.stringify(list));
-    }
-
-    const completedNow = getCompleted();
-    if (!completedNow.includes(previousRequired)) {
-      alert("Please complete Lecture 1 quiz first. يرجى إكمال امتحان المحاضرة الأولى أولاً.");
-      window.location.href = "./lecture1.html";
     }
 
     function setLanguage(mode){
