@@ -1,0 +1,106 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:white;
+    margin:0;
+    padding:0;
+}
+
+/* HEADER */
+
+header{
+    background:#020617;
+    padding:20px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    border-bottom:1px solid #1e293b;
+}
+
+/* COURSE CONTAINER */
+
+.course-container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* WEEK TITLE */
+
+.week-title{
+    font-size:24px;
+    font-weight:bold;
+    margin-top:40px;
+    margin-bottom:20px;
+    border-left:4px solid #38bdf8;
+    padding-left:12px;
+}
+
+/* LECTURE ROW */
+
+.lecture{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 18px;
+    border-bottom:1px solid #1e293b;
+}
+
+.lecture-number{
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+.lecture-title{
+    flex:1;
+    margin-left:15px;
+}
+
+.lecture-actions{
+    display:flex;
+    gap:10px;
+}
+
+/* BUTTONS */
+
+button{
+    background:#1e293b;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+button:hover{
+    background:#38bdf8;
+    color:black;
+}
+
+/* QUIZ BUTTON */
+
+.quiz-btn{
+    background:#22c55e;
+}
+
+.quiz-btn:hover{
+    background:#4ade80;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:600px){
+
+    .lecture{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .lecture-actions{
+        width:100%;
+        justify-content:flex-start;
+    }
+
+}
