@@ -3,160 +3,312 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Week 1 — Deep Learning</title>
+  <title>Week 1 — Foundations | Polaris Global Institute</title>
 
   <link rel="stylesheet" href="../../../styles.css" />
 
   <style>
     .weekHeroCard{
-      margin-top: 18px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.84);
-      border: 1px solid rgba(11,18,32,.08);
-      box-shadow: 0 10px 20px rgba(12,18,32,.05);
-      color: rgba(11,18,32,.72);
-      font-size: 14px;
-      line-height: 1.5;
+      margin-top:18px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.84);
+      border:1px solid rgba(11,18,32,.08);
+      box-shadow:0 10px 20px rgba(12,18,32,.05);
+      color:rgba(11,18,32,.72);
+      font-size:14px;
+      line-height:1.5;
     }
 
     .weekStats{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
     }
 
     .weekStat{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.84);
-      border: 1px solid rgba(11,18,32,.09);
-      box-shadow: 0 8px 18px rgba(12,18,32,.04);
-      color: rgba(11,18,32,.80);
-      font-size: 13.5px;
-      font-weight: 700;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.84);
+      border:1px solid rgba(11,18,32,.09);
+      box-shadow:0 8px 18px rgba(12,18,32,.04);
+      color:rgba(11,18,32,.80);
+      font-size:13.5px;
+      font-weight:700;
     }
 
     .weekSectionTop{
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
     }
 
     .weekMiniNote{
-      margin-top: 10px;
-      color: rgba(11,18,32,.58);
-      font-size: 14px;
-      line-height: 1.7;
-      max-width: 720px;
+      margin-top:10px;
+      color:rgba(11,18,32,.58);
+      font-size:14px;
+      line-height:1.7;
+      max-width:720px;
     }
 
     .weekIntroPanel{
-      margin-bottom: 18px;
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid rgba(11,18,32,.08);
-      background: rgba(255,255,255,.94);
-      box-shadow: var(--shadow2);
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(240px, .9fr);
-      gap: 18px;
-      align-items: start;
+      margin-bottom:18px;
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(11,18,32,.08);
+      background:rgba(255,255,255,.94);
+      box-shadow:var(--shadow2);
+      display:grid;
+      grid-template-columns:minmax(0, 1.5fr) minmax(240px, .9fr);
+      gap:18px;
+      align-items:start;
     }
 
     .weekIntroPanel h3{
-      margin: 0 0 10px;
-      font-size: 1.02rem;
-      color: var(--navy);
+      margin:0 0 10px;
+      font-size:1.02rem;
+      color:var(--navy);
     }
 
     .weekIntroPanel p{
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: .97rem;
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:.97rem;
     }
 
     .weekChecklist{
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
     }
 
     .weekChecklist li{
-      margin: 8px 0;
-      line-height: 1.7;
+      margin:8px 0;
+      line-height:1.7;
+    }
+
+    .resumePanel{
+      margin:18px 0 0;
+      padding:16px 18px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(159,232,112,.14), rgba(255,255,255,.96));
+      border:1px solid rgba(47,191,113,.18);
+      box-shadow:0 12px 24px rgba(47,191,113,.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .resumePanel__text{
+      color:var(--navy);
+    }
+
+    .resumePanel__text strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:15px;
+    }
+
+    .resumePanel__text span{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .weekGridClean{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+      margin-top:18px;
     }
 
     .weekCard{
-      min-height: 108px;
+      min-height:128px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(11,18,32,.08);
+      background:#fff;
+      box-shadow:0 14px 28px rgba(12,18,32,.06);
+      text-decoration:none;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
 
-    .weekCard__title{
-      font-size: 1rem;
-      line-height: 1.45;
-    }
-
-    .weekCard__meta{
-      line-height: 1.65;
-    }
-
-    .weekCard__arrow{
-      font-size: 1.1rem;
-      transition: transform .18s ease, opacity .18s ease;
-    }
-
-    .weekCard:hover .weekCard__arrow{
-      transform: translateX(3px);
-      opacity: 1;
+    .weekCard:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 34px rgba(12,18,32,.10);
+      border-color:rgba(16,36,63,.16);
     }
 
     .weekCard--featured{
-      border-color: rgba(47,191,113,.22);
-      background: linear-gradient(180deg, rgba(159,232,112,.12), rgba(255,255,255,.96));
-      box-shadow: 0 18px 34px rgba(47,191,113,.10);
+      border-color:rgba(47,191,113,.22);
+      background:linear-gradient(180deg, rgba(159,232,112,.12), rgba(255,255,255,.96));
+      box-shadow:0 18px 34px rgba(47,191,113,.10);
+    }
+
+    .weekCard__left{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      min-width:0;
+    }
+
+    .weekCard__num{
+      width:46px;
+      height:46px;
+      flex:0 0 46px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(16,36,63,.08);
+      color:var(--navy);
+      font-weight:800;
+      font-size:15px;
+    }
+
+    .weekCard__body{
+      min-width:0;
+    }
+
+    .weekCard__title{
+      font-size:1rem;
+      line-height:1.5;
+      color:var(--navy);
+      font-weight:800;
+      margin-bottom:6px;
+    }
+
+    .weekCard__meta{
+      line-height:1.75;
+      color:var(--muted);
+      font-size:.93rem;
+    }
+
+    .weekCard__arrow{
+      font-size:1.15rem;
+      color:rgba(16,36,63,.55);
+      transition:transform .18s ease, opacity .18s ease;
+      opacity:.9;
+    }
+
+    .weekCard:hover .weekCard__arrow{
+      transform:translateX(3px);
+      opacity:1;
     }
 
     .weekBadge{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(11,18,32,.04);
-      border: 1px solid rgba(11,18,32,.08);
-      color: rgba(11,18,32,.65);
-      font-size: 12px;
-      font-weight: 700;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(11,18,32,.04);
+      border:1px solid rgba(11,18,32,.08);
+      color:rgba(11,18,32,.65);
+      font-size:12px;
+      font-weight:700;
     }
 
-    .weekFooterMeta{
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .courseWeeks{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .courseWeekLink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      border:1px solid rgba(11,18,32,.08);
+      background:rgba(255,255,255,.92);
+      color:var(--navy);
+      box-shadow:0 8px 18px rgba(12,18,32,.04);
+    }
+
+    .courseWeekLink.is-active{
+      background:linear-gradient(180deg, #10243f, #173357);
+      color:#fff;
+      border-color:transparent;
+    }
+
+    .simpleHelpBox{
+      margin-top:18px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(11,18,32,.08);
+      box-shadow:0 10px 22px rgba(12,18,32,.05);
+    }
+
+    .simpleHelpBox h3{
+      margin:0 0 8px;
+      color:var(--navy);
+      font-size:1rem;
+    }
+
+    .simpleHelpBox p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:.95rem;
+    }
+
+    @media (max-width: 980px){
+      .weekGridClean{
+        grid-template-columns:1fr;
+      }
+
+      .resumePanel{
+        align-items:flex-start;
+      }
     }
 
     @media (max-width: 900px){
       .weekIntroPanel{
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
       }
     }
 
     @media (max-width: 640px){
       .weekHeroCard{
-        width: 100%;
-        justify-content: center;
-        text-align: center;
+        width:100%;
+        justify-content:center;
+        text-align:center;
+      }
+
+      .resumePanel .btn{
+        width:100%;
+      }
+
+      .courseWeeks{
+        flex-direction:column;
+      }
+
+      .courseWeekLink{
+        width:100%;
       }
     }
   </style>
@@ -186,7 +338,7 @@
           🌐 <span id="langLabel">AR</span>
         </button>
 
-        <a class="btn btn--ghost" href="../../../index.html" data-i18n="week1.backHome">Home</a>
+        <a class="btn btn--ghost" href="../../../index.html">Home</a>
       </div>
     </div>
   </header>
@@ -195,41 +347,49 @@
     <div class="wrap hero__inner">
       <div class="hero__grid">
         <div class="hero__content">
-          <div class="hero__badge" data-i18n="week1.badge">Deep Learning Course</div>
+          <div class="hero__badge">Deep Learning Course</div>
 
-          <h1 class="hero__title" data-i18n="week1.title">Week 1 — Foundations</h1>
+          <h1 class="hero__title">Week 1 — Foundations</h1>
 
-          <p class="hero__subtitle" data-i18n="week1.subtitle">
-            Start here. Watch the lectures, read the Arabic summary, and test yourself with quick quizzes.
+          <p class="hero__subtitle">
+            Start here. Watch the lectures in order, read the Arabic summary, and move step by step without confusion.
           </p>
 
           <div class="hero__cta">
-            <a class="btn btn--primary btn--lg" href="./lecture1.html" data-i18n="week1.startBtn">
+            <a class="btn btn--primary btn--lg" href="./lecture1.html">
               Start Lecture 1 →
             </a>
 
-            <a class="btn btn--ghost btn--lg" href="../../../dashboard.html" data-i18n="week1.dashboardBtn">
-              Dashboard
-            </a>
+            <button class="btn btn--ghost btn--lg" type="button" id="continueLearningBtn">
+              Continue Learning
+            </button>
           </div>
 
           <div class="hero__pills">
-            <span class="pill" data-i18n="week1.pill1">Arabic Summary</span>
-            <span class="pill" data-i18n="week1.pill2">Key Concepts</span>
-            <span class="pill" data-i18n="week1.pill3">Glossary + Quiz</span>
-            <span class="pill" data-i18n="week1.pill4">Clean MIT Style</span>
+            <span class="pill">Arabic Summary</span>
+            <span class="pill">Key Concepts</span>
+            <span class="pill">Bilingual Learning</span>
+            <span class="pill">Simple Navigation</span>
           </div>
 
           <div class="weekStats">
             <span class="weekStat">🎓 Beginner Level</span>
-            <span class="weekStat">📚 22 Lectures</span>
+            <span class="weekStat">📚 3 Lectures Only</span>
             <span class="weekStat">🌍 English + Arabic</span>
             <span class="weekStat">🧠 Foundations First</span>
           </div>
 
           <div class="weekHeroCard">
             <span>📘</span>
-            <span>Week 1 builds the mental model for the rest of the Deep Learning program.</span>
+            <span>This week builds the mental model for the rest of the Deep Learning program.</span>
+          </div>
+
+          <div class="courseWeeks">
+            <a class="courseWeekLink is-active" href="./week1.html">Week 1</a>
+            <a class="courseWeekLink" href="../week2/week2.html">Week 2</a>
+            <a class="courseWeekLink" href="../week3/week3.html">Week 3</a>
+            <a class="courseWeekLink" href="../week4/week4.html">Week 4</a>
+            <a class="courseWeekLink" href="../week5/week5.html">Week 5</a>
           </div>
         </div>
 
@@ -244,20 +404,32 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="weekSectionTop">
+
+      <div class="resumePanel">
+        <div class="resumePanel__text">
+          <strong>Continue where you left off</strong>
+          <span id="resumeText">If you are new, start with Lecture 1. If you already studied before, Polaris will take you to your last lecture.</span>
+        </div>
+
+        <button class="btn btn--primary" type="button" id="resumeBtn">
+          Open My Last Lecture
+        </button>
+      </div>
+
+      <div class="weekSectionTop" style="margin-top:22px;">
         <div class="section__head">
-          <h2 class="h2" data-i18n="week1.lecturesTitle">Week 1 Lectures</h2>
-          <p class="p muted" data-i18n="week1.lecturesSub">
-            22 lectures — open any lecture to watch the video and read the lesson.
+          <h2 class="h2">Week 1 Lectures</h2>
+          <p class="p muted">
+            3 clear lectures — open them in order, learn calmly, and continue without getting lost.
           </p>
           <div class="weekMiniNote">
-            Learn in sequence, build conceptual clarity, and use the Polaris summaries and quizzes to reinforce understanding.
+            We intentionally show only the real lectures available now so the student does not feel confused or think the course is broken.
           </div>
         </div>
 
         <div class="catalogFilters">
-          <a class="chip is-active" href="#lectures" data-i18n="week1.filterAll">All</a>
-          <a class="chip" href="../../../index.html#courses" data-i18n="week1.filterCatalog">Catalog</a>
+          <a class="chip is-active" href="#lectures">Week 1</a>
+          <a class="chip" href="../../../index.html#courses">Catalog</a>
         </div>
       </div>
 
@@ -265,219 +437,63 @@
         <div>
           <h3>What happens in Week 1</h3>
           <p>
-            This week is designed to establish the conceptual foundations of deep learning before moving into more advanced topics.
-            Students begin by understanding neural networks, layers, parameters, training, and why deep learning became so powerful.
+            This week gives the student a calm and simple introduction to deep learning. We begin with the big idea,
+            then move to neural networks, then to how data moves through the model. The goal is understanding first,
+            not speed.
           </p>
         </div>
 
         <div>
           <h3>Recommended approach</h3>
           <ul class="weekChecklist">
-            <li>Start with Lecture 1 in order</li>
+            <li>Start with Lecture 1 first</li>
+            <li>Move to Lecture 2 after finishing Lecture 1</li>
             <li>Read the Arabic summary after each lecture</li>
-            <li>Review key concepts before moving on</li>
-            <li>Use glossary and quiz for active recall</li>
+            <li>Return later using Continue Learning</li>
           </ul>
         </div>
       </div>
 
-      <div id="lectures" class="weekGrid">
+      <div class="simpleHelpBox">
+        <h3>Simple learning flow</h3>
+        <p>
+          Open the first lecture, watch the video, read the summary, then use the next button inside the lesson page.
+          If you take a break, Polaris will remember where you stopped.
+        </p>
+      </div>
+
+      <div id="lectures" class="weekGridClean">
 
         <a class="weekCard weekCard--featured" href="./lecture1.html">
-          <div class="weekCard__num">01</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l1">Lecture 1 — Introduction</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-            <div class="weekBadge">Start here</div>
+          <div class="weekCard__left">
+            <div class="weekCard__num">01</div>
+            <div class="weekCard__body">
+              <div class="weekCard__title">Lecture 1 — Introduction to Deep Learning</div>
+              <div class="weekCard__meta">Start here • Arabic summary • English notes • Clear beginner entry point</div>
+              <div class="weekBadge">Start here</div>
+            </div>
           </div>
           <div class="weekCard__arrow">→</div>
         </a>
 
         <a class="weekCard" href="./lecture2.html">
-          <div class="weekCard__num">02</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l2">Lecture 2</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
+          <div class="weekCard__left">
+            <div class="weekCard__num">02</div>
+            <div class="weekCard__body">
+              <div class="weekCard__title">Lecture 2 — Neural Networks Basics</div>
+              <div class="weekCard__meta">Layers • Neurons • Weights • Simple explanation for beginners</div>
+            </div>
           </div>
           <div class="weekCard__arrow">→</div>
         </a>
 
         <a class="weekCard" href="./lecture3.html">
-          <div class="weekCard__num">03</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l3">Lecture 3</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture4.html">
-          <div class="weekCard__num">04</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l4">Lecture 4</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture5.html">
-          <div class="weekCard__num">05</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l5">Lecture 5</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture6.html">
-          <div class="weekCard__num">06</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l6">Lecture 6</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture7.html">
-          <div class="weekCard__num">07</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l7">Lecture 7</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture8.html">
-          <div class="weekCard__num">08</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l8">Lecture 8</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture9.html">
-          <div class="weekCard__num">09</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l9">Lecture 9</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture10.html">
-          <div class="weekCard__num">10</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l10">Lecture 10</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture11.html">
-          <div class="weekCard__num">11</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l11">Lecture 11</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture12.html">
-          <div class="weekCard__num">12</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l12">Lecture 12</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture13.html">
-          <div class="weekCard__num">13</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l13">Lecture 13</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture14.html">
-          <div class="weekCard__num">14</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l14">Lecture 14</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture15.html">
-          <div class="weekCard__num">15</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l15">Lecture 15</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture16.html">
-          <div class="weekCard__num">16</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l16">Lecture 16</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture17.html">
-          <div class="weekCard__num">17</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l17">Lecture 17</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture18.html">
-          <div class="weekCard__num">18</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l18">Lecture 18</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture19.html">
-          <div class="weekCard__num">19</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l19">Lecture 19</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture20.html">
-          <div class="weekCard__num">20</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l20">Lecture 20</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture21.html">
-          <div class="weekCard__num">21</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l21">Lecture 21</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
-          </div>
-          <div class="weekCard__arrow">→</div>
-        </a>
-
-        <a class="weekCard" href="./lecture22.html">
-          <div class="weekCard__num">22</div>
-          <div class="weekCard__body">
-            <div class="weekCard__title" data-i18n="week1.l22">Lecture 22</div>
-            <div class="weekCard__meta" data-i18n="week1.meta">Arabic summary • Key concepts • Glossary • Quiz</div>
+          <div class="weekCard__left">
+            <div class="weekCard__num">03</div>
+            <div class="weekCard__body">
+              <div class="weekCard__title">Lecture 3 — Forward Pass and Predictions</div>
+              <div class="weekCard__meta">How information moves • Prediction flow • Next logical step after Lecture 2</div>
+            </div>
           </div>
           <div class="weekCard__arrow">→</div>
         </a>
@@ -490,7 +506,7 @@
     <div class="wrap footer__inner">
       <div>
         <div class="footer__brand">Polaris Global Institute</div>
-        <div class="footer__tag muted" data-i18n="week1.footerTag">Structured learning — Arabic + English.</div>
+        <div class="footer__tag muted">Structured learning — Arabic + English.</div>
       </div>
 
       <div class="footer__links">
@@ -507,6 +523,33 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const resumeBtn = document.getElementById("resumeBtn");
+    const continueLearningBtn = document.getElementById("continueLearningBtn");
+    const resumeText = document.getElementById("resumeText");
+
+    function openSavedLecture() {
+      const saved = localStorage.getItem("polaris_last_lecture");
+      if (saved) {
+        window.location.href = saved;
+      } else {
+        window.location.href = "./lecture1.html";
+      }
+    }
+
+    if (resumeBtn) {
+      resumeBtn.addEventListener("click", openSavedLecture);
+    }
+
+    if (continueLearningBtn) {
+      continueLearningBtn.addEventListener("click", openSavedLecture);
+    }
+
+    const savedLecture = localStorage.getItem("polaris_last_lecture");
+    if (savedLecture) {
+      const cleanName = savedLecture.replace(".html", "").replace("./", "");
+      resumeText.textContent = "Your last saved lesson is: " + cleanName + ". Click Continue Learning to go back to it.";
+    }
   </script>
 
   <script src="../../../lang.js"></script>
